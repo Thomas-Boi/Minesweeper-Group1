@@ -1,0 +1,22 @@
+/* body */
+body {
+    background-image: url('../Images/game_over.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: black;
+}
+
+/* h1 */
+h1 {
+    text-align: center;
+    color: yellow;
+}
+
+/* buttons */
+#restartBtn {
+    position: fixed;
+    left: 50%;
+    bottom: 30px;
+    transform: translate(-50%, -50%)
+}
+
