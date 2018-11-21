@@ -4,12 +4,42 @@
 <head>
     <title>Minesweeper</title>
     <style>
-     
+    body{
+        text-align: center;
+    }
+    button{
+        
+    }
+
     </style>
 </head>
 
 <body>
+    <h1 id='clock'>0:00</h1>
+
     <script>
+        let minute = 0;
+        let holder = 0;
+        let second = 0;
+
+        function clock() {
+
+            second ++;
+            if(second == 59){
+                second ==00;
+                min += 1;
+            }
+            if(second == 10){
+                holder = "";
+            }
+            if (holder == 6){
+                min+=1;
+            }
+
+            let time = document.getElementById('clock').innerHTML = minute+':' +holder+second;
+        }
+
+        setInterval(clock, 1000);
 
 
         function board(n) {
@@ -19,7 +49,7 @@
 
                     let button = document.createElement("Button");
                     document.body.appendChild(button);
-                    let string = String(i)+ String(j);
+                    let string = String(i) + String(j);
                     button.id = 'cell' + string;
 
                     button.style.width = '30px';
