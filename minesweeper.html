@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Minesweeper</title>
+    <style>
+     
+    </style>
+</head>
+
+<body>
+    <script>
+
+
+        function board(n) {
+
+            for (let i = 1; i <= n; i++) {
+                for (let j = 1; j <= n; j++) {
+
+                    let button = document.createElement("Button");
+                    document.body.appendChild(button);
+                    let string = String(i)+ String(j);
+                    button.id = 'cell' + string;
+
+                    button.style.width = '30px';
+                    button.style.height = '30px';
+
+
+                }
+
+                document.write("<br/>");
+            }
+        }
+
+        board(15);
+    </script>
+</body>
+
+</html>
