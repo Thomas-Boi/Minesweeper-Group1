@@ -10,29 +10,41 @@
 
 <body>
     <script>
-
-
-        function board(n) {
-
-            for (let i = 1; i <= n; i++) {
-                for (let j = 1; j <= n; j++) {
-
-                    let button = document.createElement("Button");
-                    document.body.appendChild(button);
-                    let string = String(i)+ String(j);
-                    button.id = 'cell' + string;
-
-                    button.style.width = '30px';
-                    button.style.height = '30px';
-
-
-                }
-
-                document.write("<br/>");
-            }
+ var easy = 3, medium = 7, hard = 10;
+    var gridheight=15, gridwidth = 15
+    function minePlacer(difficulty, gridheight, gridwidth){
+        let cellID, cell, cellw,cellh, sel;
+        let x=0;    //x tracks how many mines are set on the board.
+        while(x < difficulty){          
+            cellw = Math.floor(Math.random()*gridwidth); //uses the Random module to select a random row        
+            cellh = Math.floor(Math.random()*gridheight);// used the Random module to select a random column        
+            cellID = 'cell'+str(cellw)+str(cellh); //uses cellw and cellh to generate a random cell ID from the board           
+            cell = document.getElementById(cellID);//and gets the element.        
+            if(cell.classList.contains('mine')){ //checks if the element already has a mine placed in it       
+                continue;    //if so, the loop continues without incrementing x     
+            }   
+            cell.classList.add('mine'); //Otherwise, it adds the classname "mine" to the cell, indicating that it contains a mine.
+            x++;//Then x increments before the while loop restarts.
         }
-
-        board(15);
+        return;
+    }
+    function cellclick(cellid){ //onlick function that places a flag if you click and hold on a cell, reveals cell if you click
+            //input parameter is the cell's id (ie. onclick = cellclick(this.id))
+        let cell = document.getElementById(cellid) //gets the cell information and stores it.
+        var t;
+        cell.onmousedown = function(){t=setTimeout(placeFlag(cell), 1500)}; //on click, delays the placeFlag function from initializing until
+                                                    //the timer runs out or mouseup occurs before the timer runs out.
+        cell.onmouseup = function(){
+            clearTimeout(t);
+            unearth(cell)//cancels setTimeout
+        } 
+        return;
+    }
+    function placeFlag(cell){ //function that places a flag on the indicated cell
+        cell.disabled = true; //Disable the button from being clicked
+        cell = flag;
+        return;
+    }
     </script>
 </body>
 
