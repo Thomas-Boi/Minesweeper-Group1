@@ -1,0 +1,50 @@
+/* CSS for minesweeper game */
+body {
+	text-align: center;
+}
+/* Header*/
+#header {
+	border: 2px solid black;
+	display: inline;
+	position: fixed;
+	width: 450px;
+	height: 60px;
+	left: 50%;
+	transform: translate(-50%);
+	text-align: center;
+}
+
+/* setting gear pic*/
+
+#gear_pic {
+	height: 45px;
+	width: 45px;
+	position: absolute;
+	display: inline;
+	left: 20px;
+	margin-top: 10px;
+}
+
+/*clock*/
+#clock {
+	position: absolute;
+	display: inline;
+	top: 2px;
+	transform: translate(-50%);
+}
+
+/* board */
+#board {
+	position: fixed;
+	display: inline;
+	border: 2px solid black;
+	top: 80px;
+	left: 50%;
+	transform: translate(-50%)
+} 
+
+button {
+	height: 30px;
+	width: 30px;
+	position: inline;
+}
