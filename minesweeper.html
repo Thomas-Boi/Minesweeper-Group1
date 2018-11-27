@@ -4,63 +4,79 @@
 <head>
     <title>Minesweeper</title>
     <style>
-    body{
-        text-align: center;
-    }
-   
+        body {
+            text-align: center;
+        }
 
+        button {
+            position: relative;
+            left: 0;
+        }
+
+        /* #area{
+            margin-top: 100px
+        } */
     </style>
 </head>
 
 <body>
-    <h1 id='clock'>0:00</h1>
+
+    <div>
+        <h1 id='clock'>0:00</h1>
+        <!-- <img id='start' src='.//Images/smile.png' style="width:50px;height:50px;display: inline-block;"></img> -->
+
+
+    </div>
+   
+    <button id='easy'>Easy</button>
+    <button id='medium'>Medium</button>
+    <button id='hard'>Hard</button>
+    <div id='area'>here </div>
+
 
     <script>
-        let minute = 0;
-        let holder = 0;
-        let second = 0;
+        let easy = document.getElementById('easy');
+        let medium = document.getElementById('medium');
+        let hard = document.getElementById('hard');
+        let area = document.getElementById('area');
 
-        function clock() {
-
-            second ++;
-            if(second == 59){
-                second ==00;
-                min += 1;
-            }
-            if(second == 10){
-                holder = "";
-            }
-            if (holder == 6){
-                min+=1;
-            }
-
-            let time = document.getElementById('clock').innerHTML = minute+':' +holder+second;
-        }
-
-        setInterval(clock, 1000);
+        // let start = document.getElementById('start');
+        // start.onclick = start_clock;
 
 
-        function board(n) {
+     function board(n) {
+
 
             for (let i = 1; i <= n; i++) {
                 for (let j = 1; j <= n; j++) {
 
                     let button = document.createElement("Button");
                     document.body.appendChild(button);
+
+
                     let string = String(i) + String(j);
                     button.id = 'cell' + string;
 
                     button.style.width = '30px';
                     button.style.height = '30px';
-
-
+                    
                 }
-
-                document.write("<br/>");
+document.write("<br/>");
+               
             }
         }
 
-        board(15);
+        // board(5);
+
+        easy.onclick  = board(5);
+
+        medium.onclick = function mode_medium() {
+            board(8);
+        }
+        hard.onclick = function mode_hard() {
+            board(10);
+        }
+
     </script>
 </body>
 
