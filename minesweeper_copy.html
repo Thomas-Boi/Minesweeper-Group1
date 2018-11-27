@@ -61,13 +61,22 @@
         }
 
         function setting() {
-            let ans = prompt('Please choose a mode', 'easy, medium, hard')
-            if (ans == 'easy') {
-                let easy = function () {board(5);}
-                easy()
-            } else if (ans )
+            // create a pop up window
+            pop_up_href = 'setting.html'
+            pop_up_name = 'setting_window'
+            center_of_window = window.innerWidth / 2
+
+            window.open(pop_up_href, pop_up_name, 
+                        'width=400px, height=400px, left=' +
+                        center_of_window)
         }
-        gear_pic.onclick = setting
+
+        // click on setting button
+        let setting_var = function() {setting()}
+        gear_pic.onclick = setting_var
+
+        //auto load a medium board
+        board(8)
         
     </script>
 </body>
