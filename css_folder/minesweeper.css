@@ -13,7 +13,29 @@ body {
 	transform: translate(-50%);
 	text-align: center;
 }
+#board{
+	border: 2px solid black;
+	display: inline;
+	position: fixed;
+	width: 450px;
+	height: 450px;
+	left: 50%;
+	transform: translate(-50%);
+	text-align: center;
 
+}
+
+#setting{
+	border: 2px solid black;
+	display: inline;
+	position: fixed;
+	width: 450px;
+	height: 60px;
+	left: 50%;
+	transform: translate(-50%);
+	text-align: center;
+
+}
 /* setting gear pic*/
 
 #gear_pic {
@@ -43,8 +65,8 @@ body {
 	transform: translate(-50%)
 } 
 
-button {
+/* button {
 	height: 30px;
 	width: 30px;
 	position: inline;
-}
+} */

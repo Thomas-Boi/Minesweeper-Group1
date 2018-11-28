@@ -17,64 +17,93 @@
             margin-top: 100px
         } */
     </style>
+    <link rel='stylesheet' type='text/css' href='css_folder/minesweeper.css'>
 </head>
 
 <body>
-
-    <div>
+    <div id='header'>
+        <img src='Images/gear_setting.png' id='gear_pic'>
         <h1 id='clock'>0:00</h1>
-        <!-- <img id='start' src='.//Images/smile.png' style="width:50px;height:50px;display: inline-block;"></img> -->
-
-
     </div>
-   
-    <button id='easy'>Easy</button>
-    <button id='medium'>Medium</button>
-    <button id='hard'>Hard</button>
-    <div id='area'>here </div>
+
+    <div id='setting'>
+        <button id='easy'>Easy</button>
+        <button id='medium'>Medium</button>
+        <button id='hard'>Hard</button>
+        <button id='reset'>Reset</button>
+    </div>
+
+    <div id='board'>
+    </div>
 
 
     <script>
         let easy = document.getElementById('easy');
         let medium = document.getElementById('medium');
         let hard = document.getElementById('hard');
-        let area = document.getElementById('area');
+        let restart = document.getElementById('reset');
+        let board = document.getElementById('board');
 
-        // let start = document.getElementById('start');
-        // start.onclick = start_clock;
+        let minute = 0;
+        let tenth_place_second = 0; //represent seconds in tenth place
+        let second = 0; //represent second in ones place
+        function clock() {
+            second++;
+            if (second == 10) {
+                // reset_second + add one to tenth_place_second
+                tenth_place_second += 1
+                second = 0
+            }
+            if (tenth_place_second == 6) {
+                // reset tenth_place_second + add one to minute
+                tenth_place_second = 0
+                minute += 1
+            }
+            document.getElementById('clock').innerHTML = minute + ':' + tenth_place_second + '' + second;
+        }
+        setInterval(clock, 1000);
 
 
-     function board(n) {
+        function game_board(n) {
 
 
             for (let i = 1; i <= n; i++) {
                 for (let j = 1; j <= n; j++) {
 
                     let button = document.createElement("Button");
-                    document.body.appendChild(button);
+
+                    board.appendChild(button);
 
 
                     let string = String(i) + String(j);
                     button.id = 'cell' + string;
 
-                    button.style.width = '30px';
-                    button.style.height = '30px';
-                    
+                    button.style.width = 450/n + 'px';
+                    button.style.height = 450/n + 'px';
+
                 }
-document.write("<br/>");
-               
+                board.innerHTML += "<br/>"
+
             }
         }
 
-        // board(5);
+        restart.onclick = function reset_board() {
+            board.innerHTML = '';
+            game_board(8)
+        }
 
-        easy.onclick  = board(5);
+        easy.onclick = function mode_easy() {
+            board.innerHTML = '';
+            game_board(5);
+        }
 
         medium.onclick = function mode_medium() {
-            board(8);
+            board.innerHTML = '';
+            game_board(8);
         }
         hard.onclick = function mode_hard() {
-            board(10);
+            board.innerHTML = '';
+            game_board(10);
         }
 
     </script>
