@@ -2,6 +2,12 @@
 body {
 	text-align: center;
 }
+
+img {
+	width: 30px;
+	height: 30px;
+}
+
 /* Header*/
 #header {
 	border: 2px solid black;
@@ -14,9 +20,12 @@ body {
 	text-align: center;
 }
 
+<<<<<<< HEAD
 #clock{
 	color: red;
 }
+=======
+>>>>>>> 83ea1d827c3a86f7a9e7bce9e073f120894c2e91
 #board{
 	border: 2px solid black;
 	display: inline;
@@ -69,9 +78,3 @@ body {
 	left: 50%;
 	transform: translate(-50%)
 } 
-
-/* button {
-	height: 30px;
-	width: 30px;
-	position: inline;
-} */

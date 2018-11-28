@@ -5,11 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Setting</title>
+    <link rel='stylesheet' type='text/css' href='css_folder/setting.css'>
 </head>
 <body>
+    <b> Difficulty</b>
+    <button id='easy' class='mode_btn'>Easy</button>
+    <button id='medium' class='mode_btn'>Medium</button>
+    <button id='hard' class='mode_btn'>Hard</button>
+    <br>
+
+    <b> Music </b>
+    <button id='music_on'> ON </button>
+    <button id='music_off'> OFF </button>
+    <br>
+    
+
+    <b> Audio </b>
+    <button id='audio_on'> ON </button>
+    <button id='audio_off'> OFF </button>
+    <br>
+
+    <button id='confirm'> Confirm </button>
     <script>
+        //place the pop up window on screen
         half_window_width = innerWidth / 2
         window.moveBy(-half_window_width, 190)
+
+        function select_mode(mode) {
+            let all_modes = ['easy', 'medium', 'hard']
+            selected_btn = document.getElementById(mode)
+
+            // clear formatting of other buttons
+            mode_index = all_modes.indexOf(mode)
+            delete all_modes[mode_index]
+            all_modes.forEach(unselect_button)
+
+            //select the button 
+            selected_btn.className = 'selected_button'
+        }
+
+        function unselect_button(value = '', index = '') {
+            //unselect a button
+            let other_button = document.getElementById(value)
+            other_button.className = ''
+        }
+
+        function toggleMusic() {
+            //toggle Music on or off
+            this.className = 'selected_button'
+
+            if (this.id == 'music_on') {
+                document.getElementById('music_off').className = ''
+            } else {
+                document.getElementById('music_on').className = ''
+            }
+        }
+
+        function toggleSfx() {
+            //toggle sfx on or off
+            this.className = 'selected_button'
+
+            if (this.id == 'sfx_on') {
+                document.getElementById('sfx_off').className = ''
+            } else {
+                document.getElementById('sfx_on').className = ''
+            }
+        }
+
+
+        function confirm_setting(mode = 'easy', music = true, sfx = true) {
+            //close window and save information
+        }
+        
+
+        // difficulty buttons
+        let easy = document.getElementById('easy');
+        let medium = document.getElementById('medium');
+        let hard = document.getElementById('hard');
+
+        easy.onclick = function() {
+            select_mode('easy')
+        }
+        medium.onclick = function() {
+            select_mode('medium')
+        }
+        hard.onclick = function() {
+            select_mode('hard')
+        }
+
+        // music and sfx button
+        document.getElementById('music_on').onclick = toggleMusic
+        document.getElementById('music_off').onclick = toggleMusic
+
+        document.getElementById('confirm').onclick = confirm_setting
     </script>
 </body>
 </html>

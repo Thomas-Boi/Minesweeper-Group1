@@ -19,15 +19,6 @@
         <!-- Buttons go here -->
     </div>
 
-    <!-- Music and Audio -->
-    <audio id='ambience' loop>
-            <source src='audio/there is no need to be upset.mp3'>
-    </audio>
-
-    <audio id='clickSound'>
-            <source src='audio/button_click.mp3'>
-    </audio>
-    
     <script>
         let minute = 0;
         let tenth_place_second = 0; //represent seconds in tenth place
@@ -64,9 +55,6 @@
                     let string = String(i) + String(j);
                     button.id = 'cell' + string;
 
-                    button.style.width = 450/n + 'px';
-                    button.style.height = 450/n + 'px';
-
                 }
                 document.getElementById('board').innerHTML += '<br>'
             }
@@ -84,11 +72,41 @@
         }
 
         // click on setting button
-        gear_pic.onclick = function() {setting()}
+        let setting_var = function() {setting()}
+        gear_pic.onclick = setting_var
 
         //auto load a medium board
         board(8)
         
+        
+        let easy = 3, medium = 7, hard = 10;
+        let gridheight=15, gridwidth = 15
+        function minePlacer(difficulty, gridheight, gridwidth){
+            var cellID, cell, cellw,cellh, sel;
+            let x=0;    //x tracks how many mines are set on the board.
+            while(x < difficulty){
+                
+                cellw = Math.floor(Math.random()*gridwidth); //uses the Random module to select a random row
+                
+                cellh = Math.floor(Math.random()*gridheight);// used the Random module to select a random column
+                
+                cellID = 'cell'+ String(cellw)+ String(cellh); //uses cellw and cellh to generate a random cell ID from the board
+                
+                cell = document.getElementById(cellID);//and gets the element.
+                
+                if(cell.classList.contains('mine')){ //checks if the element already has a mine placed in it
+                
+                    continue;    //if so, the loop continues without incrementing x
+                
+                }
+                
+                cell.classList.add('mine'); //Otherwise, it adds the classname "mine" to the cell, indicating that it contains a mine.
+                cell.innerHTML = "<img src='Images/flag.png' />"
+                x++;//Then x increments before the while loop restarts.
+            }
+        }
+        minePlacer(3, 8, 8)
+
     </script>
 </body>
 
