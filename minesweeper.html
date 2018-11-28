@@ -34,8 +34,8 @@
     </div>
 
     <div id='board'>
+        <h1>MINESWEEPER</h1>
     </div>
-
 
     <script>
         let easy = document.getElementById('easy');
@@ -43,6 +43,7 @@
         let hard = document.getElementById('hard');
         let restart = document.getElementById('reset');
         let board = document.getElementById('board');
+        let timer = document.getElementById('clock');
 
         let minute = 0;
         let tenth_place_second = 0; //represent seconds in tenth place
@@ -61,8 +62,6 @@
             }
             document.getElementById('clock').innerHTML = minute + ':' + tenth_place_second + '' + second;
         }
-        setInterval(clock, 1000);
-
 
         function game_board(n) {
 
@@ -78,32 +77,44 @@
                     let string = String(i) + String(j);
                     button.id = 'cell' + string;
 
-                    button.style.width = 450/n + 'px';
-                    button.style.height = 450/n + 'px';
+                    button.style.width = 450 / n + 'px';
+                    button.style.height = 450 / n + 'px';
 
                 }
                 board.innerHTML += "<br/>"
 
             }
         }
+        board.onclick = function () {
+            setInterval(clock, 1000);
+            board.onclick = '';
+        }
 
         restart.onclick = function reset_board() {
-            board.innerHTML = '';
-            game_board(8)
+            location.reload();
         }
 
         easy.onclick = function mode_easy() {
             board.innerHTML = '';
             game_board(5);
+            medium.disabled = true;
+            hard.disabled = true;
+
         }
 
         medium.onclick = function mode_medium() {
             board.innerHTML = '';
             game_board(8);
+            easy.disabled = true;
+            hard.disabled = true;
+
         }
         hard.onclick = function mode_hard() {
             board.innerHTML = '';
             game_board(10);
+            medium.disabled = true;
+            easy.disabled = true;
+
         }
 
     </script>

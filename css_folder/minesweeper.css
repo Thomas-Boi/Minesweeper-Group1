@@ -13,6 +13,10 @@ body {
 	transform: translate(-50%);
 	text-align: center;
 }
+
+#clock{
+	color: red;
+}
 #board{
 	border: 2px solid black;
 	display: inline;
@@ -22,6 +26,8 @@ body {
 	left: 50%;
 	transform: translate(-50%);
 	text-align: center;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
 
 }
 
