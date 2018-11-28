@@ -19,6 +19,15 @@
         <!-- Buttons go here -->
     </div>
 
+    <!-- Music and Audio -->
+    <audio id='ambience' loop>
+            <source src='audio/there is no need to be upset.mp3'>
+    </audio>
+
+    <audio id='clickSound'>
+            <source src='audio/button_click.mp3'>
+    </audio>
+    
     <script>
         let minute = 0;
         let tenth_place_second = 0; //represent seconds in tenth place
@@ -55,6 +64,9 @@
                     let string = String(i) + String(j);
                     button.id = 'cell' + string;
 
+                    button.style.width = 450/n + 'px';
+                    button.style.height = 450/n + 'px';
+
                 }
                 document.getElementById('board').innerHTML += '<br>'
             }
@@ -72,8 +84,7 @@
         }
 
         // click on setting button
-        let setting_var = function() {setting()}
-        gear_pic.onclick = setting_var
+        gear_pic.onclick = function() {setting()}
 
         //auto load a medium board
         board(8)
