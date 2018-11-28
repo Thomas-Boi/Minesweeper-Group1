@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Setting</title>
+</head>
+<body>
+    <b> Difficulty</b>
+    <button id='easy'>Easy</button>
+    <button id='medium'>Medium</button>
+    <button id='hard'>Hard</button>
+    <br>
+
+    <b> Music </b>
+    <button id='music_on'> ON </button>
+    <button id='music_off'> OFF </button>
+    <br>
+
+    <b> Music </b>
+    <button id='music_on'> ON </button>
+    <button id='music_off'> OFF </button>
+    <br>
+
+    <script>
+        function change_difficulty(mode) {
+            //change the difficulty of the game
+        }
+        //place the pop up window
+        half_window_width = innerWidth / 2
+        window.moveBy(-half_window_width, 190)
+
+        // difficulty buttons
+        let easy = document.getElementById('easy');
+        let medium = document.getElementById('medium');
+        let hard = document.getElementById('hard');
+
+        let difficulty = function (mode) {
+            change_difficulty(mode)
+        }
+
+        
+
+    </script>
+</body>
+</html>
