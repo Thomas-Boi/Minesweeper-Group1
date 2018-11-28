@@ -8,9 +8,9 @@
 </head>
 <body>
     <b> Difficulty</b>
-    <button id='easy'>Easy</button>
-    <button id='medium'>Medium</button>
-    <button id='hard'>Hard</button>
+    <button id='easy' class='mode_btn'>Easy</button>
+    <button id='medium' class='mode_btn'>Medium</button>
+    <button id='hard' class='mode_btn'>Hard</button>
     <br>
 
     <b> Music </b>
@@ -23,25 +23,43 @@
     <button id='music_off'> OFF </button>
     <br>
 
+    <button id='confirm'> Confirm </button>
     <script>
-        function change_difficulty(mode) {
-            //change the difficulty of the game
-        }
         //place the pop up window
         half_window_width = innerWidth / 2
         window.moveBy(-half_window_width, 190)
+
+        function select_mode(mode) {
+            let all_modes = ['easy', 'medium', 'hard']
+            selected_btn = document.getElementById(mode)
+
+            // clear all formatting of mode_btn
+            delete all_modes[]
+
+        }
+        function confirm_setting(mode = 'easy', music = true, sfx = true) {
+            //close window and save information
+        }
+        
 
         // difficulty buttons
         let easy = document.getElementById('easy');
         let medium = document.getElementById('medium');
         let hard = document.getElementById('hard');
 
-        let difficulty = function (mode) {
-            change_difficulty(mode)
+        easy.onclick = function() {
+            select_mode('easy')
         }
 
-        
+        medium.onclick = function() {
+            select_mode('medium')
+        }
 
+        hard.onclick = function() {
+            select_mode('hard')
+        }
+
+        document.getElementById('confirm').onclick = confirm_setting
     </script>
 </body>
 </html>
