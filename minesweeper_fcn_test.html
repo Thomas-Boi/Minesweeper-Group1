@@ -23,7 +23,7 @@
         let minute = 0;
         let tenth_place_second = 0; //represent seconds in tenth place
         let second = 0; //represent second in ones place
-
+        let minelist = [];
         function clock() {
 
             second ++;
@@ -54,6 +54,7 @@
                     board.appendChild(button);
                     let string = String(i) + String(j);
                     button.id = 'cell' + string;
+                    button.onclick = unearth(button);
 
                 }
                 document.getElementById('board').innerHTML += '<br>'
@@ -78,11 +79,9 @@
         //auto load a medium board
         board(8)
         
-        
-               function minePlacer(gridheight, gridwidth){
+        function minePlacer(gridheight, gridwidth){
         let cell, cellw,cellh, sel;
         let mine = 3;
-        let minelist = [];
         let x=0;    //x tracks how many mines are set on the board.
         while(x < mine){          
             cellw = Math.floor(Math.random()*gridwidth)+1; //uses the Random module to select a random row        
@@ -101,7 +100,46 @@
         }
         return;
     }
-        minePlacer(8, 8)
+    function cellcheck(cell){
+        let count=0
+        let cID = cell.id;
+        console.log(cID)
+        let r = parseInt(cID[4]);
+        let c = parseInt(cID[5]);
+        for(let i = -3;i<=3;++i){
+            if(1<= +i <= 8){
+                for(let j=-3;j<=3;++j){
+                    if(i==0 && j == 0 ){
+                        continue;
+                    }
+                    if(1<=c+j<=8){
+                        check= document.getElementById("cell"+String(r+i)+String(c+j));
+                        if(check in minelist && count <= Math.max(abs(i),ans(j))){
+                            count = Math.max(abs(i),ans(j));
+                        }
+                    }
+                }
+            }
+        }
+        if(count > 0){
+            cell.innerHTML = count;   
+        }
+        else{
+            cell.innerHTML = '<img src="Images/gray.png">';
+        }
+        return;
+    }
+    function unearth(cell){
+        if(cell in minelist){
+            console.log(" gameOver");
+            return;
+        }
+        else{
+            cellcheck(cell);
+            return;
+        }
+    }
+    minePlacer(8,8)
 
     </script>
 </body>
