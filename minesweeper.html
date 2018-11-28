@@ -21,6 +21,14 @@
 </head>
 
 <body>
+
+    <audio id='ambience' loop>
+        <source src='audio/there is no need to be upset.mp3'>
+    </audio>
+    <audio id='clickSound'>
+        <source src='audio/Button-SoundBible.com-1420500901.mp3'>
+    </audio>
+
     <div id='header'>
         <img src='Images/gear_setting.png' id='gear_pic'>
         <h1 id='clock'>0:00</h1>
@@ -48,6 +56,7 @@
         let minute = 0;
         let tenth_place_second = 0; //represent seconds in tenth place
         let second = 0; //represent second in ones place
+
         function clock() {
             second++;
             if (second == 10) {
@@ -88,6 +97,9 @@
         board.onclick = function () {
             setInterval(clock, 1000);
             board.onclick = '';
+            document.getElementById('clickSound').play();
+
+
         }
 
         restart.onclick = function reset_board() {
