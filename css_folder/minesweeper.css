@@ -19,6 +19,7 @@ img {
 	transform: translate(-50%);
 	text-align: center;
 }
+
 #board{
 	border: 2px solid black;
 	display: inline;
@@ -69,9 +70,3 @@ img {
 	left: 50%;
 	transform: translate(-50%)
 } 
-
-/* button {
-	height: 30px;
-	width: 30px;
-	position: inline;
-} */
