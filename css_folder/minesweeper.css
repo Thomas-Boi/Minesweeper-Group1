@@ -1,17 +1,17 @@
 /* CSS for minesweeper game */
+@font-face {
+	font-family: ARCADE;
+	src: url('../Fonts/arcadeclassic/ARCADECLASSIC.ttf');
+}
+		
 body {
 	text-align: center;
 }
 
-img {
-	width: 30px;
-	height: 30px;
-}
 
 /* Header*/
 #header {
 	border: 2px solid black;
-	display: inline;
 	position: fixed;
 	width: 450px;
 	height: 60px;
@@ -19,65 +19,60 @@ img {
 	transform: translate(-50%);
 	text-align: center;
 }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-#clock{
-	color: red;
-}
-=======
->>>>>>> 83ea1d827c3a86f7a9e7bce9e073f120894c2e91
-=======
->>>>>>> 83ea1d827c3a86f7a9e7bce9e073f120894c2e91
-#board{
-	border: 2px solid black;
-	display: inline;
-	position: fixed;
-	width: 450px;
-	height: 450px;
-	left: 50%;
-	transform: translate(-50%);
-	text-align: center;
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-
-}
-
-#setting{
-	border: 2px solid black;
-	display: inline;
-	position: fixed;
-	width: 450px;
-	height: 60px;
-	left: 50%;
-	transform: translate(-50%);
-	text-align: center;
-
-}
-/* setting gear pic*/
 
 #gear_pic {
 	height: 45px;
 	width: 45px;
-	position: absolute;
+	position: fixed;
 	display: inline;
-	left: 20px;
-	margin-top: 10px;
+	left: 15px;
+	margin-top: 5px;
+	cursor: pointer;
+	border: 2px solid black;
+	background-color: lighte-gray;
 }
 
-/*clock*/
+
 #clock {
-	position: absolute;
 	display: inline;
-	top: 2px;
-	transform: translate(-50%);
+	color: red;
+	font-family: ARCADE;
+	font-size: 50px;
+	border: 4px double gray;
+	bottom: 5px;
+	background-color: black;
+}
+
+#reset {
+	position: fixed;
+	display: inline;
+	bottom: 20px;
+	left: 375px;
+	cursor: pointer;
+	border-radius: 7px;
+
 }
 
 /* board */
-#board {
-	position: fixed;
+#board{
+	border: 2px solid black;
 	display: inline;
+	position: absolute;
+	width: 450px;
 	top: 80px;
 	left: 50%;
-	transform: translate(-50%)
-} 
+	transform: translate(-50%);
+	text-align: center;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	cursor: pointer;
+}
+
+button {
+	position: relative;
+	left: 0;
+}
+
+img { /* for flags */
+	width: 30px;
+	height: 30px;
+}

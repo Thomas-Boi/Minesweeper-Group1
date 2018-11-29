@@ -22,6 +22,7 @@
 
 <body>
 
+    <!-- Audio and SFX-->
     <audio id='ambience' loop>
         <source src='audio/there is no need to be upset.mp3'>
     </audio>
@@ -94,12 +95,27 @@
 
             }
         }
-        board.onclick = function () {
-            setInterval(clock, 1000);
-            board.onclick = '';
+
+        function playSound() {
             document.getElementById('clickSound').play();
 
+        }
 
+        function setting() {
+            // create a pop up window
+            pop_up_href = 'setting.html'
+            pop_up_name = 'setting_window'
+            center_of_window = window.innerWidth / 2
+
+            window.open(pop_up_href, pop_up_name, 
+                        'width=400px, height=400px, left=' +
+                        center_of_window)
+        }
+
+        board.onclick = function () {
+            setInterval(clock, 1000);
+            board.onclick = playSound;
+            document.getElementById('ambience').play();
         }
 
         restart.onclick = function reset_board() {
@@ -128,7 +144,10 @@
             easy.disabled = true;
 
         }
+        
 
+        // click on setting button
+        gear_pic.onclick = function() {setting()}
     </script>
 </body>
 
