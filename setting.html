@@ -82,11 +82,11 @@
         }
 
 
-        function confirm_setting(mode = 'easy', music = true, sfx = true) {
+        function confirm_setting(mode = 'medium', music = true, sfx = true) {
             //save information then close window
-            localStorage.setItem('mode', global_mode)
-            localStorage.setItem('music', global_music)
-            localStorage.setItem('sfx', global_sfx)
+            window.localStorage.setItem('mode', global_mode)
+            window.localStorage.setItem('music', global_music)
+            window.localStorage.setItem('sfx', global_sfx)
 
             window.close()
         }
