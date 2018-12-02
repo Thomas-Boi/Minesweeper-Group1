@@ -8,113 +8,14 @@
     <link rel='stylesheet' type='text/css' href='css_folder/setting.css'>
 </head>
 <body>
-    <b> Difficulty</b>
-    <button id='easy' >Easy</button>
-    <button id='medium' class='selected_button'>Medium</button>
-    <button id='hard' >Hard</button>
-    <br>
-
-    <b> Music </b>
-    <button id='music_on' class='selected_button'> ON </button>
-    <button id='music_off'> OFF </button>
-    <br>
     
 
-    <b> SFX </b>
-    <button id='sfx_on' class='selected_button'> ON </button>
-    <button id='sfx_off'> OFF </button>
-    <br>
-
-    <button id='confirm'> Confirm </button>
-
     <script>
-        //place the pop up window on screen
-        half_window_width = innerWidth / 2
-        window.moveBy(-half_window_width, 190)
-
         let global_mode
         let global_music
         let global_sfx
 
-        function select_mode(mode) {
-            let all_modes = ['easy', 'medium', 'hard']
-            selected_btn = document.getElementById(mode)
-
-            // clear formatting of other buttons
-            mode_index = all_modes.indexOf(mode)
-            delete all_modes[mode_index]
-            all_modes.forEach(unselect_button)
-
-            //select the button 
-            selected_btn.className = 'selected_button'
-            global_mode = mode
-        }
-
-        function unselect_button(value = '', index = '') {
-            //unselect a button
-            document.getElementById(value).className = ''
-        }
-
-        function toggleMusic() {
-            //toggle Music on or off
-            this.className = 'selected_button'
-
-            if (this.id == 'music_on') {
-                unselect_button('music_off')
-                global_music = true
-            } else {
-                unselect_button('music_on')
-                global_music = false
-            }
-        }
-
-        function toggleSfx() {
-            //toggle sfx on or off
-            this.className = 'selected_button'
-
-            if (this.id == 'sfx_on') {
-                unselect_button('sfx_off')
-                global_sfx = true
-            } else {
-                unselect_button('sfx_on')
-                global_sfx = false
-            }
-        }
-
-
-        function confirm_setting(mode = 'medium', music = true, sfx = true) {
-            //save information then close window
-            window.localStorage.setItem('mode', global_mode)
-            window.localStorage.setItem('music', global_music)
-            window.localStorage.setItem('sfx', global_sfx)
-
-            window.close()
-        }
         
-
-        // difficulty buttons
-        let easy = document.getElementById('easy');
-        let medium = document.getElementById('medium');
-        let hard = document.getElementById('hard');
-
-        easy.onclick = function() {
-            select_mode('easy')
-        }
-        medium.onclick = function() {
-            select_mode('medium')
-        }
-        hard.onclick = function() {
-            select_mode('hard')
-        }
-
-        // music and sfx button
-        document.getElementById('music_on').onclick = toggleMusic
-        document.getElementById('music_off').onclick = toggleMusic
-
-        document.getElementById('sfx_on').onclick = toggleSfx
-        document.getElementById('sfx_off').onclick = toggleSfx
-
-        document.getElementById('confirm').onclick = confirm_setting
 
     </script>
 </body>
