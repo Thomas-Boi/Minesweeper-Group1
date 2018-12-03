@@ -55,6 +55,7 @@ body {
 }
 
 /* board */
+
 #board{
 	border: 3px solid #F9F9F9;
 	display: inline;
@@ -62,17 +63,17 @@ body {
 	width: 50%;
 	top: 75px;
 	left: 50%;
-	transform: translate(-50%);
 	text-align: center;
 	cursor: pointer;
 	opacity: 0.6;
 	background-color: #D6EAFF;
-	transition: 0.5s;
+	transition: 0.8s;
+	transform: translate(-50%);
 }
 
 #board:hover {
 	opacity: 1;
-	transition: 0.5s;
+	transition: 0.8s;
 }
 
 h1 {
@@ -87,10 +88,10 @@ h2 {
 	color: #87C7FF;
 }
 
-
-button {
-	position: relative;
-	left: 0;
+.gift_buttons {
+	background-image: url('../Images/gift.png');
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 img { /* for flags */
@@ -101,6 +102,7 @@ img { /* for flags */
 /* settings board*/
 button {
 	cursor: pointer;
+	height: 40px;
 }
 
 #setting_area {
@@ -124,9 +126,10 @@ button {
 #setting_table {
 	position: absolute;
 	top: 80px;
-	width: 70%;
+	width: 60%;
 	text-align: left;
 }
+
 
 .selected_button {
 	background-color: #92DCE5;
@@ -136,4 +139,10 @@ button {
 	cursor: pointer;
 	border-radius: 6px;
 	transition: 0.5;
+	position: absolute;
+	top: 63%;
+}
+
+#music_option {
+	height: 40px;
 }
