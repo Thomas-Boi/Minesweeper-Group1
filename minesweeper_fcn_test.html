@@ -23,6 +23,7 @@
         let minute = 0;
         let tenth_place_second = 0; //represent seconds in tenth place
         let second = 0; //represent second in ones place
+        let divlist = []
         let minelist = [];
         function clock() {
 
@@ -80,20 +81,24 @@
         board(8)
         
         function minePlacer(gridheight, gridwidth){
-        let cell, cellw,cellh, sel;
+        let cell, cellw,cellh, sel, dv;
         let mine = 3;
         let x=0;    //x tracks how many mines are set on the board.
         while(x < mine){          
             cellw = Math.floor(Math.random()*gridwidth)+1; //uses the Random module to select a random row        
             cellh = Math.floor(Math.random()*gridheight)+1;// used the Random module to select a random column      
-            cell = document.getElementById('cell'+String(cellw)+String(cellh));//and gets the element. 
+            cell = document.getElementById('button'+String(cellw)+String(cellh));//and gets the element. 
+            dv = cell = document.getElementById('button'+String(cellw)+String(cellh));//and gets the element. 
+            
             console.log()       
             if(cell in minelist){ //checks if the element already has a mine placed in it       
                 continue;    //if so, the loop continues without incrementing x     
             } 
             else{
                 minelist.concat(cell) //Otherwise, it adds the classname "mine" to the cell, indicating that it contains a mine.
+                divlist.concat(dv);
                 cell.className += "bomb";
+                dv.classname += "bomb";
                 cell.innerHTML = '<img src = "Images/flag.png">';
                 x++;//Then x increments before the while loop restarts.
             }
@@ -125,7 +130,7 @@
             cell.innerHTML = count;   
         }
         else{
-            cell.innerHTML = '<img src="Images/gray.png">';
+            dv.innerHTML = '<img src="Images/gray.png">';
         }
         return;
     }
