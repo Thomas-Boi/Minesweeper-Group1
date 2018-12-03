@@ -28,6 +28,8 @@ let hard = document.getElementById('hard');
 // global var 
 let global_mode = 'easy'; // default mode is easy
 let global_in_game = false; // not in game when start out
+let global_music = true; // default, music is turned on
+let global_sfx = true; // default, sfx is turned on
 
 function clock() {
 	second++;
@@ -62,6 +64,7 @@ function create_game_board(mode) {
 			let string = String(i) + String(j);
 			button.id = 'cell' + string;
 
+			button.className = 'gift_buttons'	
 			//find the board size depends on the header's width
 			let cell_size = String(board_width_px / width);
 
@@ -82,30 +85,30 @@ function get_board_size(mode){
 		height = 15;
 		board.style.width = '40%';
 		header.style.width = '40%';
-		board_width = get_board_px(38.5)
+		board_width = get_board_px(38.7);
 
 	} else if (mode == 'medium') {
 		width = 25;
 		height = 15; 
 		board.style.width = '60%';
 		header.style.width = '60%';
-		board_width = get_board_px(58.5)
+		board_width = get_board_px(58.7);
 
 	} else {
 		width = 35;
 		height = 15;
 		board.style.width = '90%';
 		header.style.width = '90%';
-		board_width = get_board_px(88.5)
+		board_width = get_board_px(88.7);
 	}
 
-	return [width, height, board_width]
+	return [width, height, board_width];
 }
 
 function get_board_px(percentage){
 	// return board_width in px
-	percentage = Math.floor(percentage) / 100
-	return percentage * window.innerWidth
+	percentage = Math.floor(percentage) / 100;
+	return percentage * window.innerWidth;
 }
 
 function playBtnSound() {
@@ -116,7 +119,7 @@ function playBtnSound() {
 
 function open_setting() {
 	// display setting underneath the game board
-	setting.className = 'w3-display-middle w3-border w3-show'
+	setting.className = 'w3-display-middle w3-border w3-show';
 }
 
 function first_touch() {
@@ -125,60 +128,68 @@ function first_touch() {
 
 	//sound and ambience stuff
 	board.onclick = playBtnSound;
-	playBtnSound();
 
-	//
-	document.getElementById('ambience').play();
+	// if global_music and global_sfx are true (on)
+	// activate this
+	if (global_music == true) {
+		document.getElementById('ambience').play();
+	}else if (global_sfx == true) {
+		playBtnSound();
+	}
+
+	// make board opaque + create it
 	board.style.opacity = 1;
-	create_game_board(global_mode)
+	create_game_board(global_mode);
 
 }        
 
 function select_mode(mode) {
-	let all_modes = ['easy', 'medium', 'hard']
-	selected_btn = document.getElementById(mode)
+	let all_modes = ['easy', 'medium', 'hard'];
+	selected_btn = document.getElementById(mode);
 
 	// clear formatting of other buttons
-	current_mode_index = all_modes.indexOf(mode)
-	delete all_modes[current_mode_index]
-	all_modes.forEach(unselect_button)
+	current_mode_index = all_modes.indexOf(mode);
+	delete all_modes[current_mode_index];
+	all_modes.forEach(unselect_button);
 
 	//select the button 
-	selected_btn.className = 'selected_button w3-bar-item'
+	selected_btn.className = 'selected_button w3-bar-item';
 	global_mode = mode;
 
 	//play button sound
-	playBtnSound()
+	playBtnSound();
 }
 
 function unselect_button(value = '') {
 	//unselect a button
-	document.getElementById(value).className = 'w3-bar-item'
+	document.getElementById(value).className = 'w3-bar-item w3-border';
 }
 
 function toggleMusic() {
 	//toggle Music on or off
-	this.className = 'selected_button w3-bar-item'
+	this.className = 'selected_button w3-bar-item w3-border';
 
 	if (this.id == 'music_on') {
-		unselect_button('music_off')
-		ambience.play()
+		unselect_button('music_off');
+		ambience.play();
+		global_music = true;
 
 	} else {
-		unselect_button('music_on')
-		ambience.pause()
+		unselect_button('music_on');
+		ambience.pause();
+		global_music = false;
 	}
-	playBtnSound()
+	playBtnSound();
 }
 
 function changeAmbience() {
 	// change the background music
 	let song_name = this.value;
 	ambience.src = 'Audio/' + song_name;
-	let music_on = document.getElementById('music_on')	
+	let music_on = document.getElementById('music_on');	
 	if (music_on.classList.contains("selected_button")) {
 		// if music_on button is selected
-		ambience.play()
+		ambience.play();
 		// else don't do anything
 	}
 }
@@ -191,26 +202,30 @@ function toggleSfx() {
 		unselect_button('sfx_off')
 		clickSound.muted = false
 		playBtnSound()
+		global_sfx = true
+
 	} else {
 		unselect_button('sfx_on')
 		clickSound.muted = true
+		global_sfx = false
 	}
 	playSound()
 }
 
-function hide_setting() {
+function confirm_setting() {
 	//move back to the board
-	if (global_in_game === true) {
+
+	if (global_in_game == true) {
 		// if in game aka first_touch() was called
 		// regenerate board. else don't do anything
 		// so first_touch() create the board for us
-		create_game_board('easy') //create an easy board by default
+		create_game_board(global_mode); //create an easy board by default
 	}
 	// hide setting
 	setting.className = 'w3-display-middle w3-border w3-hide';
 
 	// play click sound
-	playBtnSound()
+	playBtnSound();
 }
 
 // click the restart button
@@ -219,20 +234,20 @@ restart.onclick = function reset_board() {
 }
 
 // click on board the first time
-board.onclick = first_touch
+board.onclick = first_touch;
 
 // click on setting button
-gear_pic.onclick = open_setting
+gear_pic.onclick = open_setting;
 
 // difficulty mode btns
 easy.onclick = function () {
-	select_mode('easy')
+	select_mode('easy');
 }
 medium.onclick = function () {
-	select_mode('medium')
+	select_mode('medium');
 }
 hard.onclick = function () {
-	select_mode('hard')
+	select_mode('hard');
 }
 
 // music and sfx button
@@ -243,4 +258,5 @@ document.getElementById('music_option').onclick = changeAmbience;
 document.getElementById('sfx_on').onclick = toggleSfx;
 document.getElementById('sfx_off').onclick = toggleSfx;
 
-document.getElementById('confirm').onclick = hide_setting;
+
+document.getElementById('confirm').onclick = confirm_setting;
