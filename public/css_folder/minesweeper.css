@@ -93,6 +93,13 @@ h2 {
 	display: inline-block;
 } 
 
+.mine {
+	background-image: url('../Images/bomb.jpg');
+	background-size: cover;
+	display: inline-block;
+	background-color: white;	
+}
+
 .gift_buttons {
 	background-image: url('../Images/gift.png');
 	background-repeat: no-repeat;

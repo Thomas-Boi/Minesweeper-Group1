@@ -49,14 +49,14 @@ function clock() {
 function create_game_board(mode) {
 	// create the game board based on mode
 	let dimension = get_board_size(mode)
-	let width = dimension[0]
-	let height = dimension[1]
+	let cell_row = dimension[0]
+	let cell_col = dimension[1]
 	let board_width_px = dimension[2]
 
 	board.innerHTML = '' // clear the board
-	for (let i = 1; i <= height; i++) {
-		for (let j = 1; j <= width; j++) {
-			create_cells_and_buttons(board_width_px, i, j, width)
+	for (let i = 1; i <= cell_col; i++) {
+		for (let j = 1; j <= cell_row; j++) {
+			create_cells_and_buttons(board_width_px, i, j, cell_row)
 		}
 		board.innerHTML += "<br/>"
 	}
@@ -65,19 +65,19 @@ function create_game_board(mode) {
 
 function get_board_size(mode){
 	// determine board size determines on mode
-	let width, height, board_width
+	let cell_row, cell_col, board_width
 	if (mode == 'easy') {		
 		if (window.innerWidth <= 375) {
 			// for mobile
-			width = 5;
-			height = 5;	
+			cell_row = 5;
+			cell_col = 5;	
 			board.style.width = '100%';
 			header.style.width = '100%';
 			board_width = get_board_px(98.7);
 		} else {
 			// for laptops
-			width = 15;
-			height = 15;
+			cell_row = 15;
+			cell_col = 15;
 			board.style.width = '40%';
 			header.style.width = '40%';
 			board_width = get_board_px(38.7);
@@ -87,15 +87,15 @@ function get_board_size(mode){
 	} else if (mode == 'medium') {
 		if (window.innerWidth <= 375) {
 			// for mobile
-			width = 7;
-			height = 7;	
+			cell_row = 7;
+			cell_col = 7;	
 			board.style.width = '100%';
 			header.style.width = '100%';
 			board_width = get_board_px(98.7);
 		} else {
 			// for laptops
-			width = 25;
-			height = 15; 
+			cell_row = 25;
+			cell_col = 15; 
 			board.style.width = '60%';
 			header.style.width = '60%';
 			board_width = get_board_px(58.7);
@@ -105,15 +105,15 @@ function get_board_size(mode){
 	} else {
 		if (window.innerWidth <= 375) {
 			// for mobile
-			width = 10;
-			height = 10;	
+			cell_row = 10;
+			cell_col = 10;	
 			board.style.width = '100%';
 			header.style.width = '100%';
 			board_width = get_board_px(98.7);
 		} else {
 			// for laptops
-			width = 35;
-			height = 15;
+			cell_row = 35;
+			cell_col = 15;
 			board.style.width = '90%';
 			header.style.width = '90%';
 			board_width = get_board_px(88.7);
@@ -121,7 +121,7 @@ function get_board_size(mode){
 		
 	}
 
-	return [width, height, board_width];
+	return [cell_row, cell_col, board_width];
 }
 
 function get_board_px(percentage){
@@ -149,7 +149,8 @@ function create_cells_and_buttons(board_width_px, i, j, width) {
 
 	// create and append button to the div
 	let button = create_buttons(board_width_px, i, j, width)
-	cell.innerHTML = "<b class='w3-display-hide> 1 </b>"
+	// create a 
+	cell.innerHTML = "<b class='cell w3-display-hide> 1 </b>"
 	cell.appendChild(button)
 }
 

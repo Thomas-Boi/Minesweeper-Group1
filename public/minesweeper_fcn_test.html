@@ -3,151 +3,111 @@
 
 <head>
     <title>Minesweeper</title>
+    <link rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css'>
     <link rel='stylesheet' type='text/css' href='css_folder/minesweeper.css'>
 </head>
 
-<body>
-    <!-- Header -->
-    <div id='header'>
-        <img src='Images/gear_setting.png' id='gear_pic'> 
+<body class='w3-display-container'>
+    
+    <!-- Audio and SFX-->
+    <audio id='ambience' loop>
+        <source src='Audio/BillyGorilly_JingleBells.mp3'>
+    </audio>
+    <audio id='clickSound'>
+        <source src='Audio/Button-SoundBible.com-1420500901.mp3'>
+    </audio>
+    <audio id='mineSound'>
+        <source src='Audio/Bomb-SoundBible.mp3'>
+    </audio>
 
-        <h1 id='clock'>0:00</h1>
+    <!-- Header -->
+    <div id='header' class='w3-display-topmiddle w3-display-container'>
+            <a id='setting_link' href='#setting_area'>
+                <img src='Images/gear_setting.png' id='gear_pic' class='w3-display-left w3-margin-left'>
+            </a>
+            <span id='clock' class='w3-display-middle'>0:00</span>
+            <img src='Images/reset.png' id='reset' class='w3-display-right w3-margin-right'></img>
+
     </div>
 
     <!-- Board -->
     <div id='board'>
-        <!-- Buttons go here -->
+        <h1>MINESWEEPER</h1>
+        <h2> Click to play!</h2>
     </div>
 
-    <script>
-        let minute = 0;
-        let tenth_place_second = 0; //represent seconds in tenth place
-        let second = 0; //represent second in ones place
-        let divlist = []
-        let minelist = [];
-        function clock() {
+    <!-- Setting (display:none by default) -->
+    <div id='setting_area' class='w3-display-middle w3-border w3-hide'>
+        <h1 id='setting_heading' class='w3-display-topmiddle'> 
+            SETTING 
+        </h1>
 
-            second ++;
-            if (second == 10){
-                // reset_second + add one to tenth_place_second
-                tenth_place_second += 1
-                second = 0
-            }
+        <br>
+        <table id='setting_table' class='w3-display-topmiddle'>
+            <tr>
+                <th>
+                    Difficulty
+                </th>
+                <td class='w3-bar'>
+                    <button id='easy' class='selected_button w3-bar-item w3-border'>Easy</button>
+                    <button id='medium' class='w3-bar-item w3-border'>Medium</button>
+                    <button id='hard' class='w3-bar-item w3-border'>Hard</button>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Music
+                </th>
+                <td class='w3-bar'>
+                    <button id='music_on' class='selected_button w3-bar-item w3-border'> ON </button>
+                    <button id='music_off' class='w3-bar-item w3-border'> OFF </button>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Current Song:
+                </th>
+                <td>
+                    <select id='music_option'>
+                        <option value='BillyGorilly_JingleBells.mp3'>
+                            Jingle Bells
+                        </option>
 
-            if (tenth_place_second == 6){
-                // reset tenth_place_second + add one to minute
-                tenth_place_second = 0
-                minute += 1
-            }
-            document.getElementById('clock').innerHTML = minute + ':' + tenth_place_second + '' + second;
-        }
+                        <option value='there is no need to be upset.mp3'>
+                            There Is No Need to Be Upset
+                        </option>
 
-        setInterval(clock, 1000);
+                        <option value='DougHammer_CarolOfTheBells.mp3'>
+                            Carol of the Bells
+                        </option>
+
+                        <option value='MicheleMcLaughlin_SilentNight.mp3'>
+                            Silent Night
+                        </option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <th>
+                    SFX
+                </th>
+                <td class='w3-bar'>
+                    <button id='sfx_on' class='selected_button w3-bar-item w3-border'> ON </button>
+                    <button id='sfx_off' class='w3-bar-item w3-border'> OFF </button>
+                </td>
+            </tr>
+
+        </table>
+
+        <!-- Return user to board-->
+        <a href=#header>
+            <button id='confirm' class='w3-display-middle'> Confirm </button>
+        </a>
+    </div>
 
 
-        function board(n) {
-
-            for (let i = 1; i <= n; i++) {
-                for (let j = 1; j <= n; j++) {
-
-                    let button = document.createElement("Button");
-                    let board = document.getElementById("board")
-                    board.appendChild(button);
-                    let string = String(i) + String(j);
-                    button.id = 'cell' + string;
-                    button.onclick = unearth(button);
-
-                }
-                document.getElementById('board').innerHTML += '<br>'
-            }
-        }
-
-        function setting() {
-            // create a pop up window
-            pop_up_href = 'setting.html'
-            pop_up_name = 'setting_window'
-            center_of_window = window.innerWidth / 2
-
-            window.open(pop_up_href, pop_up_name, 
-                        'width=400px, height=400px, left=' +
-                        center_of_window)
-        }
-
-        // click on setting button
-        let setting_var = function() {setting()}
-        gear_pic.onclick = setting_var
-
-        //auto load a medium board
-        board(8)
-        
-        function minePlacer(gridheight, gridwidth){
-        let cell, cellw,cellh, sel, dv;
-        let mine = 3;
-        let x=0;    //x tracks how many mines are set on the board.
-        while(x < mine){          
-            //uses the Random module to select a random row     
-            cellw = Math.floor(Math.random()*gridwidth)+1;  
-            // used the Random module to select a random column     
-            cellh = Math.floor(Math.random()*gridheight)+1;   
-            
-            cell = document.getElementById('button'+String(cellw)+String(cellh));//and gets the element. 
-            dv = cell = document.getElementById('button'+String(cellw)+String(cellh));//and gets the element. 
-                
-            if(cell in minelist){ //checks if the element already has a mine placed in it       
-                continue;    //if so, the loop continues without incrementing x     
-            } 
-            else{
-                minelist.concat(cell) //Otherwise, it adds the classname "mine" to the cell, indicating that it contains a mine.
-                divlist.concat(dv);
-                cell.className += "bomb";
-                dv.classname += "bomb";
-                cell.innerHTML = '<img src = "Images/flag.png">';
-                x++;//Then x increments before the while loop restarts.
-            }
-        }
-        return;
-    }
-    function cellcheck(cell){
-        let count=0
-        let cID = cell.id;
-        console.log(cID)
-        let r = parseInt(cID[4]);
-        let c = parseInt(cID[5]);
-        for(let i = -3;i<=3;++i){
-            if(1<= +i <= 8){
-                for(let j=-3;j<=3;++j){
-                    if(i==0 && j == 0 ){
-                        continue;
-                    }
-                    if(1<=c+j<=8){
-                        check= document.getElementById("cell"+String(r+i)+String(c+j));
-                        if(check in minelist && count <= Math.max(abs(i),ans(j))){
-                            count = Math.max(abs(i),ans(j));
-                        }
-                    }
-                }
-            }
-        }
-        if(count > 0){
-            cell.innerHTML = count;   
-        }
-        else{
-            dv.innerHTML = '<img src="Images/gray.png">';
-        }
-        return;
-    }
-    function unearth(cell){
-        if(cell in minelist){
-            console.log(" gameOver");
-            return;
-        }
-        else{
-            cellcheck(cell);
-            return;
-        }
-    }
-    minePlacer(8,8)
-
+    <script src='js_folder/minesweeper.js'>
     </script>
 </body>
 
