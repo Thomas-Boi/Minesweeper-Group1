@@ -88,6 +88,11 @@ h2 {
 	color: #87C7FF;
 }
 
+.board_cell {
+	font-family: ARCADE;
+	display: inline-block;
+} 
+
 .gift_buttons {
 	background-image: url('../Images/gift.png');
 	background-repeat: no-repeat;
