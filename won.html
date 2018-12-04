@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,27 @@
     <title>Congratulation</title>
     <link rel='stylesheet' type='text/css' href='css_folder/won.css'>
 </head>
+
 <body>
     <audio>
         <source src='Audio/MoscowSymphOrch_WishYouMerry.mp3'>
     </audio>
-    <h1> YOU WON!</h1>
+    <h1 id='youwon'>YOU WON!</h1>
+
+    <div id='score'>
+        <div id='user'>
+            Your Score:
+        </div>
+        <div id='highest'>
+            Highest Score:
+        </div>
+
+
+    </div>
+
     <form action='./minesweeper_copy.html'>
         <input type='submit' value='Play Again' id='restartBtn'>
     </form>
 </body>
+
 </html>

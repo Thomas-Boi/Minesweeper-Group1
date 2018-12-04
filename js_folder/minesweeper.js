@@ -120,7 +120,10 @@ function playBtnSound() {
 function open_setting() {
 	// display setting underneath the game board
 	setting.className = 'w3-display-middle w3-border w3-show';
+
+
 }
+
 
 function first_touch() {
 	// start clock
@@ -154,6 +157,8 @@ function select_mode(mode) {
 
 	//select the button 
 	selected_btn.className = 'selected_button w3-bar-item';
+	localStorage.setItem('mode',mode )
+
 	global_mode = mode;
 
 	//play button sound
@@ -230,7 +235,12 @@ function confirm_setting() {
 
 // click the restart button
 restart.onclick = function reset_board() {
-	location.reload();
+window.location.reload();
+let mode = localStorage.getItem('mode');
+
+
+
+
 }
 
 // click on board the first time
