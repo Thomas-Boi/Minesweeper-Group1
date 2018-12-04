@@ -290,6 +290,8 @@ function playBtnSound() {
 function open_setting() {
 	// display setting underneath the game board
 	setting.className = 'w3-display-middle w3-border w3-show';
+
+
 }
 
 function display_lost_page() {
@@ -300,6 +302,7 @@ function display_lost_page() {
 		window.open(pop_up_url, pop_up_name)
 	} else {
 		window.open(pop_up_url, pop_up_name)
+      
 	}
 }
 
@@ -346,6 +349,9 @@ function select_mode(mode) {
 	//select the button 
 	selected_btn.className = 'selected_button w3-bar-item';
 	global_mode = mode;
+	localStorage.setItem('mode', mode )
+	var saved_mode = localStorage.getItem('mode');
+	
 
 	//play button sound
 	playBtnSound();
@@ -420,8 +426,15 @@ function confirm_setting() {
 }
 
 // click the restart button
+
 restart.onclick = function reset_board() {
-	location.reload();
+	
+	let saved_mode = localStorage.getItem('mode');
+	// global_mode = saved_mode;
+	create_game_board(saved_mode);
+	window.location.reload();
+	//window.location.reload();
+
 }
 
 // click on board the first time

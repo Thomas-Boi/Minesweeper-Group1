@@ -10,6 +10,15 @@
 	src: url('../Fonts/frosty/FROSTY_.TTF');
 }
 	
+@media only screen and (max-width: 375px){
+
+#board{
+	width:30%;
+}
+}
+
+
+
 body {
 	text-align: center;
 	/* background-color: #7FDAFF; */
