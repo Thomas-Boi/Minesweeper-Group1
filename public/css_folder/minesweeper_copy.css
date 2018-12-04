@@ -10,15 +10,6 @@
 	src: url('../Fonts/frosty/FROSTY_.TTF');
 }
 	
-@media only screen and (max-width: 375px){
-
-#board{
-	width:30%;
-}
-}
-
-
-
 body {
 	text-align: center;
 	/* background-color: #7FDAFF; */
@@ -97,10 +88,16 @@ h2 {
 	color: #87C7FF;
 }
 
+.board_cell {
+	font-family: ARCADE;
+	display: inline-block;
+} 
+
 .gift_buttons {
 	background-image: url('../Images/gift.png');
 	background-repeat: no-repeat;
 	background-size: cover;
+	position: relative;
 }
 
 img { /* for flags */
@@ -138,7 +135,6 @@ button {
 	width: 60%;
 	text-align: left;
 }
-
 
 .selected_button {
 	background-color: #92DCE5;
