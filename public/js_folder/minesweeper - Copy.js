@@ -66,9 +66,8 @@ function create_game_board(mode) {
 function get_board_size(mode){
 	// determine board size determines on mode
 	let width, height, board_width
-	if (mode == 'easy') {
-		
-		if (window.innerHeight <= '375px') {
+	if (mode == 'easy') {		
+		if (window.innerWidth <= 375) {
 			// for mobile
 			width = 5;
 			height = 5;	
@@ -86,7 +85,7 @@ function get_board_size(mode){
 		
 
 	} else if (mode == 'medium') {
-		if (window.innerHeight <= '375px') {
+		if (window.innerWidth <= 375) {
 			// for mobile
 			width = 7;
 			height = 7;	
@@ -104,7 +103,7 @@ function get_board_size(mode){
 		
 
 	} else {
-		if (window.innerHeight <= '375px') {
+		if (window.innerWidth <= 375) {
 			// for mobile
 			width = 10;
 			height = 10;	

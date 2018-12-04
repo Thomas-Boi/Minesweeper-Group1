@@ -97,6 +97,7 @@ h2 {
 	background-image: url('../Images/gift.png');
 	background-repeat: no-repeat;
 	background-size: cover;
+	position: relative;
 }
 
 img { /* for flags */

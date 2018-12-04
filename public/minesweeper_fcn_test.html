@@ -85,12 +85,14 @@
         let mine = 3;
         let x=0;    //x tracks how many mines are set on the board.
         while(x < mine){          
-            cellw = Math.floor(Math.random()*gridwidth)+1; //uses the Random module to select a random row        
-            cellh = Math.floor(Math.random()*gridheight)+1;// used the Random module to select a random column      
+            //uses the Random module to select a random row     
+            cellw = Math.floor(Math.random()*gridwidth)+1;  
+            // used the Random module to select a random column     
+            cellh = Math.floor(Math.random()*gridheight)+1;   
+            
             cell = document.getElementById('button'+String(cellw)+String(cellh));//and gets the element. 
             dv = cell = document.getElementById('button'+String(cellw)+String(cellh));//and gets the element. 
-            
-            console.log()       
+                
             if(cell in minelist){ //checks if the element already has a mine placed in it       
                 continue;    //if so, the loop continues without incrementing x     
             } 
