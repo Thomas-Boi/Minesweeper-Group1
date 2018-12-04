@@ -157,9 +157,10 @@ function select_mode(mode) {
 
 	//select the button 
 	selected_btn.className = 'selected_button w3-bar-item';
-	localStorage.setItem('mode',mode )
-
 	global_mode = mode;
+	localStorage.setItem('mode', mode )
+	var saved_mode = localStorage.getItem('mode');
+	
 
 	//play button sound
 	playBtnSound();
@@ -234,12 +235,14 @@ function confirm_setting() {
 }
 
 // click the restart button
+
 restart.onclick = function reset_board() {
-window.location.reload();
-let mode = localStorage.getItem('mode');
-
-
-
+	
+	let saved_mode = localStorage.getItem('mode');
+	// global_mode = saved_mode;
+	create_game_board(saved_mode);
+	window.location.reload();
+	//window.location.reload();
 
 }
 

@@ -1,6 +1,6 @@
 /* body */
 body {
-    background-image: url('../Images/snowman.jpg');
+    background-image: url('../Images/christmas_background.jpg');
     margin-top: auto;
     background-repeat: no-repeat;
     background-size: 100%;
@@ -25,10 +25,6 @@ body {
 
 /* h1 */
 
-#youwon{
-
-
-}
 
 h1 {
     font-size: 50px;
