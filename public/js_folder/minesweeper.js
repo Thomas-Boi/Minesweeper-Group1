@@ -35,11 +35,8 @@ let global_mine_button_list = []; // ids of the btns on top of the div
 
 
 function first_touch() {
-	// start clock
-	setInterval(clock, 1000);
-
 	//sound and ambience stuff
-	board.onclick = playBtnSound;
+	board.onclick = '';
 
 	// if global_music and global_sfx are true (on)
 	// activate this
@@ -53,8 +50,11 @@ function first_touch() {
 	board.style.opacity = 1;
 	create_game_board(global_mode);
 
-	// place the mines
-	minePlacer(global_mode)
+	// make buttons clickable
+	let buttons = document.getElementsByClassName('gift_buttons')
+	for (let i = 0; i < buttons.length; i ++) {
+		buttons[i].onclick = start_game
+	}
 }        
 
 function clock() {
@@ -203,6 +203,23 @@ function create_buttons(board_width_px, i, j, width) {
 	return button
 }
 
+function start_game() {
+	// start the game when user clicks on a cell;
+	// start clock
+	setInterval(clock, 1000);
+
+	// get all board buttons and chang their onclick
+	let buttons = document.getElementsByClassName('gift_buttons')
+	for (let i = 0; i < buttons.length; i ++) {
+		buttons[i].onclick = reveal_cell
+	}
+
+	// place the mines
+	minePlacer(global_mode)
+	
+	playBtnSound()
+}
+
 function minePlacer(mode){
 	// place mines on the map
 
@@ -240,7 +257,7 @@ function minePlacer(mode){
 			placed_mine ++; //placed_mine increments so the while loop continues until all mines are placed.
 		}
 	}
-	console.log(global_mine_list)
+	console.log(global_mine_button_list)
 }
 
 function get_mine_numbers(mode) {
@@ -254,6 +271,12 @@ function get_mine_numbers(mode) {
 		mines = 24;
 	}
 	return mines
+}
+
+function reveal_cell() {
+	// reveal the cell underneath a button
+	playBtnSound()
+	console.log('Coming Soon')
 }
 
 function clicked_mine() {
