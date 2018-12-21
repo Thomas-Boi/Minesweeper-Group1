@@ -15,4 +15,4 @@ Present contributors:
 
 Purpose:
 -Originally developed as an assignment for a CS class, we couldn't finish the game by the deadline.
--Now, with time on my (Thomas) hands, I plan to finish the game and finish it as a challenge.
+-Now the game will get finished by Christmas time.
