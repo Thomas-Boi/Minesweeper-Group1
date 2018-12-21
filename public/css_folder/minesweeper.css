@@ -5,16 +5,18 @@
 	
 }
 		
+
 @font-face {
 	font-family: Frosty;
 	src: url('../Fonts/frosty/FROSTY_.TTF');
 }
 	
+
 @media only screen and (max-width: 375px){
 
-	#board{
-		width:30%;
-	}
+	/* #board{ */
+		/* width:30%; */
+	/* } */
 }
 
 
@@ -37,12 +39,14 @@ body {
 	background-color: #BDE6FF;
 }
 
+
 #gear_pic {
 	height: 35px;
 	width: 35px;
 	cursor: pointer;
 	background-color: lighte-gray;
 }
+
 
 #setting_link:target {
 	transition: 0.5s;
@@ -56,12 +60,14 @@ body {
 	background-color: black;
 }
 
+
 #reset {
 	cursor: pointer;
 	border-radius: 7px;
 	height: 35px;
 	width: 35px;
 }
+
 
 /* board */
 
@@ -78,12 +84,15 @@ body {
 	background-color: #D6EAFF;
 	transition: 0.8s;
 	transform: translate(-50%);
+	padding: auto;
 }
+
 
 #board:hover {
 	opacity: 1;
 	transition: 0.8s;
 }
+
 
 h1 {
 	font-family: Frosty;
@@ -91,34 +100,53 @@ h1 {
 	color: #87C7FF;
 }
 
+
 h2 {
 	font-family: Frosty;
 	font-size: 30px;
 	color: #87C7FF;
 }
 
-.board_cell {
-	font-family: ARCADE;
-	display: inline-block;
-} 
 
-.mine {
-	background-image: url('../Images/bomb.jpg');
-	background-size: cover;
+.numbered_btn {
 	display: inline-block;
-	background-color: white;	
+	font-family: ARCADE;
+	font-size: 65px;
+	border: 1px solid grey;
+	position: absolute;
+	cursor: auto;
 }
 
-.gift_buttons {
-	background-image: url('../Images/gift.png');
+.mine,
+.this_mine,
+.gift_btn,
+.flag {
 	background-repeat: no-repeat;
 	background-size: cover;
+	background-color: white;
+	position: absolute;
 }
 
-img { /* for flags */
-	width: 30px;
-	height: 30px;
+
+.mine {
+	background-image: url('../Images/mine.jpg');
 }
+
+
+.this_mine {
+	background-image: url('../Images/this_mine.jpg');
+}
+
+
+.gift_btn {
+	background-image: url('../Images/gift.png');
+}
+
+
+.flag { /* for flag */
+	background-image: url('../Images/flag.png');
+}
+
 
 /* settings board*/
 button {
