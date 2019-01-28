@@ -1,0 +1,76 @@
+/* board */
+
+#board{
+	border: 3px solid #F9F9F9;
+	display: inline-block;
+	position: absolute;
+	width: 40%;
+	top: 75px;
+	left: 50%;
+	text-align: center;
+	cursor: pointer;
+	opacity: 0.6;
+	background-color: #D6EAFF;
+	transition: 0.8s;
+	transform: translate(-50%);
+	padding: auto;
+}
+
+
+#board:hover {
+	opacity: 1;
+	transition: 0.8s;
+}
+
+
+h1 {
+	font-family: Frosty;
+	font-size: 50px;
+	color: #87C7FF;
+}
+
+
+h2 {
+	font-family: Frosty;
+	font-size: 30px;
+	color: #87C7FF;
+}
+
+
+.revealed_btn {
+	display: inline-block;
+	font-family: ARCADE;
+	border: 1px solid grey;
+	position: absolute;
+	cursor: auto;
+}
+
+.mine,
+.this_mine,
+.gift_btn,
+.flag {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color: white;
+	position: absolute;
+}
+
+
+.mine {
+	background-image: url('../../Images/mine.jpg');
+}
+
+
+.this_mine {
+	background-image: url('../../Images/this_mine.jpg');
+}
+
+
+.gift_btn {
+	background-image: url('../../Images/gift.png');
+}
+
+
+.flag {
+	background-image: url('../../Images/flag.png');
+}

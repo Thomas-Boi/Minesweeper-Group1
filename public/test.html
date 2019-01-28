@@ -6,53 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Test Ground</title>
     <style>
-        #div1 {
-            height: 300px;
-            width: 800px;
-            z-index: -1;
-            background-color:pink;
-        }
-
         button {
             position: absolute;
+            padding-left: 20px;
         }
 
 
     </style>
 </head>
 <body>
-    <div id='div1'>
-    </div>
+    <button id='btn'> Test </button>
 
-    <script>
-        let default_left = 0;
-        function create(i){
-            let button = document.createElement("BUTTON");
-    
-            // create unique id
-            let string = String(i);
-            button.id = 'button' + string;
-        
-            button.className = 'gift_btn btn_num0';
-        
-            //find the button size depends on the board's width
-            let button_size = String(50);
-        
-            button.style.width = button_size + 'px';
-            button.style.height = button_size + 'px';
-
-            console.log('Before: def_left = ' + default_left )
-            button.left = String(default_left) + "px";
-            default_left += parseInt(button_size);
-
-            console.log('After: def_left = ' + default_left )
-            document.getElementById('div1').appendChild(button);
-        }
-
-        for (let i = 1; i < 7; i ++) {
-            create(i);
-
-        }
+    <script>   
     </script>
 </body>
 </html>

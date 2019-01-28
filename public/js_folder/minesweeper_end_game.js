@@ -43,7 +43,6 @@ let EndGameMechanics = {
         mine_button.className = "mine";
     },
 
-
     display_page: function (page_name) {
         // display the lost.html
         pop_up_url = page_name + '.html'

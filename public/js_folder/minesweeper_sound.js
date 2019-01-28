@@ -12,7 +12,7 @@ let Sound = {
 	},
 
 
-	start_music: function () {
+	play_music: function () {
 		// play music
 		document.getElementById('music').play();
 	},
@@ -30,6 +30,6 @@ let Sound = {
 
 	mute_music: function(music_mode) {
 		// toggle sfx on or off
-		document.getElementById('music').paused = music_mode;
+		document.getElementById('music').muted = music_mode;
 	}
 }

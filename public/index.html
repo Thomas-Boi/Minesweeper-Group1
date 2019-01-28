@@ -3,8 +3,8 @@
 
 <head>
     <title>Minesweeper</title>
-    <link rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css'>
-    <link rel='stylesheet' type='text/css' href='css_folder/minesweeper.css'>
+    <link rel='stylesheet' type='text/css' href='/W3_CSS/w3.css'>
+    <link rel='stylesheet' type='text/css' href='css_folder/minesweeper_css/minesweeper.css'>
     <!-- This was added after submission -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -12,7 +12,7 @@
 <body class='w3-display-container'>
     
     <!-- Audio and SFX-->
-    <audio id='ambience' loop>
+    <audio id='music' loop>
         <source src='Audio/BillyGorilly_JingleBells.mp3'>
     </audio>
     <audio id='clickSound'>
@@ -24,11 +24,14 @@
 
     <!-- Header -->
     <div id='header' class='w3-display-topmiddle w3-display-container'>
-            <a id='setting_link' href='#setting_area'>
-                <img src='Images/gear_setting.png' id='gear_pic' class='w3-display-left w3-margin-left'>
+        <span class='w3-display-left w3-margin-left'>
+            <a id='setting_link' href='#advance_setting'>
+                <img src='Images/gear_setting.png' id='setting_pic' >
             </a>
-            <span id='clock' class='w3-display-middle'>0:00</span>
-            <img src='Images/reset.png' id='reset' class='w3-display-right w3-margin-right'></img>
+        </span>
+        
+        <span id='timer' class='w3-display-middle'>0:00</span>
+        <img src='Images/reset.png' id='reset' class='w3-display-right w3-margin-right'></img>
 
     </div>
 
@@ -39,7 +42,7 @@
     </div>
 
     <!-- Setting (display:none by default) -->
-    <div id='setting_area' class='w3-display-middle w3-border w3-hide'>
+    <div id='advance_setting' class='w3-display-middle w3-border w3-hide'>
         <h1 id='setting_heading' class='w3-display-topmiddle'> 
             SETTING 
         </h1>
@@ -51,18 +54,10 @@
                     Difficulty
                 </th>
                 <td class='w3-bar'>
-                    <button id='easy' class='selected_button w3-bar-item w3-border'>Easy</button>
+                    <button id='intro' class='selected_button w3-bar-item w3-border'>Intro</button>
+                    <button id='easy' class='w3-bar-item w3-border'>Easy</button>
                     <button id='medium' class='w3-bar-item w3-border'>Medium</button>
                     <button id='hard' class='w3-bar-item w3-border'>Hard</button>
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    Music
-                </th>
-                <td class='w3-bar'>
-                    <button id='music_on' class='selected_button w3-bar-item w3-border'> ON </button>
-                    <button id='music_off' class='w3-bar-item w3-border'> OFF </button>
                 </td>
             </tr>
             <tr>
@@ -89,28 +84,45 @@
                     </select>
                 </td>
             </tr>
-
             <tr>
                 <th>
-                    SFX
+                    Sound
                 </th>
                 <td class='w3-bar'>
-                    <button id='sfx_on' class='selected_button w3-bar-item w3-border'> ON </button>
-                    <button id='sfx_off' class='w3-bar-item w3-border'> OFF </button>
+                    <button class='selected_button w3-bar-item w3-border'> ON </button>
+                    <button class='w3-bar-item w3-border'> OFF </button>
                 </td>
             </tr>
+            <tr>
+                <th>
+                    Music
+                </th>
+                <td class='w3-bar'>
+                    <button class='selected_button w3-bar-item w3-border'> ON </button>
+                    <button class='w3-bar-item w3-border'> OFF </button>
+                </td>
+                </tr>
 
         </table>
 
-        <!-- Return user to board-->
+        <!-- Return to game board -->
         <a href=#header>
             <button id='confirm' class='w3-display-middle'> Confirm </button>
         </a>
     </div>
+    
 
+    <script src='js_folder/minesweeper_timer.js'> </script>
+    <script src='js_folder/minesweeper_btn_interact.js'> </script>
+    <script src='js_folder/minesweeper_mines_num.js'> </script>
+    <script src='js_folder/minesweeper_board_creator.js'> </script>
+    <script src='js_folder/minesweeper_end_game.js'> </script>
+    <script src='js_folder/minesweeper_sound.js'> </script>
+    <script src='js_folder/minesweeper_setting.js'> </script>
+    <script src='js_folder/minesweeper_metadata.js'> </script>
+    <script src='js_folder/minesweeper_resetter.js'></script>
+    <script src='js_folder/minesweeper.js'> </script>
 
-    <script src='js_folder/minesweeper.js'></script>
-    <script src='js_folder/minesweeperGameMechanics.js'></script>
 
 </body>
 

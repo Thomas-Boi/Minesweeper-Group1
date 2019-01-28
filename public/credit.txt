@@ -1,0 +1,13 @@
+Thanks to Emily Kim and Marcus Chiu for working with me on the project.
+
+Tools I used for project:
+-HTML/CSS/Javascript (ECMAscript)
+-GitHub
+-Firebase (for hosting and storing scores)
+-Font Awesome (for icons), link to license https://fontawesome.com/license
+-ARCADE_CLASSIC font 
+-Frosty font
+-Sound effects from SoundBible
+
+
+This project is a personal project and is free to use. 

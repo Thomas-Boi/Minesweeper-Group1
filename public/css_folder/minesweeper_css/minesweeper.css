@@ -1,0 +1,23 @@
+/* CSS for minesweeper game */
+@import url("minesweeper_header.css");
+@import url("minesweeper_board.css");
+@import url("minesweeper_setting.css");
+
+@font-face {
+	font-family: ARCADE;
+	src: url('../../Fonts/arcadeclassic/ARCADECLASSIC.ttf');
+	
+}
+
+@font-face {
+	font-family: Frosty;
+	src: url('../..//Fonts/frosty/FROSTY_.TTF');
+}
+
+body {
+	text-align: center;
+	/* background-color: #7FDAFF; */
+	background-image: url('../../Images/christmas_background.jpg');
+	background-repeat: repeat-y;
+	background-size: cover;
+}

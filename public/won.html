@@ -5,30 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Congratulation</title>
-    <link rel='stylesheet' type='text/css' href='css_folder/won.css'>
+    <title>Congratulation!</title>
+    <link rel='stylesheet' type='text/css' href='css_folder/won_css/won.css'>
 </head>
 
 <body>
-    <audio>
+    <audio id='music'>
         <source src='Audio/MoscowSymphOrch_WishYouMerry.mp3'>
     </audio>
     <h1 id='youwon'>YOU WON!</h1>
 
-    <div id='score'>
-        <div id='user'>
-            Your Score:
-        </div>
-        <div id='highest'>
-            Highest Score:
-        </div>
+    <p class='text'> 
+        Your Score:
+    </p>
+    <span id='user_score'  class='text'></span>
+
+    <button id='replay'> PLAY AGAIN </button>
+
+    <script src='js_folder/minesweeper_timer.js'></script> 
+    <script src='js_folder/won.js'></script> 
 
 
-    </div>
-
-    <form action='./minesweeper_copy.html'>
-        <input type='submit' value='Play Again' id='restartBtn'>
-    </form>
 </body>
 
 </html>
