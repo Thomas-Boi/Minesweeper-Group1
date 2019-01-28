@@ -7,11 +7,11 @@ let BoardCreator = {
     // 		       Clicking the button woulddisplay
     //			   a number that tells how many mines are nearby.
     board: document.getElementById('board'),
-    default_left: 0,
-    default_top: 0,
+    cell_left: 0,
+    cell_top: 0,
     btn_size: 0,
-    board_width: 0,
-    board_height: 0,
+    cells_in_a_row: 0,
+    cells_in_a_collumn: 0,
     font_size: 0,
 
     get_board: function () {
@@ -19,107 +19,106 @@ let BoardCreator = {
         return BoardCreator.board;
     },
 
-
-    get_board_width: function () {
-		// get the board_width
-		return BoardCreator.board_width;
-	},
-
-
-	set_board_width: function (new_width) {
-		// set the board_width
-		BoardCreator.board_width = new_width;
-	},
-
-
-	get_board_height: function () {
-		// get the board_height
-		return BoardCreator.board_height;
-	},
-
-
-	set_board_height: function (new_height) {
-		// set the board_height
-		BoardCreator.board_height = new_height;
+    get_cells_in_a_row: function () {
+		// get the cells_in_a_row
+		return BoardCreator.cells_in_a_row;
     },
     
+	get_cells_in_a_collumn: function () {
+		// get the cells_in_a_collumn
+		return BoardCreator.cells_in_a_collumn;
+    },   
 
-    create_game_board: function (mode) {
-        // create the game board based on mode
-        let dimension = this.get_board_size(mode);
-        // cell_row is how many cells are in a row
-        // cell_col is how many cells are in a col
-        let cell_row = dimension[0];
-        let cell_col = dimension[1];
+    create_game_board: function () {
+        // create the game board based on current mode
+
+        let mode = MetaData.get_game_mode();
+        let dimension = this.get_board_size_and_font_size(mode);
+        // cells_in_a_row is how many cells are in a row
+        // cells_in_a_collumn is how many cells are in a col
+        let cells_in_a_row = dimension[0];
+        let cells_in_a_collumn = dimension[1];
         let board_width_px = dimension[2];
 
-        BoardCreator.board.innerHTML = '' // clear the board
-        for (let i = 0; i < cell_col; i++) {
-            for (let j = 0; j < cell_row; j++) {
-                BoardCreator.btn_size = this.create_buttons(board_width_px, i, j, cell_row);
+        BoardCreator.clear_board();
+        for (let i = 0; i < cells_in_a_collumn; i++) {
+            for (let j = 0; j < cells_in_a_row; j++) {
+                BoardCreator.btn_size = BoardCreator.create_buttons(board_width_px, i, j, cells_in_a_row);
             }
             BoardCreator.board.innerHTML += "<br>";
-            BoardCreator.default_left = 0;
-            BoardCreator.default_top += parseInt(BoardCreator.btn_size);
-
+            BoardCreator.cell_left = 0;
+            BoardCreator.cell_top += BoardCreator.btn_size;
         }
-        BoardCreator.board.style.height =
-            String(BoardCreator.default_top + 5) + "px";
 
-        global_in_game = true; //declare that we are in game
+        BoardCreator.board.style.height =
+        String(BoardCreator.cell_top + 5) + "px";
+        BoardCreator.cell_top = 0;
+        
     },
 
 
-    get_board_size: function (mode) {
+    get_board_size_and_font_size: function (mode) {
         // determine board size determines on mode
-        let cell_row, cell_col, board_width
-        // cell_row is how many cells are in a row
-        // cell_col is how many cells are in a col
-        if (mode == 'introductory') {
-            cell_row = 5;
-            cell_col = 5;
-            BoardCreator.board.style.width = '40%';
-            header.style.width = '40%';
-            board_width = this.get_board_px(39);
-        }
-        else if (mode == 'easy') {
-            
-                // for laptops
-                cell_row = 10;
-                cell_col = 10;
+        let cells_in_a_row, cells_in_a_collumn, board_width_px
+        // cells_in_a_row is how many cells are in a row
+        // cells_in_a_collumn is how many cells are in a col
+        switch(mode) {
+            case 'intro':
+                cells_in_a_row = 5;
+                cells_in_a_collumn = 5;
                 BoardCreator.board.style.width = '40%';
                 header.style.width = '40%';
-                board_width = this.get_board_px(39);
+                BoardCreator.font_size = '65px';
+                board_width_px = BoardCreator.get_board_px(39);
+                break;
 
-        } else if (mode == 'medium') {
-                // for laptops
-                cell_row = 15;
-                cell_col = 15;
+            case 'easy':
+                cells_in_a_row = 10;
+                cells_in_a_collumn = 10;
+                BoardCreator.board.style.width = '40%';
+                header.style.width = '40%';
+                board_width_px = BoardCreator.get_board_px(39);
+                BoardCreator.font_size = '45px';
+                break;
+
+            case 'medium':
+                cells_in_a_row = 15;
+                cells_in_a_collumn = 15;
                 BoardCreator.board.style.width = '60%';
                 header.style.width = '60%';
-                board_width = this.get_board_px(59);
-        } else {
-                // for laptops
-                cell_row = 20;
-                cell_col = 20;
+                board_width_px = BoardCreator.get_board_px(59);
+                BoardCreator.font_size = '45px';
+                break;
+
+            case 'hard':
+                cells_in_a_row = 20;
+                cells_in_a_collumn = 20;
                 BoardCreator.board.style.width = '90%';
                 header.style.width = '90%';
-                board_width = this.get_board_px(89);
+                board_width_px = BoardCreator.get_board_px(89);
+                BoardCreator.font_size = '45px';
+                break;
+
         }
-        BoardCreator.set_board_height(cell_col);
-        BoardCreator.set_board_width(cell_row);
-        return [cell_row, cell_col, board_width];
+        
+        BoardCreator.cells_in_a_collumn = cells_in_a_collumn;
+        BoardCreator.cells_in_a_row = cells_in_a_row;
+        return [cells_in_a_row, cells_in_a_collumn, board_width_px];
     },
 
 
     get_board_px: function (percentage) {
-        // return board_width in px
-        percentage = Math.floor(percentage) / 100;
-        return percentage * window.innerWidth;
+        // calculate and return cells_in_a_row in px
+        percentage_as_decimal = percentage / 100;
+        return percentage_as_decimal * window.innerWidth;
     },
 
+    clear_board: function () {
+        // clear the board
+        BoardCreator.board.innerHTML = ''
+    },
 
-    create_buttons: function (board_width_px, i, j, cell_row) {
+    create_buttons: function (board_width_px, i, j, cells_in_a_row) {
         // create buttons to be append to cells
         // this is the clickable buttons on top of the cells
         let button = document.createElement("BUTTON");
@@ -131,17 +130,18 @@ let BoardCreator = {
         button.className = 'gift_btn btn_num0';
 
         //find the button size depends on the board's width
-        let button_size = String(board_width_px / cell_row);
+        let button_size = String(board_width_px / cells_in_a_row);
 
         button.style.width = button_size + 'px';
         button.style.height = button_size + 'px';
 
         // adjust the position
-        button.style.left = String(BoardCreator.default_left) + "px";
-        button.style.top = String(BoardCreator.default_top) + "px";
+        button.style.left = String(BoardCreator.cell_left) + "px";
+        button.style.top = String(BoardCreator.cell_top) + "px";
+        BoardCreator.cell_left += parseInt(button_size);
 
-        BoardCreator.default_left += parseInt(button_size);
+        button.style.fontSize = BoardCreator.font_size;
         BoardCreator.board.appendChild(button);
-        return button_size;
+        return parseInt(button_size);
     },
 };

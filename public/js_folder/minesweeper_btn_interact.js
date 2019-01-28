@@ -1,56 +1,49 @@
-let BtnInteractor = {
+let CellInteractor = {
     // this class contains methods for the user to
     // interact with the board buttons
 
-    // start time when user mousedown a button
     flagging_period: null,
     first_touch: function () {
         // when the user first touch the board
 
-        // remove first touch from the board
-        BoardCreator.get_board().onclick = '';
-
-        // if global_music and global_sfx are true (on)
-        // activate this
-        // if (MetaData.get_board_height() === true) {
-        //     Sound.start_music();
-        // } else if (MetaData.get_sfx_status() === true) {
-        //     Sound.playBtnSound();
-        // }
-        
-        // make board opaque + create it
-        let board = BoardCreator.get_board()
+        let board = BoardCreator.get_board();
+        board.onclick = '';
         board.style.opacity = 1;
-        let mode = MetaData.get_game_mode();
-        BoardCreator.create_game_board(mode);
+        BoardCreator.create_game_board();
 
-        // make it so clicking on the button
-        // will start the game
-        let buttons = document.getElementsByClassName('gift_btn')
-        for (let i = 0; i < buttons.length; i++) {
-            buttons[i].addEventListener("click", BtnInteractor.start_game);
+        CellInteractor.add_start_game_function_to_buttons();
+        if (MetaData.get_music_status() === true) {
+            Sound.play_music();
+        } else if (MetaData.get_sfx_status() === true) {
+            Sound.playBtnSound();
         }
     },
 
+    add_start_game_function_to_buttons: function () {
+        // add the start game functions to all board buttons
+
+        let buttons = document.getElementsByClassName('gift_btn')
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener("click", CellInteractor.start_game);
+        }
+    },
 
     start_game: function () {
         // start the game when user clicks on a btn;
-
-        // start clock
         Timer.start_timer();
 
         // remove onclick of start_game and add other events
         let buttons = document.getElementsByClassName("gift_btn")
         for (i = 0; i < buttons.length; i++) {
-            buttons[i].removeEventListener("click", BtnInteractor.start_game);
-            buttons[i].addEventListener("mousedown", BtnInteractor.touch_button);
-            buttons[i].addEventListener("mouseup", BtnInteractor.release_button);
+            buttons[i].removeEventListener("click", CellInteractor.start_game);
+            buttons[i].addEventListener("mousedown", CellInteractor.touch_button);
+            buttons[i].addEventListener("mouseup", CellInteractor.release_button);
         }
 
-        // place the mines
-        MinesAndNums.minePlacer(MetaData.get_game_mode(), this.id);
+        MinesAndNums.minePlacer(this.id);
         Sound.playBtnSound();
-        BtnInteractor.reveal_button(this)
+        CellInteractor.reveal_button(this);
+        MetaData.set_is_in_game(true);
     },
 
 
@@ -67,12 +60,17 @@ let BtnInteractor = {
         }
         else {
             flagging_period = setTimeout(function () {
-                BtnInteractor.flag_button(button)
+                CellInteractor.flag_button(button)
             }, 300);
         }
 
     },
 
+    flag_button: function (button) {
+        // flag a cell by holding down on a button
+        button.classList.toggle("flag");
+        Sound.playBtnSound()
+    },
 
     release_button: function () {
         // cancel flagging_period and reveal cell
@@ -86,11 +84,12 @@ let BtnInteractor = {
             // before the user touched it
             this.classList.remove('flag_to_be_del');
             this.classList.remove('flag');
+            Sound.playBtnSound();
         }
         else if (!(this.classList.contains("flag"))) {
             // if 'this' aka the button
             // doesn't have a flag in it
-            BtnInteractor.reveal_button(this);
+            CellInteractor.reveal_button(this);
         }
     },
 
@@ -100,12 +99,12 @@ let BtnInteractor = {
 
         if (button.classList.contains("mine")) {
             // if this is a mine
-            BtnInteractor.clicked_mine(button);
+            CellInteractor.clicked_mine(button);
         }
         else {
-            let continue_code = BtnInteractor.clicked_number(button);
+            let continue_code = CellInteractor.clicked_number(button);
             if (continue_code) {
-                BtnInteractor.reveal_nearby_buttons(button);
+                CellInteractor.reveal_nearby_buttons(button);
             }
             Sound.playBtnSound();
             EndGameMechanics.check_if_won();
@@ -122,9 +121,9 @@ let BtnInteractor = {
         let x_coor = parseInt(id.slice(6, 7));
         let y_coor = parseInt(id.slice(7));
 
-        // get cell_row and cell_col
-        let cell_row = BoardCreator.get_board_width();
-        let cell_col = BoardCreator.get_board_height();
+        // get cells_in_a_row and cells_in_a_collumn
+        let cells_in_a_row = BoardCreator.get_cells_in_a_row();
+        let cells_in_a_collumn = BoardCreator.get_cells_in_a_collumn();
 
         // get one less and one more of x_coor value
         // this covers the cells to the right and left of the
@@ -138,13 +137,13 @@ let BtnInteractor = {
         for (let i = 0; i < x_coor_values.length; i++) {
             let x_values = x_coor_values[i];
             // check to make sure the x_values is in boundary
-            if (x_values < 0 || x_values == cell_row) {
+            if (x_values < 0 || x_values == cells_in_a_row) {
                 continue;
             }
             for (let j = 0; j < y_coor_values.length; j++) {
                 let y_values = y_coor_values[j];
                 // check to make sure the y_values is in boundary
-                if (y_values < 0 || y_values == cell_col) {
+                if (y_values < 0 || y_values == cells_in_a_collumn) {
                     // console.log('y is ' + y_values + '. y out of bound. This is skipped')
                     continue;
                 }
@@ -159,21 +158,13 @@ let BtnInteractor = {
                 }
 
                 let continue_code = 
-                BtnInteractor.clicked_number(surrounding_button);
+                CellInteractor.clicked_number(surrounding_button);
                 if (continue_code) {
-                    BtnInteractor.reveal_nearby_buttons(surrounding_button);
+                    CellInteractor.reveal_nearby_buttons(surrounding_button);
                 }
             }
         }
     },
-
-
-    flag_button: function (button) {
-        // flag a cell by holding down on a button
-        button.classList.toggle("flag");
-        Sound.playBtnSound()
-    },
-
 
     clicked_mine: function (button) {
         // what happens when user clicks a mine
@@ -187,7 +178,7 @@ let BtnInteractor = {
         // play mine sound, stop music and stop timer
         Sound.mineSound();
         Sound.mute_music(true);
-        clearInterval(timer);
+        Timer.stop_timer();
 
         EndGameMechanics.disable_board();
 

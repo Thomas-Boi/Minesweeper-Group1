@@ -1,5 +1,5 @@
 // import { Score } from "minesweeper_score.js";
-// import {BtnInteractor} from "minesweeper_btn_interact";
+// import {CellInteractor} from "minesweeper_btn_interact";
 // import {MinesAndNums} from "minesweeper_mines_num.js";
 // import {BoardCreator} from "minesweeper_board_creator.js";
 // import {EndGameMechanics} from "minesweeper_end_game.js";
@@ -9,28 +9,18 @@
 
 
 // set events handlers
+document.getElementById('board').onclick = CellInteractor.first_touch;
 
-// click on board first time
-document.getElementById('board').onclick = BtnInteractor.first_touch;
+document.getElementById('reset').onclick = ResetFunctions.reset_board;
 
-// click the restart button
-document.getElementById('reset').onclick = function() {
-	window.location.reload();
-}
+// // music buttons
+// document.getElementById('music_icon').onclick = Setting.toggleMusic;
 
-// open and close basic setting
-document.getElementById('basic_setting_bar').onmouseover = Setting.open_basic_setting;
-document.getElementById('basic_setting_bar').onmouseout = Setting.close_basic_setting;
-
-// music buttons
-document.getElementById('music_icon').onclick = Setting.toggleMusic;
-
-// sfx buttons
-document.getElementById('sfx_icon').onclick = Setting.toggleSfx;
+// // sfx buttons
+// document.getElementById('sfx_icon').onclick = Setting.toggleSfx;
 
 // open advance setting
-// document.getElementById('advance_cog_pic').onclick = Setting.open_setting;
-
+document.getElementById('setting_pic').onclick = Setting.open_advance_setting;
 
 // difficulty mode btns
 document.getElementById('easy').onclick = function () {
@@ -47,7 +37,7 @@ document.getElementById('hard').onclick = function () {
 }
 
 // music buttons
-document.getElementById('music_option').onclick = Setting.changemusic;
+document.getElementById('music_option').onclick = Setting.change_music;
 
 // close setting
-document.getElementById('confirm').onclick = Setting.confirm_setting;
+document.getElementById('confirm').onclick = Setting.confirm_advance_setting;

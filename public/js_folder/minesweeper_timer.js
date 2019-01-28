@@ -1,11 +1,11 @@
-let Time = {
+let Timer = {
     // everything relates to Times/time
     timer_interval: null,
     start_timer: function() {
         // start the timer that tracks time from start_time
         start_time = new Date();
-        Time.timer_interval = setInterval(function () {
-            Time.update_timer(start_time);
+        Timer.timer_interval = setInterval(function () {
+            Timer.update_timer(start_time);
         }, 1000);
     },
 
@@ -23,15 +23,20 @@ let Time = {
     },
 
 
-    get_end_time: function () {
-        // get the time of the user and store it in sessionStorage
+    set_end_time: function () {
+        // store time of user in sessionStorage
 
-        let Time = document.getElementById('timer').innerHTML;
-        sessionStorage.setItem("Time", Time);
+        let time = document.getElementById('timer').innerHTML;
+        sessionStorage.setItem("Time", time);
+    },
+
+    get_end_time: function () {
+        // get the end time of user in sessionStorage
+        return sessionStorage.getItem("Time");
     },
 
     stop_timer: function () {
         // stop the timer
-        clearInterval(Time.timer_interval);
+        clearInterval(Timer.timer_interval);
     }
 }

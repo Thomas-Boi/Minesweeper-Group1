@@ -1,0 +1,47 @@
+/* settings board*/
+button {
+	cursor: pointer;
+	height: 40px;
+}
+
+#advance_setting {
+	top: 1300px;
+	position: absolute;
+	width: 40%;
+	height: 600px;
+	background-color: #D6EAFF;
+	background-image: url('../../Images/snowman.jpg');
+	background-repeat: no-repeat;
+	background-size: 100% 600px;
+	transition: 0.5s;
+	margin-bottom: 30px;
+}
+
+#setting_heading {
+	color: #2C567F;
+	font-family: Frosty;
+}
+
+#setting_table {
+	position: absolute;
+	top: 80px;
+	width: 80%;
+	text-align: left;
+}
+
+
+.selected_button {
+	background-color: #92DCE5;
+}
+
+#confirm {
+	cursor: pointer;
+	border-radius: 6px;
+	transition: 0.5;
+	position: absolute;
+	top: 63%;
+}
+
+#music_option {
+	height: 40px;
+}

@@ -1,24 +1,15 @@
 /* body */
 body {
-    background-image: url('../Images/christmas_background.jpg');
+    background-image: url('../../Images/christmas_background.jpg');
     margin-top: auto;
     background-repeat: no-repeat;
     background-size: 100%;
-    text-align: center;
-  
-
-    
-    
-}
-
-@font-face{
-    font-family: Frosty;
-    src: url('../Fonts/frosty/FROSTY_.TTF'); 
+    text-align: center;  
 }
 
 @font-face {
 	font-family: ARCADE;
-	src: url('../Fonts/arcadeclassic/ARCADECLASSIC.ttf');
+	src: url('../../Fonts/arcadeclassic/ARCADECLASSIC.TTF');
 	
 }
 
@@ -32,6 +23,11 @@ h1 {
     font-family: ARCADE;
 }
 
+.text {
+    font-size: 30px;
+    font-family: ARCADE;
+}
+
 #score{
     font-size: large;
     text-align: left;
@@ -42,17 +38,17 @@ h1 {
     font-size: 35px;
 }
 
-#user{
-    
+#user_score{
+    font-family: ARCADE;
     color: red;
-
 }
-#highest{
-    
+
+#highest_score{
+    font-family: ARCADE;    
     color: darkgreen;
 }
 /* buttons */
-#restartBtn {
+#replay {
     position: fixed;
     left: 50%;
     bottom: 30px;

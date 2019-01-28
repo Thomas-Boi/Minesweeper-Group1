@@ -1,0 +1,18 @@
+-make reset better
+	-save metadata, clear board then load it again
+
+-make setting works:
+	-change mode actually changes the game mode
+	-mute sounds and music works
+	-change music works
+
+-win page and lost page works:
+	-debate whether keep them as is, make them a smaller window, or 
+	get rid entirely
+
+-reveal nearby buttons refactor
+
+-when click on a num that has the correct amount of mines surrounding it,
+display surrounding area.
+
+-make UI/UX improvements where possible

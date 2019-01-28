@@ -1,0 +1,41 @@
+/* Header*/
+#header {
+	top: 5px;
+	width: 40%;
+	height: 70px;
+	border: 3px solid #F9F9F9;
+	background-color: #BDE6FF;
+}
+
+#basic_setting_bar {
+	width: 180px;
+	text-align: left;
+	display: inline-block;
+	height: 40px;
+}
+
+#setting_pic{
+	cursor: pointer;
+	background-color: lighte-gray;
+	position: relative;
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	position: relative;
+}
+
+#timer {
+	color: red;
+	font-family: ARCADE;
+	font-size: 30px;
+	border: 4px double gray;
+	background-color: black;
+}
+
+
+#reset {
+	cursor: pointer;
+	border-radius: 7px;
+	height: 35px;
+	width: 35px;
+}
