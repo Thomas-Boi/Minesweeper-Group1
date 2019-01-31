@@ -6,6 +6,7 @@ let CellInteractor = {
     first_touch: function () {
         // when the user first touch the board
 
+        MetaData.load_meta_data();
         let board = BoardCreator.get_board();
         board.onclick = '';
         board.style.opacity = 1;

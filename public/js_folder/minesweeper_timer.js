@@ -23,20 +23,26 @@ let Timer = {
     },
 
 
-    set_end_time: function () {
-        // store time of user in sessionStorage
+    save_end_time: function () {
+        // stave time of user in sessionStorage
 
         let time = document.getElementById('timer').innerHTML;
         sessionStorage.setItem("Time", time);
     },
 
-    get_end_time: function () {
-        // get the end time of user in sessionStorage
-        return sessionStorage.getItem("Time");
+    retrieve_end_time: function () {
+        // retrieve the end time of user in sessionStorage
+        let time = sessionStorage.getItem("Time");
+        return time;
     },
 
     stop_timer: function () {
         // stop the timer
         clearInterval(Timer.timer_interval);
+    },
+
+    reset_timer: function () {
+        // reset the timer
+        document.getElementById('timer').innerHTML = "0:00";
     }
 }

@@ -16,8 +16,11 @@
 </head>
 <body>
     <button id='btn'> Test </button>
-
+    <div id='div_space'></div>
     <script>   
+        let stuff = sessionStorage.getItem('assa');
+        console.log(stuff);
+        document.getElementById('div_space').innerHTML = stuff;
     </script>
 </body>
 </html>

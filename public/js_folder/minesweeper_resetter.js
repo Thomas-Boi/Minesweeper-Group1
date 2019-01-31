@@ -7,7 +7,9 @@ let ResetFunctions = {
         BoardCreator.clear_board();
         BoardCreator.create_game_board();
         CellInteractor.add_start_game_function_to_buttons();
-    },
+        Timer.stop_timer();
+        Timer.reset_timer();
+    }
 
     
 

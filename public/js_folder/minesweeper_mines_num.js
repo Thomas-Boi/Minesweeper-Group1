@@ -44,7 +44,7 @@ let MinesAndNums = {
         // get number of mines depend on mode
         let mines;
 
-        switch(mode){
+        switch(mode) {
             case ('intro'):
                 mines = 4;
                 break;
