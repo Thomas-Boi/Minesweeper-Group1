@@ -11,11 +11,10 @@ let EndGameMechanics = {
 
         if (buttons.length === mine_amount) {
             Timer.stop_timer();
-            Timer.get_end_time();
+            Timer.save_end_time();
 
             EndGameMechanics.disable_board();
             EndGameMechanics.display_page("won");
-            Sound.mute_music(true);
         }
     },
 

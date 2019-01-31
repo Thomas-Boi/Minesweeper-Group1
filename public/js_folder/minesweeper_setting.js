@@ -70,9 +70,8 @@ let Setting = {
 		// change the background music
 		let song_name = this.value;
 		Sound.set_music_src('Audio/' + song_name);
-		if (Setting.music_status === true) {
-			// if music_status var is true 
-			Sound.start_music();
+		if (MetaData.get_music_status()) {
+			Sound.play_music();
 		}
 	},
 
@@ -84,6 +83,7 @@ let Setting = {
 		setting.classList.add("w3-hide");
 		setting.classList.remove("w3-show");
 	
+		MetaData.save_meta_data();
 		Sound.playBtnSound();
 	}
 }
