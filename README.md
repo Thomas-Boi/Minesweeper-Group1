@@ -16,4 +16,4 @@ Current contributor:
 Purpose:
 -Originally developed as an assignment for an Intro to Web Dev class.
 -The project was not finished in time but I grew attached to the challenge.
--I'm currently working on it when I have the time as a hobby.
+-I'm currently working on as a hobby.
