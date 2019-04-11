@@ -54,6 +54,7 @@ let BoardCreator = {
         String(BoardCreator.cell_top + 5) + "px";
         BoardCreator.cell_top = 0;
         
+        CellInteractor.add_start_game_function_to_buttons();
     },
 
 

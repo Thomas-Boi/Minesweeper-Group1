@@ -7,10 +7,11 @@
 // import {Setting} from "minesweeper_setting.js";
 // import {MetaData} from "minesweeper_metadata.js";
 
+// load metadata
+MetaData.load_meta_data();
 
 // set events handlers
 document.getElementById('board').onclick = CellInteractor.first_touch;
-
 document.getElementById('reset').onclick = ResetFunctions.reset_board;
 
 // music buttons
@@ -59,5 +60,6 @@ document.getElementById('music_option').onclick = Setting.change_music;
 // close setting
 document.getElementById('confirm').onclick = Setting.confirm_advance_setting;
 
-// load metadata
-MetaData.load_meta_data();
+Setting.select_buttons_based_on_meta_data();
+Sound.set_sounds_based_on_meta_data();
+

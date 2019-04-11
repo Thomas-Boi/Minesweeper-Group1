@@ -31,7 +31,7 @@ let MetaData = {
 	load_default_meta_data: function () {
 		// load the default meta_data values
 
-		MetaData.game_mode = 'intro'; // default mode is easy
+		MetaData.game_mode = 'intro'; // default mode is intro
 		MetaData.music_status = true; // default music is turned on
 		MetaData.sfx_status = true; // default sfx is turned on
 		MetaData.is_in_game = false; // default not in game
@@ -41,14 +41,9 @@ let MetaData = {
 	load_saved_meta_data: function () {
 		// load the saved meta_data values
 
-		MetaData.game_mode = sessionStorage.getItem("game_mode", 
-											MetaData.game_mode);
-		
-		MetaData.music_status = sessionStorage.getItem("music_status", 
-												MetaData.music_status);
-
-		MetaData.sfx_status = sessionStorage.getItem("sfx_status", 
-											MetaData.sfx_status);
+		MetaData.game_mode = sessionStorage.getItem("game_mode");
+		MetaData.music_status = sessionStorage.getItem("music_status");
+		MetaData.sfx_status = sessionStorage.getItem("sfx_status");
 
 		MetaData.is_in_game = false; // default, not in game
 		MetaData.first_timer = MetaData.is_first_timer();

@@ -3,7 +3,22 @@ let Setting = {
 
 	music_icon: document.getElementById('music_icon'),
 	sfx_icon: document.getElementById('sfx_icon'),
-	advance_cog: document.getElementById('advance_cog_pic'),
+
+	select_buttons_based_on_meta_data: function () {
+		if (MetaData.get_sfx_status() === true || 
+			MetaData.get_sfx_status() === "true") {
+			Setting.select_button("soundOnBtn");
+		} else {
+			Setting.select_button("soundOffBtn");
+		}
+
+		if (MetaData.get_music_status() === true ||
+			MetaData.get_music_status() === "true") {
+			Setting.select_button("musicOnBtn");
+		} else {
+			Setting.select_button("musicOffBtn");
+		}
+	},
 
 	toggleMusic: function (value) {
 		//toggle Music on or off
@@ -18,7 +33,6 @@ let Setting = {
 			MetaData.set_music_status(true);
 			Setting.unselect_button("musicOffBtn");
 			Setting.select_button("musicOnBtn");
-
 		}
 
 		Sound.playBtnSound();
@@ -62,7 +76,6 @@ let Setting = {
 		//play button sound
 		Sound.playBtnSound();
 	},
-
 
 	unselect_button: function (value) {
 		//unselect a button

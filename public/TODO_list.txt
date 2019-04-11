@@ -1,13 +1,13 @@
--make reset better
-	-save metadata, clear board then load it again
-
 -make setting works:
-	-change mode actually changes the game mode
 	-mute sounds and music works
 	-change music works
+	-reset with metadata displays the correct option in setting
+
+-timer still running when go to setting after we click on the board
 
 -reveal nearby buttons refactor
 
+-debug the board, when we load a medium board, there's a bug in the mines and numbers
 -when click on a num that has the correct amount of mines surrounding it,
 display surrounding area.
 

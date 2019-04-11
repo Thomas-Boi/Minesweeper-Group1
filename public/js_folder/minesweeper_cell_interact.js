@@ -5,6 +5,9 @@ let CellInteractor = {
     flagging_period: null,
     first_touch: function () {
         // when the user first touch the board
+        if (MetaData.get_sfx_status() === true) {
+            Sound.playBtnSound();
+        }
 
         MetaData.load_meta_data();
         let board = BoardCreator.get_board();
@@ -12,13 +15,12 @@ let CellInteractor = {
         board.style.opacity = 1;
         BoardCreator.create_game_board();
         MetaData.set_is_in_game(true);
-
-        CellInteractor.add_start_game_function_to_buttons();
+        
         if (MetaData.get_music_status() === true) {
             Sound.play_music();
-        } else if (MetaData.get_sfx_status() === true) {
-            Sound.playBtnSound();
         }
+        
+        
     },
 
     add_start_game_function_to_buttons: function () {
