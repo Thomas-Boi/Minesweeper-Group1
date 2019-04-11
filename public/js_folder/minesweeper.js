@@ -23,17 +23,20 @@ document.getElementById('reset').onclick = ResetFunctions.reset_board;
 document.getElementById('setting_pic').onclick = Setting.open_advance_setting;
 
 // difficulty mode btns
+document.getElementById('intro').onclick = function () {
+	Setting.select_mode('intro');
+}
+
 document.getElementById('easy').onclick = function () {
 	Setting.select_mode('easy');
-	sessionStorage.setItem('mode', 'easy')
 }
+
 document.getElementById('medium').onclick = function () {
 	Setting.select_mode('medium');
-	sessionStorage.setItem('mode', 'medium')
 }
+
 document.getElementById('hard').onclick = function () {
 	Setting.select_mode('hard');
-	sessionStorage.setItem('mode', 'hard')
 }
 
 // music buttons
