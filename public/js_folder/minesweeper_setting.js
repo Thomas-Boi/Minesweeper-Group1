@@ -11,11 +11,15 @@ let Setting = {
 			// if on, turn it off
 			Sound.mute_music(true);
 			MetaData.set_music_status(false);
-			this.style.opacity = 0.3;
+			Setting.unselect_button("musicOnBtn");
+			Setting.select_button("musicOffBtn");
+
 		} else {
 			Sound.mute_music(false);
 			MetaData.set_music_status(true);
-			this.style.opacity = 1;
+			Setting.unselect_button("musicOffBtn");
+			Setting.select_button("musicOnBtn");
+
 		}
 
 		Sound.playBtnSound();
@@ -27,11 +31,13 @@ let Setting = {
 			// if on, turn it off
 			Sound.mute_sfx(true);
 			MetaData.set_sfx_status(false);
-			this.style.opacity = 0.3;
+			Setting.unselect_button("soundOnBtn");
+			Setting.select_button("soundOffBtn");
 		} else {
 			Sound.mute_sfx(false);
 			MetaData.set_sfx_status(true);
-			this.style.opacity = 1;
+			Setting.unselect_button("soundOffBtn");
+			Setting.select_button("soundOnBtn");
 		}
 	},
 	
@@ -52,8 +58,7 @@ let Setting = {
 		all_modes.forEach(Setting.unselect_button);
 	
 		//select the button 
-		selected_btn = document.getElementById(mode);
-		selected_btn.className = 'selected_button w3-bar-item';
+		select_button(mode);
 		MetaData.set_game_mode(mode);
 	
 		//play button sound
@@ -61,9 +66,14 @@ let Setting = {
 	},
 
 
-	unselect_button: function (value = '') {
+	unselect_button: function (value) {
 		//unselect a button
-		document.getElementById(value).className = 'w3-bar-item w3-border';
+		document.getElementById(value).classList.remove('selected_button');
+	},
+
+	select_button: function (value) {
+		//unselect a button
+		document.getElementById(value).classList.add('selected_button');
 	},
 	
 	change_music: function () {
@@ -84,6 +94,7 @@ let Setting = {
 		setting.classList.remove("w3-show");
 	
 		MetaData.save_meta_data();
+		BoardCreator.create_game_board();
 		Sound.playBtnSound();
 	}
 }

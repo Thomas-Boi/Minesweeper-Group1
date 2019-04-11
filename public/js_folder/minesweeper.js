@@ -13,11 +13,15 @@ document.getElementById('board').onclick = CellInteractor.first_touch;
 
 document.getElementById('reset').onclick = ResetFunctions.reset_board;
 
-// // music buttons
-// document.getElementById('music_icon').onclick = Setting.toggleMusic;
+// music buttons
+document.getElementById('musicOnBtn').onclick = Setting.toggleMusic;
+document.getElementById('musicOffBtn').onclick = Setting.toggleMusic;
 
-// // sfx buttons
-// document.getElementById('sfx_icon').onclick = Setting.toggleSfx;
+
+// sfx buttons
+document.getElementById('soundOnBtn').onclick = Setting.toggleSfx;
+document.getElementById('soundOffBtn').onclick = Setting.toggleSfx;
+
 
 // open advance setting
 document.getElementById('setting_pic').onclick = Setting.open_advance_setting;
