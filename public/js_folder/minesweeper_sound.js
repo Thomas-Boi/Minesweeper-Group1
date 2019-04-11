@@ -1,22 +1,20 @@
 let Sound = {
 	// everything relates to music and sfx
 	set_sounds_based_on_meta_data: function() {
-		if (MetaData.get_sfx_status() === true ||
-			MetaData.get_sfx_status() === "true") {
+		if (MetaData.get_sfx_status() === true) {
 			Sound.mute_sfx(false);
 		} else {
 			Sound.mute_sfx(true);
 		}
 
-		if (MetaData.get_music_status() === true ||
-			MetaData.get_sfx_status() === "true") {
+		if (MetaData.get_music_status() === true) {
 			Sound.mute_music(false);
 		} else {
 			Sound.mute_music(true);
 		}
 	},
 
-	mineSound: function () {
+	playMineSound: function () {
 		// play sounds when tap a mine
 		document.getElementById('mineSound').play();
 	},

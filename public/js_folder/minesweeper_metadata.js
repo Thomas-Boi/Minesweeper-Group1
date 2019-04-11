@@ -61,7 +61,15 @@ let MetaData = {
 
 	get_music_status: function () {
 		// get the music_status
-		return MetaData.music_status;
+		let status = MetaData.music_status;
+
+		if (status === "true") {
+			status = true;
+		} else if (status === "false") {
+			status = false;
+		}
+
+		return status;
 	},
 
 	set_music_status: function (music_mode) {
@@ -71,7 +79,15 @@ let MetaData = {
 
 	get_sfx_status: function () {
 		// get the sfx_status
-		return MetaData.sfx_status;
+		let status = MetaData.sfx_status;
+
+		if (status === "true") {
+			status = true;
+		} else if (status === "false") {
+			status = false;
+		}
+
+		return status;
 	},
 
 	set_sfx_status: function (sfx_mode) {

@@ -5,18 +5,31 @@ let Setting = {
 	sfx_icon: document.getElementById('sfx_icon'),
 
 	select_buttons_based_on_meta_data: function () {
-		if (MetaData.get_sfx_status() === true || 
-			MetaData.get_sfx_status() === "true") {
+		if (MetaData.get_sfx_status() === true) {
 			Setting.select_button("soundOnBtn");
 		} else {
 			Setting.select_button("soundOffBtn");
 		}
 
-		if (MetaData.get_music_status() === true ||
-			MetaData.get_music_status() === "true") {
+		if (MetaData.get_music_status() === true) {
 			Setting.select_button("musicOnBtn");
 		} else {
 			Setting.select_button("musicOffBtn");
+		}
+
+		switch(MetaData.get_game_mode()) {
+			case ("intro"):
+				Setting.select_button("intro");
+				break;
+			case ("easy"):
+				Setting.select_button("easy");
+				break;
+			case ("medium"):
+				Setting.select_button("medium");
+				break;
+			case ("hard"):
+				Setting.select_button("hard");
+				break;
 		}
 	},
 

@@ -19,8 +19,7 @@ let CellInteractor = {
         if (MetaData.get_music_status() === true) {
             Sound.play_music();
         }
-        
-        
+              
     },
 
     add_start_game_function_to_buttons: function () {
