@@ -11,6 +11,7 @@ let CellInteractor = {
         board.onclick = '';
         board.style.opacity = 1;
         BoardCreator.create_game_board();
+        MetaData.set_is_in_game(true);
 
         CellInteractor.add_start_game_function_to_buttons();
         if (MetaData.get_music_status() === true) {
@@ -44,7 +45,6 @@ let CellInteractor = {
         MinesAndNums.minePlacer(this.id);
         Sound.playBtnSound();
         CellInteractor.reveal_button(this);
-        MetaData.set_is_in_game(true);
     },
 
 

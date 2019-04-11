@@ -5,10 +5,9 @@ let Setting = {
 	sfx_icon: document.getElementById('sfx_icon'),
 	advance_cog: document.getElementById('advance_cog_pic'),
 
-	toggleMusic: function () {
+	toggleMusic: function (value) {
 		//toggle Music on or off
-		if (MetaData.get_music_status()) {
-			// if on, turn it off
+		if (value === "off") {
 			Sound.mute_music(true);
 			MetaData.set_music_status(false);
 			Setting.unselect_button("musicOnBtn");
@@ -25,10 +24,9 @@ let Setting = {
 		Sound.playBtnSound();
 	},
 
-	toggleSfx: function () {
+	toggleSfx: function (value) {
 		//toggle sfx on or off	
-		if (MetaData.get_sfx_status()) {
-			// if on, turn it off
+		if (value === "off") {
 			Sound.mute_sfx(true);
 			MetaData.set_sfx_status(false);
 			Setting.unselect_button("soundOnBtn");
@@ -58,7 +56,7 @@ let Setting = {
 		all_modes.forEach(Setting.unselect_button);
 	
 		//select the button 
-		select_button(mode);
+		Setting.select_button(mode);
 		MetaData.set_game_mode(mode);
 	
 		//play button sound
@@ -94,7 +92,10 @@ let Setting = {
 		setting.classList.remove("w3-show");
 	
 		MetaData.save_meta_data();
-		BoardCreator.create_game_board();
+
+		if (MetaData.get_is_in_game()) {
+			BoardCreator.create_game_board();
+		}
 		Sound.playBtnSound();
 	}
 }

@@ -14,13 +14,23 @@ document.getElementById('board').onclick = CellInteractor.first_touch;
 document.getElementById('reset').onclick = ResetFunctions.reset_board;
 
 // music buttons
-document.getElementById('musicOnBtn').onclick = Setting.toggleMusic;
-document.getElementById('musicOffBtn').onclick = Setting.toggleMusic;
+document.getElementById('musicOnBtn').onclick = function() {
+	Setting.toggleMusic("on");
+}
+
+document.getElementById('musicOffBtn').onclick = function() {
+	Setting.toggleMusic("off");
+}
 
 
 // sfx buttons
-document.getElementById('soundOnBtn').onclick = Setting.toggleSfx;
-document.getElementById('soundOffBtn').onclick = Setting.toggleSfx;
+document.getElementById('soundOnBtn').onclick = function() {
+	Setting.toggleSfx("on");
+}
+
+document.getElementById('soundOffBtn').onclick = function() {
+	Setting.toggleSfx("off");
+}
 
 
 // open advance setting
@@ -48,3 +58,6 @@ document.getElementById('music_option').onclick = Setting.change_music;
 
 // close setting
 document.getElementById('confirm').onclick = Setting.confirm_advance_setting;
+
+// load metadata
+MetaData.load_meta_data();
