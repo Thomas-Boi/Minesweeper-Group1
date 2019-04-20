@@ -1,10 +1,7 @@
 let Setting = {
 	// everything relates to setting
 
-	music_icon: document.getElementById('music_icon'),
-	sfx_icon: document.getElementById('sfx_icon'),
-
-	select_buttons_based_on_meta_data: function () {
+	load_setting_base_on_metadata: function () {
 		if (MetaData.get_sfx_status() === true) {
 			Setting.select_button("soundOnBtn");
 		} else {
@@ -31,6 +28,24 @@ let Setting = {
 				Setting.select_button("hard");
 				break;
 		}
+
+		let song_index;
+		switch(MetaData.get_song_name()) {
+			case("there is no need to be upset.mp3"):
+				song_index = "1";
+				break;
+			case("DougHammer_CarolOfTheBells.mp3"):
+				song_index = "2";
+				break;
+			case("MicheleMcLaughlin_SilentNight.mp3"):
+				song_index = "3";
+				break;
+			default:
+				song_index = "0";
+		}
+
+		document.getElementById("music_option").selectedIndex = song_index;
+		Sound.set_music_src('Audio/' + MetaData.get_song_name());
 	},
 
 	toggleMusic: function (value) {
@@ -107,6 +122,7 @@ let Setting = {
 		if (MetaData.get_music_status()) {
 			Sound.play_music();
 		}
+		MetaData.set_song_name(song_name);
 	},
 
 	confirm_advance_setting: function () {

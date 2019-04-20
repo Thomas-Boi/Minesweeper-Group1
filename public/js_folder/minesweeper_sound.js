@@ -18,8 +18,6 @@ let Sound = {
 		// play sounds when tap a mine
 		document.getElementById('mineSound').play();
 	},
-	
-	
 	playBtnSound: function() {
 		// play sounds when tap a button
 		document.getElementById('clickSound').play();

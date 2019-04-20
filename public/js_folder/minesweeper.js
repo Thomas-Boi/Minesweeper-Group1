@@ -60,6 +60,6 @@ document.getElementById('music_option').onclick = Setting.change_music;
 // close setting
 document.getElementById('confirm').onclick = Setting.confirm_advance_setting;
 
-Setting.select_buttons_based_on_meta_data();
+Setting.load_setting_base_on_metadata();
 Sound.set_sounds_based_on_meta_data();
 

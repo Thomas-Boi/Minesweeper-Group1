@@ -114,7 +114,6 @@ let CellInteractor = {
 
     },
 
-
     reveal_nearby_buttons: function (button) {
         // reveal the buttons around the epicenter button
 
@@ -178,7 +177,7 @@ let CellInteractor = {
 
         button.className = "this_mine";
         // play mine sound, stop music and stop timer
-        Sound.mineSound();
+        Sound.playMineSound();
         Sound.mute_music(true);
         Timer.stop_timer();
 
