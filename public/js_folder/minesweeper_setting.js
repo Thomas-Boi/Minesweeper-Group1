@@ -137,7 +137,10 @@ let Setting = {
 
 		if (MetaData.get_is_in_game()) {
 			BoardCreator.create_game_board();
+			Timer.stop_timer();
+			Timer.reset_timer();
 		}
+
 		Sound.playBtnSound();
 	}
 }
