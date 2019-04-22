@@ -1,6 +1,6 @@
 let Setting = {
 	// everything relates to setting
-
+	current_mode: 0,
 	load_setting_base_on_metadata: function () {
 		if (MetaData.get_sfx_status() === true) {
 			Setting.select_button("soundOnBtn");
@@ -14,7 +14,8 @@ let Setting = {
 			Setting.select_button("musicOffBtn");
 		}
 
-		switch(MetaData.get_game_mode()) {
+		current_mode = MetaData.get_game_mode();
+		switch(current_mode) {
 			case ("intro"):
 				Setting.select_button("intro");
 				break;
@@ -127,20 +128,22 @@ let Setting = {
 
 	confirm_advance_setting: function () {
 		// close setting and move back to the board
+		Sound.playBtnSound();
 		let setting = document.getElementById('advance_setting')
 	
 		// hide setting
 		setting.classList.add("w3-hide");
 		setting.classList.remove("w3-show");
 	
-		MetaData.save_meta_data();
+		let change_in_mode = (current_mode !== MetaData.get_game_mode());
 
-		if (MetaData.get_is_in_game()) {
+		if (MetaData.get_is_in_game() && change_in_mode) {
 			BoardCreator.create_game_board();
 			Timer.stop_timer();
 			Timer.reset_timer();
 		}
 
-		Sound.playBtnSound();
+		MetaData.save_meta_data();
+		current_mode = MetaData.get_game_mode();
 	}
 }
