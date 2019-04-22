@@ -50,15 +50,16 @@ let CellInteractor = {
         // to hold down the button.
         // if user mouseup in time aka not hold,
         // release_button() will cancel the flagging_period
-        let button = this;
 
         // if has flag, mark it to be removed onmouseup
-        if (this.classList.contains('flag')) {
-            this.classList.add('flag_to_be_del');
-        }
-        else {
+        // else flag it
+        let button = this;
+
+        if (button.classList.contains('flag')) {
+            button.classList.add('flag_to_be_del');
+        } else {
             flagging_period = setTimeout(function () {
-                CellInteractor.flag_button(button)
+                CellInteractor.flag_button(button);
             }, 300);
         }
 
@@ -77,21 +78,20 @@ let CellInteractor = {
         // stop flagging_period
         clearTimeout(flagging_period);
 
-        if (this.classList.contains('flag_to_be_del')) {
-            // if it has a flag that was generated
-            // before the user touched it
-            this.classList.remove('flag_to_be_del');
-            this.classList.remove('flag');
+        let button = this;
+
+        if (button.classList.contains('flag_to_be_del')) {
+            // if it has a flag that was generated before
+            button.classList.remove('flag_to_be_del');
+            button.classList.remove('flag');
             Sound.playBtnSound();
-        }
-        else if (!(this.classList.contains("flag"))) {
+        } else if (!(button.classList.contains("flag"))) {
             // if 'this' aka the button
             // doesn't have a flag in it
-            CellInteractor.reveal_button(this);
+            CellInteractor.reveal_button(button);
         }
     },
 
-    
     reveal_button: function (button) {
         // reveal the cell underneath a button
 
@@ -106,19 +106,18 @@ let CellInteractor = {
             }
             Sound.playBtnSound();
             EndGameMechanics.check_if_won();
-        }
 
+        }
     },
 
     reveal_nearby_buttons: function (button) {
         // reveal the buttons around the epicenter button
 
         // get x_coor and y_coor 
-        let id = button.id; // id is button##
+        let id = button.id; // id of button
         let x_coor = parseInt(id.slice(6, 7));
         let y_coor = parseInt(id.slice(7));
 
-        // get cells_in_a_row and cells_in_a_collumn
         let cells_in_a_row = BoardCreator.get_cells_in_a_row();
         let cells_in_a_collumn = BoardCreator.get_cells_in_a_collumn();
 
@@ -127,7 +126,7 @@ let CellInteractor = {
         // mine cell
         let x_coor_values = [x_coor - 1, x_coor, x_coor + 1];
 
-        // same as above
+        // same as above but for y
         let y_coor_values = [y_coor - 1, y_coor, y_coor + 1];
 
         // loops through all possible x and y_coor_values
@@ -141,7 +140,6 @@ let CellInteractor = {
                 let y_values = y_coor_values[j];
                 // check to make sure the y_values is in boundary
                 if (y_values < 0 || y_values == cells_in_a_collumn) {
-                    // console.log('y is ' + y_values + '. y out of bound. This is skipped')
                     continue;
                 }
 
@@ -189,7 +187,7 @@ let CellInteractor = {
 
         // skip if it's already numbered
         if (button.classList.contains('revealed_btn')) {
-            return ;
+            return false;
         }
 
         // find the btn_num
@@ -197,25 +195,16 @@ let CellInteractor = {
         // get the number part
         let number = parseInt(btn_num.slice(7));
 
-        if (number == 0) {
-            number = " ";
-        }
-
         // change colour depends on values
         MinesAndNums.colour_number(button, number);
 
         // replace the button with number
-        button.innerHTML = number;
+        button.innerHTML = number === 0 ? " " : number;
         button.classList.add('revealed_btn');
         button.disabled = true;
         button.classList.remove('gift_btn');
         // send a code to tell reveal_btn whether to
         // continue revealing cells
-        if (number == " ") {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return number === 0;
     },
 };

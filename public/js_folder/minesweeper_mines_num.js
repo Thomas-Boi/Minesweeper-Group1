@@ -67,9 +67,9 @@ let MinesAndNums = {
         return mines;
     },
 
-
     number_surroundings: function (cell_x_coor, cell_y_coor) {
         // increase the number by one in cells surrounding a mine
+
         let cells_in_a_collumn = BoardCreator.get_cells_in_a_collumn();
         let cells_in_a_row = BoardCreator.get_cells_in_a_row();
 
@@ -124,7 +124,6 @@ let MinesAndNums = {
 
     },
 
-
     colour_number: function (element, number) {
         // choose a colour depends on the value of the number
 
@@ -144,6 +143,7 @@ let MinesAndNums = {
         for (let j = 0; j < 8; j++) {
             if (number === colour_num_list[j][0]) {
                 element.style.color = colour_num_list[j][1];
+                break;
             };
         };
     },
