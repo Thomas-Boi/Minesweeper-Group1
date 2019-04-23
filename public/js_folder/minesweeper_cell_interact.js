@@ -114,10 +114,9 @@ let CellInteractor = {
         // reveal the buttons around the button in the parameter
 
         // get x_coor and y_coor 
-        let regexp = /[0-20]+/g;
-        let matches = button.id.match(regexp);
-        console.log("button id: " + button.id);
-        console.log(matches);
+        let regexp = /[0-9]+/g;
+        let str = button.id.toString();
+        let matches = str.match(regexp);
         let x_coor = parseInt(matches[0]);
         let y_coor = parseInt(matches[1]);
 
@@ -128,7 +127,6 @@ let CellInteractor = {
         // this covers the cells to the right and left of the
         // mine cell
         let x_coor_values = [x_coor - 1, x_coor, x_coor + 1];
-
         // same as above but for y
         let y_coor_values = [y_coor - 1, y_coor, y_coor + 1];
 
@@ -155,9 +153,9 @@ let CellInteractor = {
                     continue;
                 }
 
-                let continue_code = CellInteractor.clicked_number(button);
+                let continue_code = CellInteractor.clicked_number(surrounding_button);
                 if (continue_code) {
-                    CellInteractor.reveal_nearby_buttons(button);
+                    CellInteractor.reveal_nearby_buttons(surrounding_button);
                 }
             }
         }
