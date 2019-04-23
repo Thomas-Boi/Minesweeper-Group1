@@ -18,7 +18,7 @@ let MinesAndNums = {
             let cell_y_coor = Math.floor(Math.random() * cells_in_a_collumn);
 
             // get a button with the chosen coordinates
-            let mine_button = document.getElementById('button' + String(cell_x_coor) + String(cell_y_coor));
+            let mine_button = document.getElementById('button' + String(cell_x_coor) + "_" + String(cell_y_coor));
             //checks if the element already has a mine placed in it 
             if (mine_button.classList.contains('mine')) {
                 continue;    //if so, skips
@@ -30,8 +30,8 @@ let MinesAndNums = {
             }
             else {
                 // Otherwise, it add a className to mine_button
-                mine_button.classList.add('mine');
-
+                mine_button.classList.toggle('mine');
+                mine_button.classList.toggle('btn_num0')
                 // places numbers around the mines
                 MinesAndNums.number_surroundings(cell_x_coor, cell_y_coor);
                 placed_mine++;
@@ -100,7 +100,7 @@ let MinesAndNums = {
 
                 // get a surrounding cell's button
                 let surrounding_button = document.getElementById('button'
-                + String(x_values) + String(y_values));
+                + String(x_values) + "_" + String(y_values));
 
                 // check if it has a mine
                 if (surrounding_button.classList.contains("mine")) {

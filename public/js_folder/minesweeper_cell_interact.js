@@ -111,12 +111,15 @@ let CellInteractor = {
     },
 
     reveal_nearby_buttons: function (button) {
-        // reveal the buttons around the epicenter button
+        // reveal the buttons around the button in the parameter
 
         // get x_coor and y_coor 
-        let id = button.id; // id of button
-        let x_coor = parseInt(id.slice(6, 7));
-        let y_coor = parseInt(id.slice(7));
+        let regexp = /[0-20]+/g;
+        let matches = button.id.match(regexp);
+        console.log("button id: " + button.id);
+        console.log(matches);
+        let x_coor = parseInt(matches[0]);
+        let y_coor = parseInt(matches[1]);
 
         let cells_in_a_row = BoardCreator.get_cells_in_a_row();
         let cells_in_a_collumn = BoardCreator.get_cells_in_a_collumn();
@@ -144,18 +147,17 @@ let CellInteractor = {
                 }
 
                 // get a surrounding cell's button
-                let surrounding_button = 
-                document.getElementById('button' + String(x_values) + String(y_values));
+                let id = 'button' + String(x_values) + "_" + String(y_values);
+                let surrounding_button = document.getElementById(id);
 
                 if (surrounding_button.classList.contains('flag')) {
                     // if it has a flag, skips
                     continue;
                 }
 
-                let continue_code = 
-                CellInteractor.clicked_number(surrounding_button);
+                let continue_code = CellInteractor.clicked_number(button);
                 if (continue_code) {
-                    CellInteractor.reveal_nearby_buttons(surrounding_button);
+                    CellInteractor.reveal_nearby_buttons(button);
                 }
             }
         }

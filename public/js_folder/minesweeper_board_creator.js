@@ -125,7 +125,7 @@ let BoardCreator = {
         let button = document.createElement("BUTTON");
 
         // create unique id
-        let string = String(j) + String(i);
+        let string = String(j) + "_" + String(i);
         button.id = 'button' + string;
 
         button.className = 'gift_btn btn_num0';
