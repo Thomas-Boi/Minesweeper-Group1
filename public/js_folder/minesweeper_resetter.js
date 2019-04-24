@@ -9,6 +9,7 @@ let ResetFunctions = {
         CellInteractor.add_start_game_function_to_buttons();
         Timer.stop_timer();
         Timer.reset_timer();
+        Sound.mute_music(false);
     }
     
 }

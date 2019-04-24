@@ -43,7 +43,6 @@ let MinesAndNums = {
     get_mine_numbers: function (mode) {
         // get number of mines depend on mode
         let mines;
-
         switch(mode) {
             case ('intro'):
                 mines = 4;
@@ -54,11 +53,12 @@ let MinesAndNums = {
                 break;
 
             case ('medium'):
-                mines = 20;
+                mines = 25;
                 break;
 
             case ('hard'):
-                mines = 30;
+                mines = 40;
+                break;
 
             default:
                 mines = 1;
