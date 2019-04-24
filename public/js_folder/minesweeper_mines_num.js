@@ -49,15 +49,15 @@ let MinesAndNums = {
                 break;
 
             case ('easy'):
-                mines = 10;
+                mines = 15;
                 break;
 
             case ('medium'):
-                mines = 25;
+                mines = 35;
                 break;
 
             case ('hard'):
-                mines = 40;
+                mines = 55;
                 break;
 
             default:

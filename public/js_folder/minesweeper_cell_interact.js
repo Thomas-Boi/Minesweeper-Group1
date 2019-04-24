@@ -55,6 +55,10 @@ let CellInteractor = {
         // else flag it
         let button = this;
 
+        if (button.classList.contains('revealed_btn')) {
+            return;
+        }
+
         if (button.classList.contains('flag')) {
             button.classList.add('flag_to_be_del');
         } else {
@@ -231,7 +235,7 @@ let CellInteractor = {
         button.className = "this_mine";
         // play mine sound, stop music and stop timer
         Sound.playMineSound();
-        Sound.mute_music(true);
+        Sound.pause_music();
         Timer.stop_timer();
 
         EndGameMechanics.disable_board();

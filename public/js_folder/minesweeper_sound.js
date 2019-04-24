@@ -25,12 +25,17 @@ let Sound = {
 	},
 
 
-	play_music: function () {
+	play_music: function() {
 		// play music
 		document.getElementById('music').play();
 	},
 
-	set_music_src: function (new_src) {
+	pause_music: function() {
+		// pause music
+		document.getElementById('music').pause();
+	},
+
+	set_music_src: function(new_src) {
 		// set new music src
 		document.getElementById('music').src = new_src;
 	},
