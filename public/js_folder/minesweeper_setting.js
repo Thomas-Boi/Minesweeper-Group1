@@ -30,23 +30,23 @@ let Setting = {
 				break;
 		}
 
-		let song_index;
+		let song_name;
 		switch(MetaData.get_song_name()) {
 			case("there is no need to be upset.mp3"):
-				song_index = "1";
+				song_name = "there is no need to be upset.mp3";
 				break;
 			case("DougHammer_CarolOfTheBells.mp3"):
-				song_index = "2";
+				song_name = "DougHammer_CarolOfTheBells.mp3";
 				break;
 			case("MicheleMcLaughlin_SilentNight.mp3"):
-				song_index = "3";
+				song_name = "MicheleMcLaughlin_SilentNight.mp3";				
 				break;
 			default:
-				song_index = "0";
+				song_name = "BillyGorilly_JingleBells.mp3";
 		}
 
-		document.getElementById("music_option").selectedIndex = song_index;
-		Sound.set_music_src('Audio/' + MetaData.get_song_name());
+		document.getElementById("music_option").value = song_name;
+		Sound.set_music_src('Audio/' + song_name);
 	},
 
 	toggleMusic: function (value) {

@@ -1,6 +1,6 @@
 /* board */
 
-#board{
+#board {
 	border: 3px solid #F9F9F9;
 	display: inline-block;
 	position: absolute;
@@ -38,11 +38,10 @@ h2 {
 
 
 .revealed_btn {
-	display: inline-block;
 	font-family: ARCADE;
 	border: 1px solid grey;
 	position: absolute;
-	cursor: auto;
+	background-color: #DDDDDD;
 }
 
 .mine,

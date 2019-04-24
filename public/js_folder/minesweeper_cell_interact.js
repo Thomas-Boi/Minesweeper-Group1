@@ -94,20 +94,74 @@ let CellInteractor = {
 
     reveal_button: function (button) {
         // reveal the cell underneath a button
-
         if (button.classList.contains("mine")) {
             // if this is a mine
             CellInteractor.clicked_mine(button);
-        }
-        else {
+        } else if (button.classList.contains("revealed_btn")) {
+            CellInteractor.check_flags_around_button(button);
+        } else {
             let continue_code = CellInteractor.clicked_number(button);
             if (continue_code) {
                 CellInteractor.reveal_nearby_buttons(button);
             }
-            Sound.playBtnSound();
-            EndGameMechanics.check_if_won();
-
         }
+
+        Sound.playBtnSound();
+        EndGameMechanics.check_if_won();
+    },
+
+    check_flags_around_button: function(button) {
+        // get x_coor and y_coor 
+        let regexp = /[0-9]+/g;
+        let str = button.id.toString();
+        let matches = str.match(regexp);
+        let x_coor = parseInt(matches[0]);
+        let y_coor = parseInt(matches[1]);
+
+        let cells_in_a_row = BoardCreator.get_cells_in_a_row();
+        let cells_in_a_collumn = BoardCreator.get_cells_in_a_collumn();
+
+        // get one less and one more of x_coor value
+        // this covers the cells to the right and left of the
+        // mine cell
+        let x_coor_values = [x_coor - 1, x_coor, x_coor + 1];
+        // same as above but for y
+        let y_coor_values = [y_coor - 1, y_coor, y_coor + 1];
+
+        let flag_counter = 0;
+        // loops through all possible x and y_coor_values
+        for (let i = 0; i < x_coor_values.length; i++) {
+            let x_values = x_coor_values[i];
+            // check to make sure the x_values is in boundary
+            if (x_values < 0 || x_values == cells_in_a_row) {
+                continue;
+            }
+            for (let j = 0; j < y_coor_values.length; j++) {
+                let y_values = y_coor_values[j];
+                // check to make sure the y_values is in boundary
+                if (y_values < 0 || y_values == cells_in_a_collumn) {
+                    continue;
+                }
+
+                // get a surrounding cell's button
+                let id = 'button' + String(x_values) + "_" + String(y_values);
+                let surrounding_button = document.getElementById(id);
+
+                if (surrounding_button.classList.contains('flag')) {
+                    // if it has a flag, skips
+                    flag_counter++;
+                }
+            }
+        }
+
+        // find the btn_num
+        let btn_num = button.classList.item(0);
+        // get the number part
+        let number = parseInt(btn_num.slice(7));
+        if (flag_counter === number) {
+            CellInteractor.reveal_nearby_buttons(button);
+        }
+
     },
 
     reveal_nearby_buttons: function (button) {
@@ -151,6 +205,11 @@ let CellInteractor = {
                 if (surrounding_button.classList.contains('flag')) {
                     // if it has a flag, skips
                     continue;
+                }
+
+                if (surrounding_button.classList.contains('mine')) {
+                    clicked_mine(surrounding_button);
+                    return;
                 }
 
                 let continue_code = CellInteractor.clicked_number(surrounding_button);
@@ -199,10 +258,15 @@ let CellInteractor = {
         MinesAndNums.colour_number(button, number);
 
         // replace the button with number
-        button.innerHTML = number === 0 ? " " : number;
         button.classList.add('revealed_btn');
-        button.disabled = true;
         button.classList.remove('gift_btn');
+        if (number === 0) {
+            button.textContent = " ";
+            button.disabled = true;
+        } else {
+            button.textContent = number;
+        }
+        
         // send a code to tell reveal_btn whether to
         // continue revealing cells
         return number === 0;
