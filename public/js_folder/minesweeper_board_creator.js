@@ -54,6 +54,7 @@ let BoardCreator = {
         String(BoardCreator.cell_top + 5) + "px";
         BoardCreator.cell_top = 0;
         
+        CellInteractor.add_start_game_function_to_buttons();
     },
 
 
@@ -124,7 +125,7 @@ let BoardCreator = {
         let button = document.createElement("BUTTON");
 
         // create unique id
-        let string = String(j) + String(i);
+        let string = String(j) + "_" + String(i);
         button.id = 'button' + string;
 
         button.className = 'gift_btn btn_num0';

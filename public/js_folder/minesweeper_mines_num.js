@@ -18,7 +18,7 @@ let MinesAndNums = {
             let cell_y_coor = Math.floor(Math.random() * cells_in_a_collumn);
 
             // get a button with the chosen coordinates
-            let mine_button = document.getElementById('button' + String(cell_x_coor) + String(cell_y_coor));
+            let mine_button = document.getElementById('button' + String(cell_x_coor) + "_" + String(cell_y_coor));
             //checks if the element already has a mine placed in it 
             if (mine_button.classList.contains('mine')) {
                 continue;    //if so, skips
@@ -30,8 +30,8 @@ let MinesAndNums = {
             }
             else {
                 // Otherwise, it add a className to mine_button
-                mine_button.classList.add('mine');
-
+                mine_button.classList.toggle('mine');
+                mine_button.classList.toggle('btn_num0')
                 // places numbers around the mines
                 MinesAndNums.number_surroundings(cell_x_coor, cell_y_coor);
                 placed_mine++;
@@ -43,22 +43,22 @@ let MinesAndNums = {
     get_mine_numbers: function (mode) {
         // get number of mines depend on mode
         let mines;
-
         switch(mode) {
             case ('intro'):
                 mines = 4;
                 break;
 
             case ('easy'):
-                mines = 10;
+                mines = 15;
                 break;
 
             case ('medium'):
-                mines = 20;
+                mines = 35;
                 break;
 
             case ('hard'):
-                mines = 30;
+                mines = 55;
+                break;
 
             default:
                 mines = 1;
@@ -67,9 +67,9 @@ let MinesAndNums = {
         return mines;
     },
 
-
     number_surroundings: function (cell_x_coor, cell_y_coor) {
         // increase the number by one in cells surrounding a mine
+
         let cells_in_a_collumn = BoardCreator.get_cells_in_a_collumn();
         let cells_in_a_row = BoardCreator.get_cells_in_a_row();
 
@@ -100,7 +100,7 @@ let MinesAndNums = {
 
                 // get a surrounding cell's button
                 let surrounding_button = document.getElementById('button'
-                + String(x_values) + String(y_values));
+                + String(x_values) + "_" + String(y_values));
 
                 // check if it has a mine
                 if (surrounding_button.classList.contains("mine")) {
@@ -124,7 +124,6 @@ let MinesAndNums = {
 
     },
 
-
     colour_number: function (element, number) {
         // choose a colour depends on the value of the number
 
@@ -133,7 +132,7 @@ let MinesAndNums = {
             [1, "#0033cc"],
             [2, "#006600"],
             [3, "#ff0000"],
-            [4, "#99ccff"],
+            [4, "#EC4067"],
             [5, "#993333"],
             [6, "#ffcc66"],
             [7, "#000066"],
@@ -144,6 +143,7 @@ let MinesAndNums = {
         for (let j = 0; j < 8; j++) {
             if (number === colour_num_list[j][0]) {
                 element.style.color = colour_num_list[j][1];
+                break;
             };
         };
     },

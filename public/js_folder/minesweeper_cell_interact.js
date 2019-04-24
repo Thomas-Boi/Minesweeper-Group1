@@ -5,19 +5,17 @@ let CellInteractor = {
     flagging_period: null,
     first_touch: function () {
         // when the user first touch the board
+        Sound.playBtnSound();
+        Sound.play_music();
 
         MetaData.load_meta_data();
         let board = BoardCreator.get_board();
         board.onclick = '';
         board.style.opacity = 1;
         BoardCreator.create_game_board();
-
-        CellInteractor.add_start_game_function_to_buttons();
-        if (MetaData.get_music_status() === true) {
-            Sound.play_music();
-        } else if (MetaData.get_sfx_status() === true) {
-            Sound.playBtnSound();
-        }
+        MetaData.set_is_in_game(true);
+        
+              
     },
 
     add_start_game_function_to_buttons: function () {
@@ -44,7 +42,6 @@ let CellInteractor = {
         MinesAndNums.minePlacer(this.id);
         Sound.playBtnSound();
         CellInteractor.reveal_button(this);
-        MetaData.set_is_in_game(true);
     },
 
 
@@ -53,15 +50,20 @@ let CellInteractor = {
         // to hold down the button.
         // if user mouseup in time aka not hold,
         // release_button() will cancel the flagging_period
-        let button = this;
 
         // if has flag, mark it to be removed onmouseup
-        if (this.classList.contains('flag')) {
-            this.classList.add('flag_to_be_del');
+        // else flag it
+        let button = this;
+
+        if (button.classList.contains('revealed_btn')) {
+            return;
         }
-        else {
+
+        if (button.classList.contains('flag')) {
+            button.classList.add('flag_to_be_del');
+        } else {
             flagging_period = setTimeout(function () {
-                CellInteractor.flag_button(button)
+                CellInteractor.flag_button(button);
             }, 300);
         }
 
@@ -80,49 +82,46 @@ let CellInteractor = {
         // stop flagging_period
         clearTimeout(flagging_period);
 
-        if (this.classList.contains('flag_to_be_del')) {
-            // if it has a flag that was generated
-            // before the user touched it
-            this.classList.remove('flag_to_be_del');
-            this.classList.remove('flag');
+        let button = this;
+
+        if (button.classList.contains('flag_to_be_del')) {
+            // if it has a flag that was generated before
+            button.classList.remove('flag_to_be_del');
+            button.classList.remove('flag');
             Sound.playBtnSound();
-        }
-        else if (!(this.classList.contains("flag"))) {
+        } else if (!(button.classList.contains("flag"))) {
             // if 'this' aka the button
             // doesn't have a flag in it
-            CellInteractor.reveal_button(this);
+            CellInteractor.reveal_button(button);
         }
     },
 
-    
     reveal_button: function (button) {
         // reveal the cell underneath a button
-
         if (button.classList.contains("mine")) {
             // if this is a mine
             CellInteractor.clicked_mine(button);
-        }
-        else {
+        } else if (button.classList.contains("revealed_btn")) {
+            CellInteractor.check_flags_around_button(button);
+        } else {
             let continue_code = CellInteractor.clicked_number(button);
             if (continue_code) {
                 CellInteractor.reveal_nearby_buttons(button);
             }
-            Sound.playBtnSound();
-            EndGameMechanics.check_if_won();
         }
 
+        Sound.playBtnSound();
+        EndGameMechanics.check_if_won();
     },
 
-
-    reveal_nearby_buttons: function (button) {
-        // reveal the buttons around the epicenter button
-
+    check_flags_around_button: function(button) {
         // get x_coor and y_coor 
-        let id = button.id; // id is button##
-        let x_coor = parseInt(id.slice(6, 7));
-        let y_coor = parseInt(id.slice(7));
+        let regexp = /[0-9]+/g;
+        let str = button.id.toString();
+        let matches = str.match(regexp);
+        let x_coor = parseInt(matches[0]);
+        let y_coor = parseInt(matches[1]);
 
-        // get cells_in_a_row and cells_in_a_collumn
         let cells_in_a_row = BoardCreator.get_cells_in_a_row();
         let cells_in_a_collumn = BoardCreator.get_cells_in_a_collumn();
 
@@ -130,8 +129,63 @@ let CellInteractor = {
         // this covers the cells to the right and left of the
         // mine cell
         let x_coor_values = [x_coor - 1, x_coor, x_coor + 1];
+        // same as above but for y
+        let y_coor_values = [y_coor - 1, y_coor, y_coor + 1];
 
-        // same as above
+        let flag_counter = 0;
+        // loops through all possible x and y_coor_values
+        for (let i = 0; i < x_coor_values.length; i++) {
+            let x_values = x_coor_values[i];
+            // check to make sure the x_values is in boundary
+            if (x_values < 0 || x_values == cells_in_a_row) {
+                continue;
+            }
+            for (let j = 0; j < y_coor_values.length; j++) {
+                let y_values = y_coor_values[j];
+                // check to make sure the y_values is in boundary
+                if (y_values < 0 || y_values == cells_in_a_collumn) {
+                    continue;
+                }
+
+                // get a surrounding cell's button
+                let id = 'button' + String(x_values) + "_" + String(y_values);
+                let surrounding_button = document.getElementById(id);
+
+                if (surrounding_button.classList.contains('flag')) {
+                    // if it has a flag, skips
+                    flag_counter++;
+                }
+            }
+        }
+
+        // find the btn_num
+        let btn_num = button.classList.item(0);
+        // get the number part
+        let number = parseInt(btn_num.slice(7));
+        if (flag_counter === number) {
+            CellInteractor.reveal_nearby_buttons(button);
+        }
+
+    },
+
+    reveal_nearby_buttons: function (button) {
+        // reveal the buttons around the button in the parameter
+
+        // get x_coor and y_coor 
+        let regexp = /[0-9]+/g;
+        let str = button.id.toString();
+        let matches = str.match(regexp);
+        let x_coor = parseInt(matches[0]);
+        let y_coor = parseInt(matches[1]);
+
+        let cells_in_a_row = BoardCreator.get_cells_in_a_row();
+        let cells_in_a_collumn = BoardCreator.get_cells_in_a_collumn();
+
+        // get one less and one more of x_coor value
+        // this covers the cells to the right and left of the
+        // mine cell
+        let x_coor_values = [x_coor - 1, x_coor, x_coor + 1];
+        // same as above but for y
         let y_coor_values = [y_coor - 1, y_coor, y_coor + 1];
 
         // loops through all possible x and y_coor_values
@@ -145,21 +199,24 @@ let CellInteractor = {
                 let y_values = y_coor_values[j];
                 // check to make sure the y_values is in boundary
                 if (y_values < 0 || y_values == cells_in_a_collumn) {
-                    // console.log('y is ' + y_values + '. y out of bound. This is skipped')
                     continue;
                 }
 
                 // get a surrounding cell's button
-                let surrounding_button = 
-                document.getElementById('button' + String(x_values) + String(y_values));
+                let id = 'button' + String(x_values) + "_" + String(y_values);
+                let surrounding_button = document.getElementById(id);
 
                 if (surrounding_button.classList.contains('flag')) {
                     // if it has a flag, skips
                     continue;
                 }
 
-                let continue_code = 
-                CellInteractor.clicked_number(surrounding_button);
+                if (surrounding_button.classList.contains('mine')) {
+                    CellInteractor.clicked_mine(surrounding_button);
+                    return;
+                }
+
+                let continue_code = CellInteractor.clicked_number(surrounding_button);
                 if (continue_code) {
                     CellInteractor.reveal_nearby_buttons(surrounding_button);
                 }
@@ -177,8 +234,8 @@ let CellInteractor = {
 
         button.className = "this_mine";
         // play mine sound, stop music and stop timer
-        Sound.mineSound();
-        Sound.mute_music(true);
+        Sound.playMineSound();
+        Sound.pause_music();
         Timer.stop_timer();
 
         EndGameMechanics.disable_board();
@@ -193,7 +250,7 @@ let CellInteractor = {
 
         // skip if it's already numbered
         if (button.classList.contains('revealed_btn')) {
-            return ;
+            return false;
         }
 
         // find the btn_num
@@ -201,25 +258,21 @@ let CellInteractor = {
         // get the number part
         let number = parseInt(btn_num.slice(7));
 
-        if (number == 0) {
-            number = " ";
-        }
-
         // change colour depends on values
         MinesAndNums.colour_number(button, number);
 
         // replace the button with number
-        button.innerHTML = number;
         button.classList.add('revealed_btn');
-        button.disabled = true;
         button.classList.remove('gift_btn');
+        if (number === 0) {
+            button.textContent = " ";
+            button.disabled = true;
+        } else {
+            button.textContent = number;
+        }
+        
         // send a code to tell reveal_btn whether to
         // continue revealing cells
-        if (number == " ") {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return number === 0;
     },
 };

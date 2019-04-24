@@ -1,6 +1,6 @@
 /* body */
 body {
-    background-image: url('../../Images/christmas_background.jpg');
+    background-image: url('../../Images/win_background.png');
     margin-top: auto;
     background-repeat: no-repeat;
     background-size: 100%;
@@ -12,7 +12,6 @@ body {
 	src: url('../../Fonts/arcadeclassic/ARCADECLASSIC.TTF');
 	
 }
-
 
 /* h1 */
 
@@ -47,11 +46,22 @@ h1 {
     font-family: ARCADE;    
     color: darkgreen;
 }
+
 /* buttons */
 #replay {
     position: fixed;
     left: 50%;
-    bottom: 30px;
-    transform: translate(-50%, -50%)
+    top: 40%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    font-size: 20px;
+    background-color: #ACF39D;
+    color: red;
+    font-family: ARCADE;
+}
+
+#replay:hover {
+    transition: 0.5s;
+    color: white;
 }
 

@@ -17,5 +17,5 @@ button {
 
 button:hover {
 	background-color: yellow;
-	transition: 0.8s;
+	transition: 0.5s;
 }
