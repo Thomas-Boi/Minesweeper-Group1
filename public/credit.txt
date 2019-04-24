@@ -8,6 +8,10 @@ Tools I used for project:
 -ARCADE_CLASSIC font 
 -Frosty font
 -Sound effects from SoundBible
+-Images (flags, gifts, background images...) are found on Google Images and are not mine
 
 
-This project is a personal project and is free to use. 
+This project is a personal project and is free for personal use.
+
+Note: 
+-Please credit the fonts and icons that you use in your personal project.
