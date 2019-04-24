@@ -208,7 +208,6 @@ let CellInteractor = {
                 }
 
                 if (surrounding_button.classList.contains('mine')) {
-                    console.log("mine!");
                     CellInteractor.clicked_mine(surrounding_button);
                     return;
                 }
