@@ -62,6 +62,7 @@ let Setting = {
 			MetaData.set_music_status(true);
 			Setting.unselect_button("musicOffBtn");
 			Setting.select_button("musicOnBtn");
+			Sound.play_music();
 		}
 
 		Sound.playBtnSound();
