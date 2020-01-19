@@ -1,8 +1,8 @@
 # Minesweeper-Group1
 For Intro to Web Dev class (now a personal project)
 
-<b>Project</b>: Minesweeper (Snow theme)
-<b>Developed using</b>: HTML, CSS, W3CSS, and Javascript.
+<b>Project</b>: Minesweeper (Snow theme)<br>
+<b>Developed using</b>: HTML, CSS, W3CSS, and Javascript.<br>
 <b>Project Finished.</b>
 
 <b>Contributors:</b>
