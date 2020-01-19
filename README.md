@@ -1,20 +1,21 @@
 # Minesweeper-Group1
 For Intro to Web Dev class (now a personal project)
 
-Project: Minesweeper (Snow theme)
-Developed using: HTML, CSS, W3CSS, and Javascript.
-Project Finished.
+<b>Project</b>: Minesweeper (Snow theme)
+<b>Developed using</b>: HTML, CSS, W3CSS, and Javascript.
+<b>Project Finished.</b>
 
-Original contributors:
--Thomas Bui
--Emily Kim
--Marcus Chiu
+<b>Contributors:</b>
+<ul>
+  <li>Thomas Bui</li>
+  <li>Emily Kim (original)</li>
+  <li>Marcus Chiu (original)</li>
+</ul>
 
-Current contributor:
--Thomas
-
-Purpose:
--Originally developed as an assignment for an Intro to Web Dev class.
--The project was not finished in time but I grew attached to the challenge.
--I worked on this game as a hobby. Feel free to pull it and change anything that you want
+<b>Purpose:</b>
+<ul>
+  <li>Originally developed as an assignment for an Intro to Web Dev class.</li>
+  <li>The project was not finished in time but I grew attached to the challenge.</li>
+  <li>I worked on this game as a hobby. Feel free to pull it and change anything that you want</li>
+</ul>
 
