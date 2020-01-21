@@ -1,15 +1,17 @@
 const path = require('path'),
     { CleanWebpackPlugin } = require('clean-webpack-plugin'),
-    HTMLWebpackPlugin = require('html-webpack-plugin');
+    HTMLWebpackPlugin = require('html-webpack-plugin'),
+    MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 
 const srcPath = path.resolve(__dirname, "src"),
     publicPath = path.resolve(__dirname, "public");
 
 module.exports = {
     entry: {
-        minesweeper: path.resolve(srcPath, "js/minesweeper.js")
+        minesweeper: path.resolve(srcPath, "js", "minesweeper.js")
     },
     module: {
+        noParse: /(Fonts|Images|Audio)/,
         rules: [
             {
                 test: /\.js$/,
@@ -17,55 +19,40 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ["@babel/preset-env"]
+                        presets: [
+                            "@babel/preset-env"
+                        ],
+                        plugins: [
+                            "@babel/plugin-transform-runtime",
+                            "@babel/register"
+                        ]
                     }
                 }
             },
             {
                 test: /\.css$/,
-                exclude: /node_modules/,
                 use: [
-                    "style-loader",
-                    'css-loader'
+                    {
+                        loader: MiniCSSExtractPlugin.loader
+                    },
+                    {
+                        loader: "css-loader"
+                    }
                 ]
             },
             {
                 test: /\.html$/,
-                exclude: /node_modules/,
-                use: "html-loader"
+                use: ["html-loader"]
             },
             {
-                test: /\.(jpe?g|png|gif)$/i,
-                exclude: /node_modules/,
-                use: {
-                    loader: "file-loader",
-                    options: {
-                        name: "[name].[ext]",
-                        outputPath: path.resolve(publicPath, "Images")
+                test: /\.(jpe?g|png|gif|ttf|mp3)$/i,
+                use: [{
+                        loader: "file-loader",
+                        options: {
+                            name: "[name].[ext]"
+                        }
                     }
-                }
-            },
-            {
-                test: /\.ttf$/i,
-                exclude: /node_modules/,
-                use: {
-                    loader: "file-loader",
-                    options: {
-                        name: "[name].[ext]",
-                        outputPath: path.resolve(publicPath, "Fonts")
-                    }
-                }
-            },
-            {
-                test: /\.mp3$/i,
-                exclude: /node_modules/,
-                use: {
-                    loader: "file-loader",
-                    options: {
-                        name: "[name].[ext]",
-                        outputPath: publicPath + "/Audio"
-                    }
-                }
+                ]
             }
 
         ]
@@ -75,10 +62,14 @@ module.exports = {
         path: publicPath
     },
     plugins: [
+        new MiniCSSExtractPlugin({
+            filename: "[name].css"
+        }),
+        new CleanWebpackPlugin(),
         new HTMLWebpackPlugin({
             filename: path.resolve(publicPath, "index.html"),
             template: path.resolve(srcPath, "index.html")
-        })
+        }),
     ]
     
 };

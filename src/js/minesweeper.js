@@ -63,11 +63,5 @@ Sound.set_sounds_based_on_meta_data();
 
 
 // other resources
+import "../css/minesweeper_css/minesweeper.css";
 // import html from "../index.html";
-// import "../Audio/BillyGorilly_JingleBells.mp3";
-// import "../Audio/Bomb-SoundBible.mp3";
-// import "../Audio/Button-SoundBible.com-1420500901.mp3";
-// import "../Audio/DougHammer_CarolOfTheBells.mp3";
-// import "../Audio/MicheleMcLaughlin_SilentNight.mp3";
-// import "../Audio/MoscowSymphOrch_WishYouMerry.mp3";
-// import "../Audio/there is no need to be upset.mp3";

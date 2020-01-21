@@ -1,4 +1,6 @@
 import {CellInteractor} from "./minesweeper_cell_interact.js";
+import {MetaData} from "./minesweeper_metadata.js";
+
 
 export let BoardCreator = {
     // everything relates to creating board and the board itself
@@ -53,7 +55,7 @@ export let BoardCreator = {
         }
 
         BoardCreator.board.style.height =
-        String(BoardCreator.cell_top + 5) + "px";
+            String(BoardCreator.cell_top + 5) + "px";
         BoardCreator.cell_top = 0;
         
         CellInteractor.add_start_game_function_to_buttons();

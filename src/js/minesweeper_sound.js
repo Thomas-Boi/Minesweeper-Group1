@@ -50,4 +50,4 @@ export let Sound = {
 		// toggle sfx on or off
 		document.getElementById('music').muted = music_mode;
 	}
-}
+};

@@ -45,4 +45,4 @@ export let Timer = {
         // reset the timer
         document.getElementById('timer').innerHTML = "0:00";
     }
-}
+};
