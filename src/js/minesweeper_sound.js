@@ -1,4 +1,4 @@
-let Sound = {
+export let Sound = {
 	// everything relates to music and sfx
 	set_sounds_based_on_meta_data: function() {
 		if (MetaData.get_sfx_status() === true) {

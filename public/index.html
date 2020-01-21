@@ -4,8 +4,7 @@
 <head>
     <title>Minesweeper</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel='stylesheet' type='text/css' href='css_folder/minesweeper_css/minesweeper.css'>
-    <!-- This was added after submission -->
+    <link rel='stylesheet' type='text/css' href='./minesweeper.css'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -13,25 +12,25 @@
     
     <!-- Audio and SFX-->
     <audio id='music' loop>
-        <source src='Audio/BillyGorilly_JingleBells.mp3'>
+        <source src='./Audio/BillyGorilly_JingleBells.mp3'>
     </audio>
     <audio id='clickSound'>
-        <source src='Audio/Button-SoundBible.com-1420500901.mp3'>
+        <source src='./Audio/Button-SoundBible.com-1420500901.mp3'>
     </audio>
     <audio id='mineSound'>
-        <source src='Audio/Bomb-SoundBible.mp3'>
+        <source src='./Audio/Bomb-SoundBible.mp3'>
     </audio>
 
     <!-- Header -->
     <div id='header' class='w3-display-topmiddle w3-display-container'>
         <span class='w3-display-left w3-margin-left'>
             <a id='setting_link' href='#advance_setting'>
-                <img src='Images/gear_setting.png' id='setting_pic' >
+                <img src='[object Module]' id='setting_pic' >
             </a>
         </span>
         
         <span id='timer' class='w3-display-middle'>0:00</span>
-        <img src='Images/reset.png' id='reset' class='w3-display-right w3-margin-right'></img>
+        <img src='[object Module]' id='reset' class='w3-display-right w3-margin-right'></img>
 
     </div>
 
@@ -111,19 +110,7 @@
         </a>
     </div>
     
-
-    <script src='js_folder/minesweeper_timer.js'> </script>
-    <script src='js_folder/minesweeper_cell_interact.js'> </script>
-    <script src='js_folder/minesweeper_mines_num.js'> </script>
-    <script src='js_folder/minesweeper_board_creator.js'> </script>
-    <script src='js_folder/minesweeper_end_game.js'> </script>
-    <script src='js_folder/minesweeper_sound.js'> </script>
-    <script src='js_folder/minesweeper_setting.js'> </script>
-    <script src='js_folder/minesweeper_metadata.js'> </script>
-    <script src='js_folder/minesweeper_resetter.js'></script>
-    <script src='js_folder/minesweeper.js'> </script>
-
-
-</body>
+    <script src='minesweeper.js'> </script>
+<script type="text/javascript" src="minesweeper.js"></script></body>
 
 </html>

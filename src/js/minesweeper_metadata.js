@@ -1,4 +1,4 @@
-let MetaData = {
+export let MetaData = {
 	// everything relates to meta data
 	game_mode: null, 
 	music_status: null, 

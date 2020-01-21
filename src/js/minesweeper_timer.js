@@ -1,4 +1,4 @@
-let Timer = {
+export let Timer = {
     // everything relates to Times/time
     timer_interval: null,
     start_timer: function() {

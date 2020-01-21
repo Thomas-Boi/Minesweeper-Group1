@@ -1,4 +1,6 @@
-let EndGameMechanics = {
+import {Timer} from "./minesweeper_timer.js";
+
+export let EndGameMechanics = {
     // contains functions relates to winning, and loosing
     check_if_won: function () {
         // check if the user has won yet
@@ -21,10 +23,10 @@ let EndGameMechanics = {
 
     disable_board: function () {
         // disable all buttons on the board
-        let board = BoardCreator.get_board()
-        let all_btns = board.getElementsByTagName("BUTTON")
+        let board = BoardCreator.get_board();
+        let all_btns = board.getElementsByTagName("BUTTON");
         for (let i = 0; i < all_btns.length; i++) {
-            let button = document.getElementById(all_btns[i].id)
+            let button = document.getElementById(all_btns[i].id);
             button.disabled = true;
             button.style.cursor = "auto";
         }
@@ -44,9 +46,9 @@ let EndGameMechanics = {
 
     display_page: function (page_name) {
         // display the lost.html
-        pop_up_url = page_name + '.html'
-        pop_up_name = page_name
-        window.open(pop_up_url, pop_up_name)
+        pop_up_url = page_name + '.html';
+        pop_up_name = page_name;
+        window.open(pop_up_url, pop_up_name);
 
     }
-}
+};

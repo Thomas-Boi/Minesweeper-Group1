@@ -1,3 +1,5 @@
+import {Timer} from "./minesweeper_timer.js";
+
 // contains script for won.html
 function display_score() {
     // get score from sessionStorage and display it
@@ -9,4 +11,4 @@ function display_score() {
 display_score();
 document.getElementById('replay').onclick = function () {
 	window.close();
-}
+};

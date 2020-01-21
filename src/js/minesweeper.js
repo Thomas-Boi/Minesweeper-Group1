@@ -1,7 +1,9 @@
-import {CellInteractor} from "minesweeper_btn_interact";
-import {Sound} from "minesweeper_sound.js";
-import {Setting} from "minesweeper_setting.js";
-import {MetaData} from "minesweeper_metadata.js";
+import {CellInteractor} from "./minesweeper_cell_interact.js";
+import {Sound} from "./minesweeper_sound.js";
+import {Setting} from "./minesweeper_setting.js";
+import {MetaData} from "./minesweeper_metadata.js";
+import {ResetFunctions} from "./minesweeper_resetter.js";
+
 
 // load metadata
 MetaData.load_meta_data();
@@ -59,3 +61,13 @@ document.getElementById('confirm').onclick = Setting.confirm_advance_setting;
 Setting.load_setting_base_on_metadata();
 Sound.set_sounds_based_on_meta_data();
 
+
+// other resources
+// import html from "../index.html";
+// import "../Audio/BillyGorilly_JingleBells.mp3";
+// import "../Audio/Bomb-SoundBible.mp3";
+// import "../Audio/Button-SoundBible.com-1420500901.mp3";
+// import "../Audio/DougHammer_CarolOfTheBells.mp3";
+// import "../Audio/MicheleMcLaughlin_SilentNight.mp3";
+// import "../Audio/MoscowSymphOrch_WishYouMerry.mp3";
+// import "../Audio/there is no need to be upset.mp3";

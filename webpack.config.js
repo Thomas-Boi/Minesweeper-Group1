@@ -7,14 +7,13 @@ const srcPath = path.resolve(__dirname, "src"),
 
 module.exports = {
     entry: {
-        minesweeper: srcPath + "/js/minesweeper.js",
-        won: srcPath + "/js/won.js",
+        minesweeper: path.resolve(srcPath, "js/minesweeper.js")
     },
     module: {
-        noParse: /(Fonts|Audio|node_modules)/,
         rules: [
             {
                 test: /\.js$/,
+                exclude: /node_modules/,
                 use: {
                     loader: "babel-loader",
                     options: {
@@ -32,23 +31,43 @@ module.exports = {
             },
             {
                 test: /\.html$/,
-                use: {
-                    loader: "html-loader",
-                    options: {
-                        minimize: true
-                    }
-                }
+                exclude: /node_modules/,
+                use: "html-loader"
             },
             {
-                test: /\.(jpe?g|png|gif)$/,
+                test: /\.(jpe?g|png|gif)$/i,
+                exclude: /node_modules/,
                 use: {
                     loader: "file-loader",
                     options: {
                         name: "[name].[ext]",
-                        outputPath: publicPath + "/Images"
+                        outputPath: path.resolve(publicPath, "Images")
+                    }
+                }
+            },
+            {
+                test: /\.ttf$/i,
+                exclude: /node_modules/,
+                use: {
+                    loader: "file-loader",
+                    options: {
+                        name: "[name].[ext]",
+                        outputPath: path.resolve(publicPath, "Fonts")
+                    }
+                }
+            },
+            {
+                test: /\.mp3$/i,
+                exclude: /node_modules/,
+                use: {
+                    loader: "file-loader",
+                    options: {
+                        name: "[name].[ext]",
+                        outputPath: publicPath + "/Audio"
                     }
                 }
             }
+
         ]
     },
     output: {
@@ -56,10 +75,9 @@ module.exports = {
         path: publicPath
     },
     plugins: [
-        new CleanWebpackPlugin(),
         new HTMLWebpackPlugin({
-            filename: publicPath + "/index.html",
-            template: srcPath + "/index.html"
+            filename: path.resolve(publicPath, "index.html"),
+            template: path.resolve(srcPath, "index.html")
         })
     ]
     

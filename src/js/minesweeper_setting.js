@@ -1,4 +1,7 @@
-let Setting = {
+import {MetaData} from "./minesweeper_metadata.js";
+import {Sound} from "./minesweeper_sound.js";
+
+export let Setting = {
 	// everything relates to setting
 	current_mode: 0,
 	load_setting_base_on_metadata: function () {
@@ -147,4 +150,4 @@ let Setting = {
 		MetaData.save_meta_data();
 		current_mode = MetaData.get_game_mode();
 	}
-}
+};

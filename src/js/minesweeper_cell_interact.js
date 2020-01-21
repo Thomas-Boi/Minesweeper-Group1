@@ -1,4 +1,10 @@
-let CellInteractor = {
+import {Sound} from "./minesweeper_sound.js";
+import {MetaData} from "./minesweeper_metadata.js";
+import {BoardCreator} from "./minesweeper_board_creator.js";
+import {Timer} from "./minesweeper_timer.js";
+import {MinesAndNums} from "./minesweeper_mines_num.js";
+
+export let CellInteractor = {
     // this class contains methods for the user to
     // interact with the board buttons
 
@@ -14,8 +20,6 @@ let CellInteractor = {
         board.style.opacity = 1;
         BoardCreator.create_game_board();
         MetaData.set_is_in_game(true);
-        
-              
     },
 
     add_start_game_function_to_buttons: function () {

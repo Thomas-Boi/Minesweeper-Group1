@@ -1,4 +1,6 @@
-let MinesAndNums = { 
+import {BoardCreator} from "./minesweeper_board_creator.js";
+
+export let MinesAndNums = { 
     // everything relates to mines and numbers surrounding them
     minePlacer: function (selected_btn_id) {
         // place mines on the map
@@ -31,7 +33,7 @@ let MinesAndNums = {
             else {
                 // Otherwise, it add a className to mine_button
                 mine_button.classList.toggle('mine');
-                mine_button.classList.toggle('btn_num0')
+                mine_button.classList.toggle('btn_num0');
                 // places numbers around the mines
                 MinesAndNums.number_surroundings(cell_x_coor, cell_y_coor);
                 placed_mine++;
@@ -148,4 +150,4 @@ let MinesAndNums = {
         };
     },
 
-}
+};
