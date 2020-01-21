@@ -1,4 +1,7 @@
-let BoardCreator = {
+import {CellInteractor} from "minesweeper_btn_interact";
+import {BoardCreator} from "minesweeper_board_creator.js";
+
+export let BoardCreator = {
     // everything relates to creating board and the board itself
 
     // BRIEF DESCRIPTION OF BOARD
