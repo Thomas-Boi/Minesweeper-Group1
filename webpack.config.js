@@ -1,7 +1,8 @@
 const path = require('path'),
     { CleanWebpackPlugin } = require('clean-webpack-plugin'),
-    HTMLWebpackPlugin = require('html-webpack-plugin'),
-    MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+    HTMLWebpackPlugin = require('html-webpack-plugin');
+    MiniCSSExtractPlugin = require('mini-css-extract-plugin'),
+    HTMLWebpackTagsPlugin = require('html-webpack-tags-plugin');
 
 const srcPath = path.resolve(__dirname, "src"),
     publicPath = path.resolve(__dirname, "public");
@@ -11,7 +12,6 @@ module.exports = {
         minesweeper: path.resolve(srcPath, "js", "minesweeper.js")
     },
     module: {
-        noParse: /(Fonts|Images|Audio)/,
         rules: [
             {
                 test: /\.js$/,
@@ -21,10 +21,6 @@ module.exports = {
                     options: {
                         presets: [
                             "@babel/preset-env"
-                        ],
-                        plugins: [
-                            "@babel/plugin-transform-runtime",
-                            "@babel/register"
                         ]
                     }
                 }
@@ -35,9 +31,7 @@ module.exports = {
                     {
                         loader: MiniCSSExtractPlugin.loader
                     },
-                    {
-                        loader: "css-loader"
-                    }
+                    "css-loader"
                 ]
             },
             {
@@ -49,7 +43,8 @@ module.exports = {
                 use: [{
                         loader: "file-loader",
                         options: {
-                            name: "[name].[ext]"
+                            name: "[name].[ext]",
+                            esModule: false
                         }
                     }
                 ]
@@ -59,7 +54,8 @@ module.exports = {
     },
     output: {
         filename: "[name].js",
-        path: publicPath
+        path: publicPath,
+        publicPath: publicPath
     },
     plugins: [
         new MiniCSSExtractPlugin({

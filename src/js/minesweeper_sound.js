@@ -1,3 +1,5 @@
+import {MetaData} from "./minesweeper_metadata.js";
+
 export let Sound = {
 	// everything relates to music and sfx
 	set_sounds_based_on_meta_data: function() {

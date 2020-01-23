@@ -17,8 +17,8 @@ export let Setting = {
 			Setting.select_button("musicOffBtn");
 		}
 
-		current_mode = MetaData.get_game_mode();
-		switch(current_mode) {
+		Setting.current_mode = MetaData.get_game_mode();
+		switch(Setting.current_mode) {
 			case ("intro"):
 				Setting.select_button("intro");
 				break;
@@ -139,7 +139,7 @@ export let Setting = {
 		setting.classList.add("w3-hide");
 		setting.classList.remove("w3-show");
 	
-		let change_in_mode = (current_mode !== MetaData.get_game_mode());
+		let change_in_mode = (Setting.current_mode !== MetaData.get_game_mode());
 
 		if (MetaData.get_is_in_game() && change_in_mode) {
 			BoardCreator.create_game_board();
@@ -148,6 +148,6 @@ export let Setting = {
 		}
 
 		MetaData.save_meta_data();
-		current_mode = MetaData.get_game_mode();
+		Setting.current_mode = MetaData.get_game_mode();
 	}
 };

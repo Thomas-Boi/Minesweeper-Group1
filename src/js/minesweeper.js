@@ -64,4 +64,6 @@ Sound.set_sounds_based_on_meta_data();
 
 // other resources
 import "../css/minesweeper_css/minesweeper.css";
-// import html from "../index.html";
+import "../Audio/Button-SoundBible.com-1420500901.mp3";
+import "../Audio/Bomb-SoundBible.mp3";
+import "../Audio/BillyGorilly_JingleBells.mp3";

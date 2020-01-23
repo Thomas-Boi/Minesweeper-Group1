@@ -4,11 +4,23 @@
 <head>
     <title>Minesweeper</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel='stylesheet' type='text/css' href='./minesweeper.css'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body class='w3-display-container'>
+
+    <!-- Audio and SFX-->
+    <!-- Webpack can't use file-loader with audios for some reason-->
+    <!-- Have to manually change it here in the src file-->
+    <audio id='music' loop>
+        <source src='./Audio/BillyGorilly_JingleBells.mp3'>
+    </audio>
+    <audio id='clickSound'>
+        <source src='./Audio/Button-SoundBible.com-1420500901.mp3'>
+    </audio>
+    <audio id='mineSound'>
+        <source src='./Audio/Bomb-SoundBible.mp3'>
+    </audio>
 
     <!-- Header -->
     <div id='header' class='w3-display-topmiddle w3-display-container'>
