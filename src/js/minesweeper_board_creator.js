@@ -64,7 +64,7 @@ export let BoardCreator = {
 
     get_board_size_and_font_size: function (mode) {
         // determine board size determines on mode
-        let cells_in_a_row, cells_in_a_collumn, board_width_px
+        let cells_in_a_row, cells_in_a_collumn, board_width_px;
         // cells_in_a_row is how many cells are in a row
         // cells_in_a_collumn is how many cells are in a col
         switch(mode) {
@@ -72,7 +72,6 @@ export let BoardCreator = {
                 cells_in_a_row = 5;
                 cells_in_a_collumn = 5;
                 BoardCreator.board.style.width = '40%';
-                header.style.width = '40%';
                 BoardCreator.font_size = '65px';
                 board_width_px = BoardCreator.get_board_px(39);
                 break;
@@ -81,7 +80,6 @@ export let BoardCreator = {
                 cells_in_a_row = 10;
                 cells_in_a_collumn = 10;
                 BoardCreator.board.style.width = '40%';
-                header.style.width = '40%';
                 board_width_px = BoardCreator.get_board_px(39);
                 BoardCreator.font_size = '45px';
                 break;
@@ -90,7 +88,6 @@ export let BoardCreator = {
                 cells_in_a_row = 15;
                 cells_in_a_collumn = 15;
                 BoardCreator.board.style.width = '60%';
-                header.style.width = '60%';
                 board_width_px = BoardCreator.get_board_px(59);
                 BoardCreator.font_size = '45px';
                 break;
@@ -99,7 +96,6 @@ export let BoardCreator = {
                 cells_in_a_row = 20;
                 cells_in_a_collumn = 20;
                 BoardCreator.board.style.width = '90%';
-                header.style.width = '90%';
                 board_width_px = BoardCreator.get_board_px(89);
                 BoardCreator.font_size = '45px';
                 break;
@@ -114,13 +110,13 @@ export let BoardCreator = {
 
     get_board_px: function (percentage) {
         // calculate and return cells_in_a_row in px
-        percentage_as_decimal = percentage / 100;
+        let percentage_as_decimal = percentage / 100;
         return percentage_as_decimal * window.innerWidth;
     },
 
     clear_board: function () {
         // clear the board
-        BoardCreator.board.innerHTML = ''
+        BoardCreator.board.innerHTML = '';
     },
 
     create_buttons: function (board_width_px, i, j, cells_in_a_row) {

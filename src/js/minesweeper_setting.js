@@ -89,7 +89,7 @@ export let Setting = {
 	open_advance_setting: function () {
 		// display the advance setting underneath the game board
 		Sound.playBtnSound();
-		let setting = document.getElementById('advance_setting')
+		let setting = document.getElementById('advance_setting');
 		setting.classList.add("w3-show");
 		setting.classList.remove("w3-hide");
 	},
@@ -133,7 +133,7 @@ export let Setting = {
 	confirm_advance_setting: function () {
 		// close setting and move back to the board
 		Sound.playBtnSound();
-		let setting = document.getElementById('advance_setting')
+		let setting = document.getElementById('advance_setting');
 	
 		// hide setting
 		setting.classList.add("w3-hide");

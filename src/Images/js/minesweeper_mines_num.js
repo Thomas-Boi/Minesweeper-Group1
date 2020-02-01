@@ -1,5 +1,5 @@
-import {BoardCreator} from "./minesweeper_board_creator.js";
-import {MetaData} from "./minesweeper_metadata.js";
+import {BoardCreator} from "./minesweeper_board_creator.js.js.js";
+import {MetaData} from "./minesweeper_metadata.js.js.js";
 
 export let MinesAndNums = { 
     // everything relates to mines and numbers surrounding them

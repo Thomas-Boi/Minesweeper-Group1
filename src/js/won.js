@@ -12,3 +12,5 @@ display_score();
 document.getElementById('replay').onclick = function () {
 	window.close();
 };
+
+import "../css/won_css/won.css";

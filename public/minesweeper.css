@@ -98,22 +98,22 @@ h2 {
 
 
 .mine {
-	background-image: url(C:\Users\Admin_Think541\Documents\Minesweeper-Group1\publicmine.jpg);
+	background-image: url(Images/mine.jpg);
 }
 
 
 .this_mine {
-	background-image: url(C:\Users\Admin_Think541\Documents\Minesweeper-Group1\publicthis_mine.jpg);
+	background-image: url(Images/this_mine.jpg);
 }
 
 
 .gift_btn {
-	background-image: url(C:\Users\Admin_Think541\Documents\Minesweeper-Group1\publicgift.png);
+	background-image: url(Images/gift.png);
 }
 
 
 .flag {
-	background-image: url(C:\Users\Admin_Think541\Documents\Minesweeper-Group1\publicflag.png);
+	background-image: url(Images/flag.png);
 }
 /* settings board*/
 button {
@@ -127,7 +127,7 @@ button {
 	width: 40%;
 	height: 600px;
 	background-color: #D6EAFF;
-	background-image: url(C:\Users\Admin_Think541\Documents\Minesweeper-Group1\publicsnowman.jpg);
+	background-image: url(Images/snowman.jpg);
 	background-repeat: no-repeat;
 	background-size: 100% 600px;
 	transition: 0.5s;
@@ -166,19 +166,19 @@ button {
 
 @font-face {
 	font-family: ARCADE;
-	src: url(C:\Users\Admin_Think541\Documents\Minesweeper-Group1\publicARCADECLASSIC.ttf);
+	src: url(ARCADECLASSIC.ttf);
 	
 }
 
 @font-face {
 	font-family: Frosty;
-	src: url(C:\Users\Admin_Think541\Documents\Minesweeper-Group1\publicFROSTY_.TTF);
+	src: url(FROSTY_.TTF);
 }
 
 body {
 	text-align: center;
-	/* background-color: #7FDAFF; */
-	background-image: url(C:\Users\Admin_Think541\Documents\Minesweeper-Group1\publicchristmas_background.jpg);
+	background-color: #7FDAFF;
+	background-image: url(Images/christmas_background.jpg);
 	background-repeat: repeat-y;
 	background-size: cover;
 }

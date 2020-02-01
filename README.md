@@ -19,3 +19,4 @@ For Intro to Web Dev class (now a personal project)
   <li>I worked on this game as a hobby. Feel free to pull it and change anything that you want</li>
 </ul>
 
+Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>

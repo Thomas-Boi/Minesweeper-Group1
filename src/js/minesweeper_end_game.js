@@ -1,4 +1,7 @@
+import {BoardCreator} from "./minesweeper_board_creator.js";
 import {Timer} from "./minesweeper_timer.js";
+import {MetaData} from "./minesweeper_metadata.js";
+import {MinesAndNums} from "./minesweeper_mines_num.js";
 
 export let EndGameMechanics = {
     // contains functions relates to winning, and loosing
@@ -40,14 +43,14 @@ export let EndGameMechanics = {
         // check if it has a flag in it
         if (mine_button.classList.contains('flag')) {
             return;
-        };
+        }
         mine_button.className = "mine";
     },
 
     display_page: function (page_name) {
         // display the lost.html
-        pop_up_url = page_name + '.html';
-        pop_up_name = page_name;
+        let pop_up_url = page_name + '.html';
+        let pop_up_name = page_name;
         window.open(pop_up_url, pop_up_name);
 
     }

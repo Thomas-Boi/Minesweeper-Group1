@@ -133,4 +133,4 @@ export let MetaData = {
 		sessionStorage.setItem("first_timer", false);
 
 	}
-}
+};

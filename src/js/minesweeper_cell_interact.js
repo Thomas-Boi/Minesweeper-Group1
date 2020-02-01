@@ -1,3 +1,4 @@
+import {EndGameMechanics} from "./minesweeper_end_game.js";
 import {Sound} from "./minesweeper_sound.js";
 import {MetaData} from "./minesweeper_metadata.js";
 import {BoardCreator} from "./minesweeper_board_creator.js";
@@ -25,7 +26,7 @@ export let CellInteractor = {
     add_start_game_function_to_buttons: function () {
         // add the start game functions to all board buttons
 
-        let buttons = document.getElementsByClassName('gift_btn')
+        let buttons = document.getElementsByClassName('gift_btn');
         for (let i = 0; i < buttons.length; i++) {
             buttons[i].addEventListener("click", CellInteractor.start_game);
         }
@@ -36,8 +37,8 @@ export let CellInteractor = {
         Timer.start_timer();
 
         // remove onclick of start_game and add other events
-        let buttons = document.getElementsByClassName("gift_btn")
-        for (i = 0; i < buttons.length; i++) {
+        let buttons = document.getElementsByClassName("gift_btn");
+        for (let i = 0; i < buttons.length; i++) {
             buttons[i].removeEventListener("click", CellInteractor.start_game);
             buttons[i].addEventListener("mousedown", CellInteractor.touch_button);
             buttons[i].addEventListener("mouseup", CellInteractor.release_button);
@@ -53,7 +54,7 @@ export let CellInteractor = {
         // starts the code as if the user intends
         // to hold down the button.
         // if user mouseup in time aka not hold,
-        // release_button() will cancel the flagging_period
+        // release_button() will cancel the CellInteractor.flagging_period
 
         // if has flag, mark it to be removed onmouseup
         // else flag it
@@ -66,7 +67,7 @@ export let CellInteractor = {
         if (button.classList.contains('flag')) {
             button.classList.add('flag_to_be_del');
         } else {
-            flagging_period = setTimeout(function () {
+            CellInteractor.flagging_period = setTimeout(function () {
                 CellInteractor.flag_button(button);
             }, 300);
         }
@@ -76,15 +77,15 @@ export let CellInteractor = {
     flag_button: function (button) {
         // flag a cell by holding down on a button
         button.classList.toggle("flag");
-        Sound.playBtnSound()
+        Sound.playBtnSound();
     },
 
     release_button: function () {
-        // cancel flagging_period and reveal cell
+        // cancel CellInteractor.flagging_period and reveal cell
         // if there's no flag in it
 
         // stop flagging_period
-        clearTimeout(flagging_period);
+        clearTimeout(CellInteractor.flagging_period);
 
         let button = this;
 
@@ -231,10 +232,10 @@ export let CellInteractor = {
     clicked_mine: function (button) {
         // what happens when user clicks a mine
         // displays all mines in global_mine_list
-        mine_list = document.getElementsByClassName("mine")
-        for (i = 0; i < mine_list.length; i++) {
+        let mine_list = document.getElementsByClassName("mine");
+        for (let i = 0; i < mine_list.length; i++) {
             EndGameMechanics.reveal_all_mines(mine_list[i]);
-        };
+        }
 
         button.className = "this_mine";
         // play mine sound, stop music and stop timer

@@ -11,12 +11,12 @@
 
 @font-face {
 	font-family: Frosty;
-	src: url('../..//Fonts/frosty/FROSTY_.TTF');
+	src: url('../../Fonts/frosty/FROSTY_.TTF');
 }
 
 body {
 	text-align: center;
-	/* background-color: #7FDAFF; */
+	background-color: #7FDAFF;
 	background-image: url('../../Images/christmas_background.jpg');
 	background-repeat: repeat-y;
 	background-size: cover;

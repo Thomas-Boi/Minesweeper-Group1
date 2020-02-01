@@ -67,3 +67,5 @@ import "../css/minesweeper_css/minesweeper.css";
 import "../Audio/Button-SoundBible.com-1420500901.mp3";
 import "../Audio/Bomb-SoundBible.mp3";
 import "../Audio/BillyGorilly_JingleBells.mp3";
+import "../Images/gear_setting.png";
+import "../Images/reset.png";
