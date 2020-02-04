@@ -69,3 +69,4 @@ import "../Audio/Bomb-SoundBible.mp3";
 import "../Audio/BillyGorilly_JingleBells.mp3";
 import "../Images/gear_setting.png";
 import "../Images/reset.png";
+import "../Images/snow.png";

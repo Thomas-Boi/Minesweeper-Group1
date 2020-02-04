@@ -83,19 +83,16 @@ module.exports = {
         new HTMLWebpackPlugin({
             filename: path.resolve(publicPath, "index.html"),
             template: path.resolve(srcPath, "index.html"),
-            favicon: path.resolve(srcPath, "Images", "snow.svg"),
             inject: false
         }),
         new HTMLWebpackPlugin({
             filename: path.resolve(publicPath, "won.html"),
             template: path.resolve(srcPath, "won.html"),
-            favicon: path.resolve(srcPath, "Images", "snow.svg"),
             inject: false
         }),
         new HTMLWebpackPlugin({
             filename: path.resolve(publicPath, "lost.html"),
             template: path.resolve(srcPath, "lost.html"),
-            favicon: path.resolve(srcPath, "Images", "snow.svg"),
             inject: false
         }),
     ],
