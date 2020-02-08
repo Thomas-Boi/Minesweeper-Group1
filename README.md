@@ -1,13 +1,14 @@
 # Minesweeper-Group1
-For Intro to Web Dev class (now a personal project)
+<b> Play the game here: <b>http://thomas-bui-minesweeper-game.s3-website-us-west-2.amazonaws.com/
+
+Prototype developed for Intro To Web Dev class. Product finished as a personal project.
 
 <b>Project</b>: Minesweeper (Snow theme)<br>
 <b>Developed using</b>: HTML, CSS, W3CSS, and Javascript.<br>
 <b>Project Finished.</b>
 
-<b>Contributors:</b>
+<b>Original Contributors:</b>
 <ul>
-  <li>Thomas Bui</li>
   <li>Emily Kim (original)</li>
   <li>Marcus Chiu (original)</li>
 </ul>
