@@ -1,23 +1,23 @@
 # Minesweeper-Group1
-<b> Play the game here: </b>http://thomas-bui-minesweeper-game.s3-website-us-west-2.amazonaws.com/
+[**Play the game here**] (http://thomas-bui-minesweeper-game.s3-website-us-west-2.amazonaws.com/)
 
-Prototype developed for Intro To Web Dev class. Product finished as a personal project.
+**Project**: Minesweeper (Snow theme)
 
-<b>Project</b>: Minesweeper (Snow theme)<br>
-<b>Developed using</b>: HTML, CSS, W3CSS, and Javascript.<br>
-<b>Project Finished.</b>
+**Developed using**: 
 
-<b>Original Contributors:</b>
-<ul>
-  <li>Emily Kim (original)</li>
-  <li>Marcus Chiu (original)</li>
-</ul>
+* HTML
+* CSS & W3CSS
+* JavaScript
 
-<b>Purpose:</b>
-<ul>
-  <li>Originally developed as an assignment for an Intro to Web Dev class.</li>
-  <li>The project was not finished in time but I grew attached to the challenge.</li>
-  <li>I worked on this game as a hobby. Feel free to pull it and change anything that you want</li>
-</ul>
+**Original Contributors:**
 
-Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+* Emily Kim 
+* Marcus Chiu
+
+
+**Purpose:**
+
+* Originally was an assignment for a Web Dev class. Prototype was only a board and mine placement code.
+* Now a finished personal project. Feel free to pull it and change anything that you want
+
+Icons made by [Freepik]("https://www.flaticon.com/authors/freepik") from [www.flaticon.com]("https://www.flaticon.com/")
