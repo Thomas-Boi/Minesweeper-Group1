@@ -1,5 +1,5 @@
 # Minesweeper-Group1
-<b> Play the game here: <b>http://thomas-bui-minesweeper-game.s3-website-us-west-2.amazonaws.com/
+<b> Play the game here: </b>http://thomas-bui-minesweeper-game.s3-website-us-west-2.amazonaws.com/
 
 Prototype developed for Intro To Web Dev class. Product finished as a personal project.
 
