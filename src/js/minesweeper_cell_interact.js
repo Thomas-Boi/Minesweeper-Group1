@@ -120,15 +120,19 @@ export let CellInteractor = {
     },
 
     check_flags_around_button: function(button) {
+		// when the user clicks on a revealed button,
+		// checks whether we should reveal the surrounding
+		// buttons based on whether the user flags the 
+		// correct mine.
+
         // get x_coor and y_coor 
         let regexp = /[0-9]+/g;
-        let str = button.id.toString();
-        let matches = str.match(regexp);
+        let matches = button.id.match(regexp);
         let x_coor = parseInt(matches[0]);
         let y_coor = parseInt(matches[1]);
 
         let cells_in_a_row = BoardCreator.get_cells_in_a_row();
-        let cells_in_a_collumn = BoardCreator.get_cells_in_a_collumn();
+        let cells_in_a_collumn = BoardCreator.get_cells_in_a_column();
 
         // get one less and one more of x_coor value
         // this covers the cells to the right and left of the
@@ -153,11 +157,10 @@ export let CellInteractor = {
                 }
 
                 // get a surrounding cell's button
-                let id = 'button' + String(x_values) + "_" + String(y_values);
+                let id = `button${x_values}_${y_values}`;
                 let surrounding_button = document.getElementById(id);
 
                 if (surrounding_button.classList.contains('flag')) {
-                    // if it has a flag, skips
                     flag_counter++;
                 }
             }
@@ -184,7 +187,7 @@ export let CellInteractor = {
         let y_coor = parseInt(matches[1]);
 
         let cells_in_a_row = BoardCreator.get_cells_in_a_row();
-        let cells_in_a_collumn = BoardCreator.get_cells_in_a_collumn();
+        let cells_in_a_column = BoardCreator.get_cells_in_a_column();
 
         // get one less and one more of x_coor value
         // this covers the cells to the right and left of the
@@ -203,7 +206,7 @@ export let CellInteractor = {
             for (let j = 0; j < y_coor_values.length; j++) {
                 let y_values = y_coor_values[j];
                 // check to make sure the y_values is in boundary
-                if (y_values < 0 || y_values == cells_in_a_collumn) {
+                if (y_values < 0 || y_values == cells_in_a_column) {
                     continue;
                 }
 
@@ -232,10 +235,7 @@ export let CellInteractor = {
     clicked_mine: function (button) {
         // what happens when user clicks a mine
         // displays all mines in global_mine_list
-        let mine_list = document.getElementsByClassName("mine");
-        for (let i = 0; i < mine_list.length; i++) {
-            EndGameMechanics.reveal_all_mines(mine_list[i]);
-        }
+		EndGameMechanics.reveal_all_mines();
 
         button.className = "this_mine";
         // play mine sound, stop music and stop timer
@@ -262,9 +262,6 @@ export let CellInteractor = {
         let btn_num = button.classList.item(1);
         // get the number part
         let number = parseInt(btn_num.slice(7));
-
-        // change colour depends on values
-        MinesAndNums.colour_number(button, number);
 
         // replace the button with number
         button.classList.add('revealed_btn');

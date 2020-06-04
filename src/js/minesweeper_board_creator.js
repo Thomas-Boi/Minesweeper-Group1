@@ -14,7 +14,9 @@ export let BoardCreator = {
     cell_left: 0,
     cell_top: 0,
     btn_size: 0,
+	// cells_in_a_row is how many cells are in a row
     cells_in_a_row: 0,
+	// cells_in_a_collumn is how many cells are in a col
     cells_in_a_collumn: 0,
     font_size: 0,
 
@@ -28,7 +30,7 @@ export let BoardCreator = {
 		return BoardCreator.cells_in_a_row;
     },
     
-	get_cells_in_a_collumn: function () {
+	get_cells_in_a_column: function () {
 		// get the cells_in_a_collumn
 		return BoardCreator.cells_in_a_collumn;
     },   
@@ -38,14 +40,12 @@ export let BoardCreator = {
 
         let mode = MetaData.get_game_mode();
         let dimension = this.get_board_size_and_font_size(mode);
-        // cells_in_a_row is how many cells are in a row
-        // cells_in_a_collumn is how many cells are in a col
         let cells_in_a_row = dimension[0];
-        let cells_in_a_collumn = dimension[1];
+        let cells_in_a_column = dimension[1];
         let board_width_px = dimension[2];
 
         BoardCreator.clear_board();
-        for (let i = 0; i < cells_in_a_collumn; i++) {
+        for (let i = 0; i < cells_in_a_column; i++) {
             for (let j = 0; j < cells_in_a_row; j++) {
                 BoardCreator.btn_size = BoardCreator.create_buttons(board_width_px, i, j, cells_in_a_row);
             }
@@ -54,8 +54,7 @@ export let BoardCreator = {
             BoardCreator.cell_top += BoardCreator.btn_size;
         }
 
-        BoardCreator.board.style.height =
-            String(BoardCreator.cell_top + 5) + "px";
+        BoardCreator.board.style.height = `${BoardCreator.cell_top + 5}px`;
         BoardCreator.cell_top = 0;
         
         CellInteractor.add_start_game_function_to_buttons();
@@ -125,20 +124,21 @@ export let BoardCreator = {
         let button = document.createElement("BUTTON");
 
         // create unique id
-        let string = String(j) + "_" + String(i);
-        button.id = 'button' + string;
+		button.id = `button${j}_${i}`;
 
+		// btn_num0 tracks the number inside the button 
+		// which represents the amount of mines around it
         button.className = 'gift_btn btn_num0';
 
         //find the button size depends on the board's width
-        let button_size = String(board_width_px / cells_in_a_row);
+        let button_size = board_width_px / cells_in_a_row;
 
         button.style.width = button_size + 'px';
         button.style.height = button_size + 'px';
 
         // adjust the position
-        button.style.left = String(BoardCreator.cell_left) + "px";
-        button.style.top = String(BoardCreator.cell_top) + "px";
+        button.style.left = BoardCreator.cell_left + "px";
+        button.style.top = BoardCreator.cell_top + "px";
         BoardCreator.cell_left += parseInt(button_size);
 
         button.style.fontSize = BoardCreator.font_size;

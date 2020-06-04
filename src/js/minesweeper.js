@@ -3,7 +3,22 @@ import {Sound} from "./minesweeper_sound.js";
 import {Setting} from "./minesweeper_setting.js";
 import {MetaData} from "./minesweeper_metadata.js";
 import {ResetFunctions} from "./minesweeper_resetter.js";
-
+import "../css/minesweeper_css/minesweeper.css";
+import "../Audio/Button-SoundBible.com-1420500901.mp3";
+import "../Audio/Bomb-SoundBible.mp3";
+import "../Audio/BillyGorilly_JingleBells.mp3";
+import "../Audio/DougHammer_CarolOfTheBells.mp3";
+import "../Audio/MicheleMcLaughlin_SilentNight.mp3";
+import "../Images/gear_setting.png";
+import "../Images/reset.png";
+import "../Images/snow.png";
+import "../Images/christmas_background.jpg";
+import "../Images/flag.png";
+import "../Images/gift.png";
+import "../Images/mine.png";
+import "../Images/snowman.jpg";
+import "../Fonts/arcadeclassic/ARCADECLASSIC.ttf";
+import "../Fonts/frosty/FROSTY_.ttf";
 
 // load metadata
 MetaData.load_meta_data();
@@ -36,21 +51,17 @@ document.getElementById('soundOffBtn').onclick = function() {
 document.getElementById('setting_pic').onclick = Setting.open_advance_setting;
 
 // difficulty mode btns
-document.getElementById('intro').onclick = function () {
-	Setting.select_mode('intro');
-};
+let modes = [
+	"intro",
+	"easy",
+	"medium",
+	"hard"
+];
 
-document.getElementById('easy').onclick = function () {
-	Setting.select_mode('easy');
-};
-
-document.getElementById('medium').onclick = function () {
-	Setting.select_mode('medium');
-};
-
-document.getElementById('hard').onclick = function () {
-	Setting.select_mode('hard');
-};
+for (let mode of modes) {
+	document.getElementById(mode)
+		.onclick = () => Setting.select_mode(mode);
+}
 
 // music buttons
 document.getElementById('music_option').onclick = Setting.change_music;
@@ -63,10 +74,3 @@ Sound.set_sounds_based_on_meta_data();
 
 
 // other resources
-import "../css/minesweeper_css/minesweeper.css";
-import "../Audio/Button-SoundBible.com-1420500901.mp3";
-import "../Audio/Bomb-SoundBible.mp3";
-import "../Audio/BillyGorilly_JingleBells.mp3";
-import "../Images/gear_setting.png";
-import "../Images/reset.png";
-import "../Images/snow.png";

@@ -49,27 +49,64 @@ h2 {
 .gift_btn,
 .flag {
 	background-repeat: no-repeat;
-	background-size: cover;
-	background-color: white;
+	background-size: contain;
 	position: absolute;
+	border: 1px solid grey;
 }
 
 
-.mine {
-	background-image: url('../../Images/mine.jpg');
+.mine,
+.this_mine {
+	background-image: url('../../Images/mine.png');
+	background-color: #DDDDDD;
 }
 
 
 .this_mine {
-	background-image: url('../../Images/this_mine.jpg');
+	background-color: red;
 }
 
 
 .gift_btn {
 	background-image: url('../../Images/gift.png');
+	background-color: white;
 }
 
 
 .flag {
 	background-image: url('../../Images/flag.png');
+	background-color: white;
+}
+
+/* Button number coloring */
+.btn_num1 {
+	color: #0033cc;
+}
+
+.btn_num2 {
+	color: #006600;
+}
+
+.btn_num3 {
+	color: #ff0000;
+}
+
+.btn_num4 {
+	color: #EC4067;
+}
+
+.btn_num5 {
+	color: #993333;
+}
+
+.btn_num6 {
+	color: #ffcc66;
+}
+
+.btn_num7 {
+	color: #000066;
+}
+
+.btn_num8 {
+	color: #ff00ff;
 }

@@ -8,33 +8,33 @@ export let MinesAndNums = {
         // cells_in_a_row is how many cells are in a row
         // cells_in_a_collumn is how many cells are in a col
         let cells_in_a_row = BoardCreator.get_cells_in_a_row();
-        let cells_in_a_collumn = BoardCreator.get_cells_in_a_collumn();
+        let cells_in_a_column = BoardCreator.get_cells_in_a_column();
 
         let mode = MetaData.get_game_mode();
 
         let total_mine = MinesAndNums.get_mine_numbers(mode);
-        let placed_mine = 0;
+		let placed_mine = 0;
         while (placed_mine < total_mine) {
             // uses the Random module to select a random row     
-            let cell_x_coor = Math.floor(Math.random() * cells_in_a_row);
+			let cell_x_coor = Math.floor(Math.random() * cells_in_a_row);
             // uses the Random module to select a random column     
-            let cell_y_coor = Math.floor(Math.random() * cells_in_a_collumn);
+			let cell_y_coor = Math.floor(Math.random() * cells_in_a_column);
 
-            // get a button with the chosen coordinates
-            let mine_button = document.getElementById('button' + String(cell_x_coor) + "_" + String(cell_y_coor));
-            //checks if the element already has a mine placed in it 
+			// get a button with the chosen coordinates
+			let mine_id = `button${cell_x_coor}_${cell_y_coor}`;
+			let mine_button = document.getElementById(mine_id);
             if (mine_button.classList.contains('mine')) {
                 continue;    //if so, skips
             }
-            // if the created button is the same as the button
-            // that was clicked by the user
             else if (mine_button.id === selected_btn_id) {
                 continue;
             }
             else {
-                // Otherwise, it add a className to mine_button
-                mine_button.classList.toggle('mine');
-                mine_button.classList.toggle('btn_num0');
+                // Otherwise, it adds a mine class
+				mine_button.classList.toggle('mine');
+
+				mine_button.classList.remove('btn_num0');
+
                 // places numbers around the mines
                 MinesAndNums.number_surroundings(cell_x_coor, cell_y_coor);
                 placed_mine++;
@@ -56,11 +56,11 @@ export let MinesAndNums = {
                 break;
 
             case ('medium'):
-                mines = 35;
+                mines = 28;
                 break;
 
             case ('hard'):
-                mines = 55;
+                mines = 50;
                 break;
 
             default:
@@ -73,7 +73,7 @@ export let MinesAndNums = {
     number_surroundings: function (cell_x_coor, cell_y_coor) {
         // increase the number by one in cells surrounding a mine
 
-        let cells_in_a_collumn = BoardCreator.get_cells_in_a_collumn();
+        let cells_in_a_collumn = BoardCreator.get_cells_in_a_column();
         let cells_in_a_row = BoardCreator.get_cells_in_a_row();
 
         // get one less and one more of x_coor value
@@ -125,30 +125,6 @@ export let MinesAndNums = {
             }
         }
 
-    },
-
-    colour_number: function (element, number) {
-        // choose a colour depends on the value of the number
-
-        // create an array that contains numbers and their colours
-        let colour_num_list = [
-            [1, "#0033cc"],
-            [2, "#006600"],
-            [3, "#ff0000"],
-            [4, "#EC4067"],
-            [5, "#993333"],
-            [6, "#ffcc66"],
-            [7, "#000066"],
-            [8, "##ff00ff"]
-        ];
-
-        // check number
-        for (let j = 0; j < 8; j++) {
-            if (number === colour_num_list[j][0]) {
-                element.style.color = colour_num_list[j][1];
-                break;
-            }
-        }
-    },
+    }
 
 };

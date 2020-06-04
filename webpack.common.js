@@ -1,7 +1,7 @@
 const path = require('path'),
     { CleanWebpackPlugin } = require('clean-webpack-plugin'),
     HTMLWebpackPlugin = require('html-webpack-plugin'),
-    MiniCSSExtractPlugin = require('mini-css-extract-plugin'),
+	MiniCSSExtractPlugin = require('mini-css-extract-plugin'),
     srcPath = path.resolve(__dirname, "src"),
     publicPath = path.resolve(__dirname, "public");
 
@@ -10,8 +10,7 @@ module.exports = {
         minesweeper: path.resolve(srcPath, "js", "minesweeper.js"),
         won: path.resolve(srcPath, "js", "won.js"),
         lost: path.resolve(srcPath, "js", "lost.js")
-
-    },
+	},
     module: {
         rules: [
             {
@@ -30,21 +29,22 @@ module.exports = {
                 test: /\.css$/,
                 use: [
                     {
-                        loader: MiniCSSExtractPlugin.loader
+						loader: MiniCSSExtractPlugin.loader,
                     },
                     "css-loader"
                 ]
             },
             {
                 test: /\.(svg|jpe?g|png|gif)$/i,
-                use: [{
+                use: [
+					{
                         loader: "file-loader",
                         options: {
-                            name: "Images/[name].[ext]",
-                            esModule: false
+							name: "[name].[ext]",
+							outputPath: "Images"
                         }
-                    }
-                ]
+					}
+				]
             },
             {
                 test: /\.ttf$/i,
@@ -52,7 +52,8 @@ module.exports = {
                         loader: "file-loader",
                         options: {
                             name: "[name].[ext]",
-                            esModule: false
+                            esModule: false,
+							outputPath: "Fonts"
                         }
                     }
                 ]
@@ -62,8 +63,9 @@ module.exports = {
                 use: [{
                         loader: "file-loader",
                         options: {
-                            name: "Audio/[name].[ext]",
-                            esModule: false
+                            name: "[name].[ext]",
+							esModule: false,
+							outputPath: "Audio"
                         }
                     }
                 ]
@@ -72,7 +74,7 @@ module.exports = {
         ]
     },
     output: {
-        filename: "[name].js",
+        filename: "js/[name].js",
         path: publicPath
     },
     plugins: [
@@ -82,8 +84,8 @@ module.exports = {
         new CleanWebpackPlugin(),
         new HTMLWebpackPlugin({
             filename: path.resolve(publicPath, "index.html"),
-            template: path.resolve(srcPath, "index.html"),
-            inject: false
+			template: path.resolve(srcPath, "index.html"),
+			inject: false
         }),
         new HTMLWebpackPlugin({
             filename: path.resolve(publicPath, "won.html"),
@@ -95,10 +97,5 @@ module.exports = {
             template: path.resolve(srcPath, "lost.html"),
             inject: false
         }),
-    ],
-    devServer: {
-        open: true,
-        publicPath: publicPath + "/"
-    }
-    
+	]
 };

@@ -1,3 +1,8 @@
+@font-face {
+	font-family: ARCADE;
+	src: url('../../Fonts/arcadeclassic/ARCADECLASSIC.ttf');
+}
+
 body {
 	background-image: url('../../Images/you_lost.jpg');
 	background-size: cover;
@@ -7,12 +12,14 @@ body {
 h1 {
 	color: red;
 	background-color: yellow;
+	font-family: ARCADE;
 }
 
 button {
 	top: 30px;
 	font-size: 30px;
 	cursor: pointer;
+	font-family: ARCADE;
 }
 
 button:hover {

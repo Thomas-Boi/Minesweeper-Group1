@@ -1,5 +1,7 @@
 import {MetaData} from "./minesweeper_metadata.js";
 import {Sound} from "./minesweeper_sound.js";
+import {BoardCreator} from "./minesweeper_board_creator.js";
+import {Timer} from "./minesweeper_timer.js";
 
 export let Setting = {
 	// everything relates to setting
@@ -35,9 +37,6 @@ export let Setting = {
 
 		let song_name;
 		switch(MetaData.get_song_name()) {
-			case("there is no need to be upset.mp3"):
-				song_name = "there is no need to be upset.mp3";
-				break;
 			case("DougHammer_CarolOfTheBells.mp3"):
 				song_name = "DougHammer_CarolOfTheBells.mp3";
 				break;

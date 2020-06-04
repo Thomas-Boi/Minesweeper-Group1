@@ -36,15 +36,17 @@ export let EndGameMechanics = {
     },
 
 
-    reveal_all_mines: function (element) {
-        // display mine
-        let mine_button = document.getElementById(element.id);
-
-        // check if it has a flag in it
-        if (mine_button.classList.contains('flag')) {
-            return;
+    reveal_all_mines: function () {
+        let mine_list = document.getElementsByClassName("mine");
+        for (let i = 0; i < mine_list.length; i++) {
+			let mine_button = mine_list[i];
+			// check if it has a flag in it
+			if (mine_button.classList.contains('flag')) {
+				continue;
+			}
+			mine_button.className = "mine";
         }
-        mine_button.className = "mine";
+
     },
 
     display_page: function (page_name) {
