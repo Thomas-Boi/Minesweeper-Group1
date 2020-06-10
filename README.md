@@ -1,5 +1,5 @@
 # Minesweeper-Group1
-[Play the game here](http://thomas-bui-minesweeper-game.s3-website-us-west-2.amazonaws.com/)
+[Play the game here](https://thomas-boi.github.io/Minesweeper-Group1/)
 
 **Built In**: 2018, CST 1st year
 
