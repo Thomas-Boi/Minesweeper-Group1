@@ -47,7 +47,8 @@ export let BoardCreator = {
         BoardCreator.clear_board();
         for (let i = 0; i < cells_in_a_column; i++) {
             for (let j = 0; j < cells_in_a_row; j++) {
-                BoardCreator.btn_size = BoardCreator.create_buttons(board_width_px, i, j, cells_in_a_row);
+				BoardCreator.btn_size = BoardCreator
+					.create_buttons(board_width_px, i, j, cells_in_a_row);
             }
             BoardCreator.board.innerHTML += "<br>";
             BoardCreator.cell_left = 0;
@@ -121,7 +122,7 @@ export let BoardCreator = {
     create_buttons: function (board_width_px, i, j, cells_in_a_row) {
         // create buttons to be append to cells
         // this is the clickable buttons on top of the cells
-        let button = document.createElement("BUTTON");
+        let button = document.createElement("button");
 
         // create unique id
 		button.id = `button${j}_${i}`;
@@ -139,10 +140,11 @@ export let BoardCreator = {
         // adjust the position
         button.style.left = BoardCreator.cell_left + "px";
         button.style.top = BoardCreator.cell_top + "px";
-        BoardCreator.cell_left += parseInt(button_size);
+        BoardCreator.cell_left += button_size;
 
         button.style.fontSize = BoardCreator.font_size;
-        BoardCreator.board.appendChild(button);
-        return parseInt(button_size);
+		BoardCreator.board.appendChild(button);
+		
+        return button_size;
     },
 };

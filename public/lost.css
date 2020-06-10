@@ -1,1 +1,0 @@
-@font-face{font-family:ARCADE;src:url(Fonts/ARCADECLASSIC.ttf)}body{background-image:url(Images/you_lost.jpg);background-size:cover;text-align:center}h1{color:red;background-color:#ff0}button,h1{font-family:ARCADE}button{top:30px;font-size:30px;cursor:pointer}button:hover{background-color:#ff0;transition:.5s}

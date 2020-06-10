@@ -2,7 +2,6 @@
 
 #board {
 	border: 3px solid #F9F9F9;
-	display: inline-block;
 	position: absolute;
 	width: 40%;
 	top: 75px;
@@ -13,7 +12,8 @@
 	background-color: #D6EAFF;
 	transition: 0.8s;
 	transform: translate(-50%);
-	padding: auto;
+	display: grid;
+	justify-content: center;
 }
 
 
