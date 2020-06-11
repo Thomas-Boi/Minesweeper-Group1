@@ -1,25 +1,21 @@
 /* board */
-
-#board {
+.board {
 	border: 3px solid #F9F9F9;
 	position: absolute;
-	width: 40%;
 	top: 75px;
 	left: 50%;
+	min-width: 40%;
 	text-align: center;
 	cursor: pointer;
 	opacity: 0.6;
 	background-color: #D6EAFF;
-	transition: 0.8s;
 	transform: translate(-50%);
-	display: grid;
-	justify-content: center;
 }
 
 
-#board:hover {
+.board:hover {
 	opacity: 1;
-	transition: 0.8s;
+	transition: opacity 0.8s;
 }
 
 
@@ -36,12 +32,15 @@ h2 {
 	color: #87C7FF;
 }
 
+.row {
+	line-height: 1.2;
+}
 
 .revealed_btn {
 	font-family: ARCADE;
 	border: 1px solid grey;
-	position: absolute;
 	background-color: #DDDDDD;
+	vertical-align: text-bottom;
 }
 
 .mine,
@@ -50,7 +49,6 @@ h2 {
 .flag {
 	background-repeat: no-repeat;
 	background-size: contain;
-	position: absolute;
 	border: 1px solid grey;
 }
 

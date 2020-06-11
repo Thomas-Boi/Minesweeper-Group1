@@ -8,120 +8,164 @@ export let BoardCreator = {
     // BRIEF DESCRIPTION OF BOARD
     // 1. board: the main play area
     // 2. buttons: the part where the user interact with the board.
-    // 		       Clicking the button woulddisplay
-    //			   a number that tells how many mines are nearby.
-    board: document.getElementById('board'),
-    cell_left: 0,
-    cell_top: 0,
-    btn_size: 0,
-	// cells_in_a_row is how many cells are in a row
-    cells_in_a_row: 0,
-	// cells_in_a_collumn is how many cells are in a col
-    cells_in_a_collumn: 0,
+    // 		       Clicking the button would display
+	//			   a number that tells how many mines are nearby.
+
+	board: document.getElementById('board'),
+
+	/**
+	 * The width and height of the button (it's a square).
+	 * @type string.
+	 */
+	btn_size: 0,
+
+	/**
+	 * Tracks how many cells are in a row.
+	 * @type number.
+	 */
+	cells_in_a_row: 0,
+
+	/**
+	 * Tracks how many cells are in a column
+	 * @type number.
+	 */
+	cells_in_a_column: 0,
+	
+	/**
+	 * Tracks the font size of the numbers inside the buttons.
+	 * @type string.
+	 */
     font_size: 0,
 
+
+	/**
+	 * Return the board element.
+	 */
     get_board: function () {
-        // return the board element
         return BoardCreator.board;
     },
 
+	/**
+	 * Get the cells_in_a_row.
+	 */
     get_cells_in_a_row: function () {
-		// get the cells_in_a_row
 		return BoardCreator.cells_in_a_row;
     },
     
+	/**
+	 * Get the cells_in_a_column.
+	 */
 	get_cells_in_a_column: function () {
-		// get the cells_in_a_collumn
-		return BoardCreator.cells_in_a_collumn;
+		// get the cells_in_a_column
+		return BoardCreator.cells_in_a_column;
     },   
 
+	/**
+	 * Create the game board (the mine buttons) based on 
+	 * current mode.
+	 */
     create_game_board: function () {
-        // create the game board based on current mode
-
         let mode = MetaData.get_game_mode();
-        let dimension = this.get_board_size_and_font_size(mode);
-        let cells_in_a_row = dimension[0];
-        let cells_in_a_column = dimension[1];
-        let board_width_px = dimension[2];
+		BoardCreator.clear_board();
+        BoardCreator.set_board_dimensions(mode);
 
-        BoardCreator.clear_board();
-        for (let i = 0; i < cells_in_a_column; i++) {
-            for (let j = 0; j < cells_in_a_row; j++) {
-				BoardCreator.btn_size = BoardCreator
-					.create_buttons(board_width_px, i, j, cells_in_a_row);
-            }
-            BoardCreator.board.innerHTML += "<br>";
-            BoardCreator.cell_left = 0;
-            BoardCreator.cell_top += BoardCreator.btn_size;
+        for (let i = 0; i < BoardCreator.cells_in_a_column; i++) {
+			let row = BoardCreator.create_row(i);
+			BoardCreator.board.appendChild(row);
         }
 
-        BoardCreator.board.style.height = `${BoardCreator.cell_top + 5}px`;
-        BoardCreator.cell_top = 0;
-        
         CellInteractor.add_start_game_function_to_buttons();
     },
 
 
-    get_board_size_and_font_size: function (mode) {
-        // determine board size determines on mode
-        let cells_in_a_row, cells_in_a_collumn, board_width_px;
-        // cells_in_a_row is how many cells are in a row
-        // cells_in_a_collumn is how many cells are in a col
+		
+	/**
+	 * Set the cells_in_a_row, cells_in_a_column, 
+	 * and font_size based on mode.
+	 * @param {string} mode, the current game mode. 
+	 */
+   set_board_dimensions: function (mode) {
         switch(mode) {
             case 'intro':
-                cells_in_a_row = 5;
-                cells_in_a_collumn = 5;
-                BoardCreator.board.style.width = '40%';
+                BoardCreator.cells_in_a_row = 5;
+				BoardCreator.cells_in_a_column = 5;
+				BoardCreator.board.style.minWidth = "40%";
                 BoardCreator.font_size = '65px';
-                board_width_px = BoardCreator.get_board_px(39);
                 break;
 
             case 'easy':
-                cells_in_a_row = 10;
-                cells_in_a_collumn = 10;
-                BoardCreator.board.style.width = '40%';
-                board_width_px = BoardCreator.get_board_px(39);
+                BoardCreator.cells_in_a_row = 10;
+                BoardCreator.cells_in_a_column = 10;
+				BoardCreator.board.style.minWidth = "40%";
                 BoardCreator.font_size = '45px';
                 break;
 
             case 'medium':
-                cells_in_a_row = 15;
-                cells_in_a_collumn = 15;
-                BoardCreator.board.style.width = '60%';
-                board_width_px = BoardCreator.get_board_px(59);
+                BoardCreator.cells_in_a_row = 18;
+                BoardCreator.cells_in_a_column = 12;
+				BoardCreator.board.style.minWidth = "60%";
                 BoardCreator.font_size = '45px';
                 break;
 
             case 'hard':
-                cells_in_a_row = 20;
-                cells_in_a_collumn = 20;
-                BoardCreator.board.style.width = '90%';
-                board_width_px = BoardCreator.get_board_px(89);
+                BoardCreator.cells_in_a_row = 25;
+                BoardCreator.cells_in_a_column = 12;
+				BoardCreator.board.style.minWidth = "80%";
                 BoardCreator.font_size = '45px';
                 break;
+		}
 
-        }
-        
-        BoardCreator.cells_in_a_collumn = cells_in_a_collumn;
-        BoardCreator.cells_in_a_row = cells_in_a_row;
-        return [cells_in_a_row, cells_in_a_collumn, board_width_px];
+		BoardCreator.set_btn_size();
     },
 
 
-    get_board_px: function (percentage) {
-        // calculate and return cells_in_a_row in px
-        let percentage_as_decimal = percentage / 100;
-        return percentage_as_decimal * window.innerWidth;
-    },
+	/**
+	 * Set the btn_size.
+	 */
+	set_btn_size: function () {
+		// recall borders width is 1px
+		// we need to account for that when we find the btn_size
+		let numOfBorders = BoardCreator.cells_in_a_row + 1; 
+		let widthWithoutBorder = 
+			BoardCreator.board.clientWidth - numOfBorders;
+		BoardCreator.btn_size = 
+			`${ widthWithoutBorder / BoardCreator.cells_in_a_row}px`;
+	},
 
+	/**
+	 * Clear the board.
+	 */
     clear_board: function () {
-        // clear the board
-        BoardCreator.board.innerHTML = '';
-    },
+		BoardCreator.board.replaceWith(
+			BoardCreator.board.cloneNode(false),
+		);
 
-    create_buttons: function (board_width_px, i, j, cells_in_a_row) {
-        // create buttons to be append to cells
-        // this is the clickable buttons on top of the cells
+		// reset the board reference
+		BoardCreator.board = document.querySelector("#board");
+	},
+	
+	/**
+	 * Create a row of buttons.
+	 * @param {number} i, the row position.
+	 * @return a div element (the row) containing the buttons.
+	 */
+	create_row: function (i) {
+		let row = document.createElement("div");
+		row.className = "row";
+		for (let j = 0; j < BoardCreator.cells_in_a_row; j++) {
+			let button = BoardCreator.create_buttons(i, j);
+			row.appendChild(button);
+		}
+		return row;
+	},
+
+	/**
+	 * Create buttons to be append to cells.
+     * This is the clickable buttons on top of the cells.
+	 * @param {number} i, the row position.
+	 * @param {number} j, the column position.
+	 */
+    create_buttons: function (i, j) {
         let button = document.createElement("button");
 
         // create unique id
@@ -131,20 +175,9 @@ export let BoardCreator = {
 		// which represents the amount of mines around it
         button.className = 'gift_btn btn_num0';
 
-        //find the button size depends on the board's width
-        let button_size = board_width_px / cells_in_a_row;
-
-        button.style.width = button_size + 'px';
-        button.style.height = button_size + 'px';
-
-        // adjust the position
-        button.style.left = BoardCreator.cell_left + "px";
-        button.style.top = BoardCreator.cell_top + "px";
-        BoardCreator.cell_left += button_size;
-
+        button.style.width = BoardCreator.btn_size;
+        button.style.height = BoardCreator.btn_size;
         button.style.fontSize = BoardCreator.font_size;
-		BoardCreator.board.appendChild(button);
-		
-        return button_size;
+        return button;
     },
 };
